@@ -1,11 +1,47 @@
-import Image from "next/image";
+import Link from "next/link";
+import { listDemoCompanySummaries } from "@/lib/data/demo";
+import { SearchBox } from "@/components/search/search-box";
 
 export default function Home() {
+  const companies = listDemoCompanySummaries();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-       CompLab
-      </main>
+    <div className="flex flex-1 flex-col items-center justify-center px-6 py-24">
+      <div className="flex w-full max-w-2xl flex-col items-center gap-8 text-center">
+        <div className="flex flex-col gap-3">
+          <h1 className="text-4xl font-semibold">CompLab</h1>
+          <p className="text-lg text-muted-foreground">
+            Comparable-company valuation multiples, computed from hand-verified SEC filings —
+            not AI-generated numbers, not vibes.
+          </p>
+          <p className="text-sm text-muted-foreground">
+            Built for students and early-career analysts learning how equity comps actually work:
+            enterprise value, EV/EBITDA, P/E, and where those numbers physically come from in a
+            10-K.
+          </p>
+        </div>
+
+        <SearchBox companies={companies} />
+
+        <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-muted-foreground">
+          <span>Or jump straight to</span>
+          {companies.map((c) => (
+            <Link
+              key={c.ticker}
+              href={`/company/${c.ticker}`}
+              className="rounded-full border border-border px-3 py-1 hover:bg-accent hover:text-accent-foreground"
+            >
+              {c.ticker}
+            </Link>
+          ))}
+        </div>
+
+        <p className="max-w-md text-xs text-muted-foreground">
+          <strong>Disclaimer:</strong> This is a demo product covering a small, hand-verified set
+          of companies. Figures are sourced from public SEC filings and market quotes, labelled
+          with their source and retrieval date on every card. Nothing here is investment advice.
+        </p>
+      </div>
     </div>
   );
 }
