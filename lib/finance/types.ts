@@ -67,9 +67,27 @@ export interface IncomeStatement {
   /** From the CASH FLOW statement, not the income statement */
   depreciationAmortization: number | null;
 
+  /**
+   * Some filings report interest income and interest expense as separate
+   * lines rather than a single net figure. When that's the case, record
+   * both gross figures and set interestExpenseNetIsDerived to true —
+   * interestExpenseNet is then interestExpenseGross - interestIncome,
+   * not a number copied directly off the statement.
+   */
+  interestIncome: number | null;
+  interestExpenseGross: number | null;
   interestExpenseNet: number | null;
+  interestExpenseNetIsDerived: boolean;
+
   pretaxIncome: number | null;
+  /** Attributable to the parent company — matches the basis EPS is computed on. */
   netIncome: number | null;
+  /**
+   * Before deducting noncontrolling interests' share of earnings. Only
+   * differs from netIncome when the company consolidates a subsidiary it
+   * doesn't wholly own. Optional context, not used in EPS or P/E.
+   */
+  netIncomeConsolidated?: number | null;
 
   epsBasic: number | null;
   epsDiluted: number | null;
@@ -100,7 +118,15 @@ export interface BalanceSheet {
   operatingLeaseLiabilitiesNoncurrent: number | null;
 
   preferredStock: number | null;
+  /**
+   * Total minority claims on consolidated subsidiaries, for use in EV.
+   * Some filings split this into nonredeemable (inside permanent equity)
+   * and redeemable (mezzanine equity) — if so, record both components
+   * below and set this field to their sum.
+   */
   noncontrollingInterest: number | null;
+  noncontrollingInterestNonredeemable?: number | null;
+  noncontrollingInterestRedeemable?: number | null;
   totalShareholdersEquity: number | null;
 }
 
@@ -109,6 +135,8 @@ export interface MarketSnapshot {
   priceCurrency: Currency;
   /** ISO date of the price. Required — a price without a date is useless. */
   priceAsOf: string;
+  /** Usually a market-data provider — a different source from sharesSource. */
+  priceSource: SourceRef;
 
   /**
    * CURRENT shares outstanding, from the 10-K cover page.
@@ -120,8 +148,8 @@ export interface MarketSnapshot {
   sharesOutstandingAsOf: string;
   /** e.g. "Class A 305.9 + Class B 1,181.3" */
   sharesOutstandingNote?: string;
-
-  source: SourceRef;
+  /** Usually the 10-K cover page — a different source from priceSource. */
+  sharesSource: SourceRef;
 }
 
 export interface CompanyProfile {

@@ -1,0 +1,133 @@
+{
+  "profile": {
+    "cik": "0001334036",
+    "ticker": "CROX",
+    "name": "Crocs, Inc.",
+    "exchange": "NASDAQ",
+    "sector": "Consumer Discretionary",
+    "industry": "Textiles, Apparel & Luxury Goods",
+    "subIndustry": "Footwear",
+    "sicCode": "3021",
+    "description": "Crocs, Inc. and our consolidated subsidiaries (collectively, the “Company,” “we,” “us,” or “our”) are engaged in the design, development, worldwide marketing, distribution, and sale of casual lifestyle footwear and accessories for all. We strive to be the world leader in innovative casual footwear, combining comfort and style with a value that consumers",
+    "headquarters": "500 Eldorado Boulevard, Building 5, Broomfield, Colorado 80021",
+    "fiscalYearEndMonth": 12,
+    "isFinancial": false
+  },
+  "financials": [
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2025-01-01",
+        "periodEnd": "2025-12-31",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 4040.647,
+        "costOfRevenue": 1683.592,
+        "grossProfit": 2357.055,
+        "operatingIncome": 149.515,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 79.282,
+        "interestIncome": 1.844,
+        "interestExpenseGross": 88.287,
+        "interestExpenseNet": 86.443,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 72.978,
+        "netIncome": -81.198,
+        "epsBasic": -1.50,
+        "epsDiluted": -1.50,
+        "weightedAvgSharesBasic": 54.208,
+        "weightedAvgSharesDiluted": 54.208
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 130.354,
+        "shortTermInvestments": 0,
+        "totalCurrentAssets": 885.883,
+        "totalAssets": 4174.750,
+        "shortTermDebt": 0,
+        "longTermDebt": 1230.885,
+        "operatingLeaseLiabilitiesCurrent": 85.772,
+        "operatingLeaseLiabilitiesNoncurrent": 297.192,
+        "preferredStock": 0,
+        "noncontrollingInterest": 0,
+        "totalShareholdersEquity": 1293.283
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/1334036/000133403626000006/0001334036-26-000006-index.htm",
+        "filingDate": "2026-02-12",
+        "retrievedAt": "2026-07-28",
+        "note": "Figures reported in thousands USD in the filing; converted to millions here. periodStart is derived from the calendar fiscal year, not printed separately in the filing."
+      }
+    },
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2024,
+        "periodStart": "2024-01-01",
+        "periodEnd": "2024-12-31",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 4102.108,
+        "costOfRevenue": 1691.850,
+        "grossProfit": 2410.258,
+        "operatingIncome": 1021.911,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 69.840,
+        "interestIncome": 3.484,
+        "interestExpenseGross": 109.264,
+        "interestExpenseNet": 105.780,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 910.585,
+        "netIncome": 950.071,
+        "epsBasic": 16.00,
+        "epsDiluted": 15.88,
+        "weightedAvgSharesBasic": 59.381,
+        "weightedAvgSharesDiluted": 59.832
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 180.485,
+        "shortTermInvestments": 0,
+        "totalCurrentAssets": 872.269,
+        "totalAssets": 4812.153,
+        "shortTermDebt": 0,
+        "longTermDebt": 1349.339,
+        "operatingLeaseLiabilitiesCurrent": 68.551,
+        "operatingLeaseLiabilitiesNoncurrent": 283.406,
+        "preferredStock": 0,
+        "noncontrollingInterest": 0,
+        "totalShareholdersEquity": 1835.732
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/1334036/000133403626000006/0001334036-26-000006-index.htm",
+        "filingDate": "2026-02-12",
+        "retrievedAt": "2026-07-28",
+        "note": "Figures reported in thousands USD in the filing; converted to millions here. periodStart is derived from the calendar fiscal year, not printed separately in the filing."
+      }
+    }
+  ],
+  "market": {
+    "sharePrice": 84.49,
+    "priceCurrency": "USD",
+    "priceAsOf": "2026-02-05",
+    "priceSource": {
+      "kind": "MARKET_QUOTE",
+      "documentUrl": null,
+      "filingDate": null,
+      "retrievedAt": "2026-07-28",
+      "note": "Historical close for 2026-02-05, chosen to match the 10-K cover-page share count date rather than using a live quote."
+    },
+    "sharesOutstanding": 50.233596,
+    "sharesOutstandingAsOf": "2026-02-05",
+    "sharesSource": {
+      "kind": "SEC_EDGAR_10K",
+      "documentUrl": "https://www.sec.gov/Archives/edgar/data/1334036/000133403626000006/0001334036-26-000006-index.htm",
+      "filingDate": "2026-02-12",
+      "retrievedAt": "2026-07-28",
+      "note": "Shares outstanding as stated on the 10-K cover page, as of 2026-02-05."
+    }
+  }
+}

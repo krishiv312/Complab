@@ -1,0 +1,140 @@
+{
+  "profile": {
+    "cik": "0001065837",
+    "ticker": "SKX",
+    "name": "Skechers U.S.A., Inc.",
+    "exchange": "NYSE",
+    "sector": "Consumer Discretionary",
+    "industry": "Textiles, Apparel & Luxury Goods",
+    "subIndustry": "Footwear",
+    "sicCode": "3140",
+    "description": "Skechers U.S.A., Inc., designs, develops and markets a diverse range of footwear, apparel, and accessories.",
+    "headquarters": "228 Manhattan Beach Blvd., Manhattan Beach, California 90266",
+    "fiscalYearEndMonth": 12,
+    "isFinancial": false
+  },
+  "financials": [
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2024,
+        "periodStart": "2024-01-01",
+        "periodEnd": "2024-12-31",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 8969.351,
+        "costOfRevenue": 4201.912,
+        "grossProfit": 4767.439,
+        "operatingIncome": 904.257,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 211.499,
+        "interestIncome": 37.3,
+        "interestExpenseGross": 21.9,
+        "interestExpenseNet": -15.4,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 877.749,
+        "netIncome": 639.471,
+        "netIncomeConsolidated": 729.613,
+        "epsBasic": 4.21,
+        "epsDiluted": 4.16,
+        "weightedAvgSharesBasic": 151.838,
+        "weightedAvgSharesDiluted": 153.843
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 1116.516,
+        "shortTermInvestments": 118.470,
+        "totalCurrentAssets": 4449.423,
+        "totalAssets": 8455.758,
+        "shortTermDebt": 386.469,
+        "longTermDebt": 68.450,
+        "operatingLeaseLiabilitiesCurrent": 297.926,
+        "operatingLeaseLiabilitiesNoncurrent": 1176.290,
+        "preferredStock": 0,
+        "noncontrollingInterest": 542.965,
+        "noncontrollingInterestNonredeemable": 452.866,
+        "noncontrollingInterestRedeemable": 90.099,
+        "totalShareholdersEquity": 4730.165
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/1065837/000095017025030016/0000950170-25-030016-index.htm",
+        "filingDate": "2025-02-28",
+        "retrievedAt": "2026-07-30",
+        "note": "Figures reported in thousands USD in the filing; converted to millions here. netIncome is earnings attributable to Skechers U.S.A., Inc. (matches the EPS basis); netIncomeConsolidated (729.613) is before deducting noncontrolling interests' share of earnings. interestIncome (37.3) and interestExpenseGross (21.9) are footnote-disclosed subcomponents of the single income-statement line 'Other expense/income, net' (-26.508), rounded to $0.1M in the filing rather than the nearest thousand - operatingIncome + otherExpenseNet (904.257 - 26.508) reconciles exactly to pretaxIncome (877.749), but operatingIncome + interestExpenseNet does not, since FX and other items also sit inside that line. shortTermDebt (386.469) combines 'Short-term borrowings' (33.338) and 'Current installments of long-term borrowings' (353.131), per this schema's own definition of the field. noncontrollingInterest (542.965) combines nonredeemable NCI within permanent equity (452.866) and redeemable NCI in mezzanine equity (90.099), recorded separately. periodStart is derived from the calendar fiscal year, not printed separately in the filing."
+      }
+    },
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2023,
+        "periodStart": "2023-01-01",
+        "periodEnd": "2023-12-31",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 8000.342,
+        "costOfRevenue": 3847.938,
+        "grossProfit": 4152.404,
+        "operatingIncome": 784.786,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 181.925,
+        "interestIncome": 24.8,
+        "interestExpenseGross": 22.4,
+        "interestExpenseNet": -2.4,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 800.872,
+        "netIncome": 545.799,
+        "netIncomeConsolidated": 649.923,
+        "epsBasic": 3.53,
+        "epsDiluted": 3.49,
+        "weightedAvgSharesBasic": 154.533,
+        "weightedAvgSharesDiluted": 156.256
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 1189.910,
+        "shortTermInvestments": 72.595,
+        "totalCurrentAssets": 3952.604,
+        "totalAssets": 7547.351,
+        "shortTermDebt": 58.465,
+        "longTermDebt": 242.944,
+        "operatingLeaseLiabilitiesCurrent": 274.296,
+        "operatingLeaseLiabilitiesNoncurrent": 1108.110,
+        "preferredStock": 0,
+        "noncontrollingInterest": 380.700,
+        "noncontrollingInterestNonredeemable": 290.868,
+        "noncontrollingInterestRedeemable": 89.832,
+        "totalShareholdersEquity": 4310.210
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/1065837/000095017025030016/0000950170-25-030016-index.htm",
+        "filingDate": "2025-02-28",
+        "retrievedAt": "2026-07-30",
+        "note": "Figures reported in thousands USD in the filing; converted to millions here. netIncome is earnings attributable to Skechers U.S.A., Inc. (matches the EPS basis); netIncomeConsolidated (649.923) is before deducting noncontrolling interests' share of earnings. interestIncome (24.8) and interestExpenseGross (22.4) are footnote-disclosed subcomponents of the single income-statement line 'Other expense/income, net' (16.086), rounded to $0.1M in the filing rather than the nearest thousand - operatingIncome + otherExpenseNet (784.786 + 16.086) reconciles exactly to pretaxIncome (800.872), but operatingIncome + interestExpenseNet does not, since FX and other items also sit inside that line. shortTermDebt (58.465) combines 'Short-term borrowings' (11.894) and 'Current installments of long-term borrowings' (46.571), per this schema's own definition of the field. noncontrollingInterest (380.700) combines nonredeemable NCI within permanent equity (290.868) and redeemable NCI in mezzanine equity (89.832), recorded separately. periodStart is derived from the calendar fiscal year, not printed separately in the filing."
+      }
+    }
+  ],
+  "market": {
+    "sharePrice": 65.97,
+    "priceCurrency": "USD",
+    "priceAsOf": "2025-02-19",
+    "priceSource": {
+      "kind": "MARKET_QUOTE",
+      "documentUrl": null,
+      "filingDate": null,
+      "retrievedAt": "2026-07-30",
+      "note": "Historical close for 2025-02-19, matching the 10-K cover-page share count date."
+    },
+    "sharesOutstanding": 149.354685,
+    "sharesOutstandingAsOf": "2025-02-19",
+    "sharesOutstandingNote": "Class A 130.041034 (publicly traded) + Class B 19.313651 (not publicly traded; convertible 1:1 into Class A, substantially identical economic rights)",
+    "sharesSource": {
+      "kind": "SEC_EDGAR_10K",
+      "documentUrl": "https://www.sec.gov/Archives/edgar/data/1065837/000095017025030016/0000950170-25-030016-index.htm",
+      "filingDate": "2025-02-28",
+      "retrievedAt": "2026-07-30",
+      "note": "Shares outstanding as stated on the 10-K cover page, as of 2025-02-19. Total combines Class A and Class B share classes."
+    }
+  }
+}

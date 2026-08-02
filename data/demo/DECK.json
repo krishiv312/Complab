@@ -1,0 +1,133 @@
+{
+  "profile": {
+    "cik": "0000910521",
+    "ticker": "DECK",
+    "name": "Deckers Outdoor Corporation",
+    "exchange": "NYSE",
+    "sector": "Consumer Discretionary",
+    "industry": "Textiles, Apparel & Luxury Goods",
+    "subIndustry": "Footwear",
+    "sicCode": "3021",
+    "description": "We are a global leader in designing, marketing, and distributing innovative footwear, apparel, and accessories developed for both everyday casual lifestyle use and high-performance activities. We market our products primarily under three proprietary brands: HOKA, UGG, and Teva.",
+    "headquarters": "250 Coromar Drive, Goleta, California 93117",
+    "fiscalYearEndMonth": 3,
+    "isFinancial": false
+  },
+  "financials": [
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2026,
+        "periodStart": "2025-04-01",
+        "periodEnd": "2026-03-31",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 5472.296,
+        "costOfRevenue": 2314.570,
+        "grossProfit": 3157.726,
+        "operatingIncome": 1262.903,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 78.009,
+        "interestIncome": 63.613,
+        "interestExpenseGross": 2.530,
+        "interestExpenseNet": -61.083,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 1326.356,
+        "netIncome": 1024.071,
+        "epsBasic": 7.04,
+        "epsDiluted": 7.02,
+        "weightedAvgSharesBasic": 145.498,
+        "weightedAvgSharesDiluted": 145.805
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 1907.249,
+        "shortTermInvestments": 0,
+        "totalCurrentAssets": 2850.420,
+        "totalAssets": 3687.765,
+        "shortTermDebt": 0,
+        "longTermDebt": 0,
+        "operatingLeaseLiabilitiesCurrent": 83.931,
+        "operatingLeaseLiabilitiesNoncurrent": 291.263,
+        "preferredStock": 0,
+        "noncontrollingInterest": 0,
+        "totalShareholdersEquity": 2499.638
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/910521/000162828026037664/0001628280-26-037664-index.htm",
+        "filingDate": "2026-05-22",
+        "retrievedAt": "2026-07-29",
+        "note": "Figures reported in thousands USD in the filing; converted to millions here. depreciationAmortization = 'Depreciation, amortization and accretion' (75.773) + separately disclosed cloud-computing amortization (2.236); the primary line also includes accretion expense that could not be isolated and is not, strictly, D&A — treated as immaterial for EBITDA purposes. interestExpenseNet is derived as interestExpenseGross - interestIncome and is negative here, reflecting net interest income rather than net interest expense. periodStart is derived from the fiscal year (April 1 - March 31), not printed separately in the filing."
+      }
+    },
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2024-04-01",
+        "periodEnd": "2025-03-31",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 4985.612,
+        "costOfRevenue": 2099.949,
+        "grossProfit": 2885.663,
+        "operatingIncome": 1179.092,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 71.733,
+        "interestIncome": 68.389,
+        "interestExpenseGross": 3.517,
+        "interestExpenseNet": -64.872,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 1243.299,
+        "netIncome": 966.091,
+        "epsBasic": 6.36,
+        "epsDiluted": 6.33,
+        "weightedAvgSharesBasic": 151.992,
+        "weightedAvgSharesDiluted": 152.670
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 1889.188,
+        "shortTermInvestments": 0,
+        "totalCurrentAssets": 2860.475,
+        "totalAssets": 3570.252,
+        "shortTermDebt": 0,
+        "longTermDebt": 0,
+        "operatingLeaseLiabilitiesCurrent": 54.453,
+        "operatingLeaseLiabilitiesNoncurrent": 222.522,
+        "preferredStock": 0,
+        "noncontrollingInterest": 0,
+        "totalShareholdersEquity": 2513.013
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/910521/000162828026037664/0001628280-26-037664-index.htm",
+        "filingDate": "2026-05-22",
+        "retrievedAt": "2026-07-29",
+        "note": "Figures reported in thousands USD in the filing; converted to millions here. depreciationAmortization = 'Depreciation, amortization and accretion' (69.353) + separately disclosed cloud-computing amortization (2.380); the primary line also includes accretion expense that could not be isolated and is not, strictly, D&A — treated as immaterial for EBITDA purposes. interestExpenseNet is derived as interestExpenseGross - interestIncome and is negative here, reflecting net interest income rather than net interest expense. periodStart is derived from the fiscal year (April 1 - March 31), not printed separately in the filing."
+      }
+    }
+  ],
+  "market": {
+    "sharePrice": 100.88,
+    "priceCurrency": "USD",
+    "priceAsOf": "2026-05-01",
+    "priceSource": {
+      "kind": "MARKET_QUOTE",
+      "documentUrl": null,
+      "filingDate": null,
+      "retrievedAt": "2026-07-29",
+      "note": "Historical close for 2026-05-01, matching the 10-K cover-page share count date; cross-checked against an independent market-cap series (~0.002% difference). $100.09 is a separate, correct figure for the fiscal-year-end close on 2026-03-31 - a different date, not used here since it doesn't match the cover-page share count date."
+    },
+    "sharesOutstanding": 138.880957,
+    "sharesOutstandingAsOf": "2026-05-01",
+    "sharesSource": {
+      "kind": "SEC_EDGAR_10K",
+      "documentUrl": "https://www.sec.gov/Archives/edgar/data/910521/000162828026037664/0001628280-26-037664-index.htm",
+      "filingDate": "2026-05-22",
+      "retrievedAt": "2026-07-29",
+      "note": "Shares outstanding as stated on the 10-K cover page, as of 2026-05-01, close of business."
+    }
+  }
+}

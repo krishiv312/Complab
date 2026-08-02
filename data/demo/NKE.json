@@ -1,0 +1,136 @@
+{
+  "profile": {
+    "cik": "0000320187",
+    "ticker": "NKE",
+    "name": "NIKE, Inc.",
+    "exchange": "NYSE",
+    "sector": "Consumer Discretionary",
+    "industry": "Textiles, Apparel & Luxury Goods",
+    "subIndustry": "Footwear",
+    "sicCode": "3021",
+    "description": "Our principal business activity is the design, development and worldwide marketing and selling of athletic footwear, apparel, equipment, accessories and services.",
+    "headquarters": "One Bowerman Drive, Beaverton, Oregon 97005-6453",
+    "fiscalYearEndMonth": 5,
+    "isFinancial": false
+  },
+  "financials": [
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2026,
+        "periodStart": "2025-06-01",
+        "periodEnd": "2026-05-31",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 46398,
+        "costOfRevenue": 26487,
+        "grossProfit": 19911,
+        "operatingIncome": 3850,
+        "operatingIncomeIsDerived": true,
+        "derivationNote": "NIKE does not present a clean operating income subtotal on the face of the consolidated income statement. Derived as pretaxIncome + interestExpenseNet = 3,900 + (-50) = 3,850. This matches exactly the non-GAAP EBIT NIKE separately discloses in its own earnings reconciliation, confirming the derivation.",
+        "depreciationAmortization": 747,
+        "interestIncome": null,
+        "interestExpenseGross": null,
+        "interestExpenseNet": -50,
+        "interestExpenseNetIsDerived": false,
+        "pretaxIncome": 3900,
+        "netIncome": 3108,
+        "epsBasic": 2.10,
+        "epsDiluted": 2.10,
+        "weightedAvgSharesBasic": 1479.8,
+        "weightedAvgSharesDiluted": 1481.0
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 7563,
+        "shortTermInvestments": 1464,
+        "totalCurrentAssets": 24603,
+        "totalAssets": 38410,
+        "shortTermDebt": 2000,
+        "longTermDebt": 5942,
+        "operatingLeaseLiabilitiesCurrent": 478,
+        "operatingLeaseLiabilitiesNoncurrent": 2613,
+        "preferredStock": 0.3,
+        "noncontrollingInterest": 0,
+        "totalShareholdersEquity": 14865
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/320187/000032018726000088/nke-20260531.htm",
+        "filingDate": "2026-07-15",
+        "retrievedAt": "2026-07-30",
+        "note": "Figures reported directly in USD millions in the filing (no thousands conversion needed). interestIncome and interestExpenseGross are null because NIKE discloses only the net figure ('Interest (income) expense, net'), not separate gross lines. Cash interest paid ($323M per the cash-flow statement) is a different figure and was not used here. Accession number 0000320187-26-000088."
+      }
+    },
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2024-06-01",
+        "periodEnd": "2025-05-31",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 46309,
+        "costOfRevenue": 26519,
+        "grossProfit": 19790,
+        "operatingIncome": 3778,
+        "operatingIncomeIsDerived": true,
+        "derivationNote": "NIKE does not present a clean operating income subtotal on the face of the consolidated income statement. Derived as pretaxIncome + interestExpenseNet = 3,885 + (-107) = 3,778. This matches exactly the non-GAAP EBIT NIKE separately discloses in its own earnings reconciliation, confirming the derivation.",
+        "depreciationAmortization": 775,
+        "interestIncome": null,
+        "interestExpenseGross": null,
+        "interestExpenseNet": -107,
+        "interestExpenseNetIsDerived": false,
+        "pretaxIncome": 3885,
+        "netIncome": 3219,
+        "epsBasic": 2.17,
+        "epsDiluted": 2.16,
+        "weightedAvgSharesBasic": 1484.9,
+        "weightedAvgSharesDiluted": 1487.6
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 7464,
+        "shortTermInvestments": 1687,
+        "totalCurrentAssets": 23362,
+        "totalAssets": 36579,
+        "shortTermDebt": 0,
+        "longTermDebt": 7961,
+        "operatingLeaseLiabilitiesCurrent": 502,
+        "operatingLeaseLiabilitiesNoncurrent": 2550,
+        "preferredStock": 0.3,
+        "noncontrollingInterest": 0,
+        "totalShareholdersEquity": 13213
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/320187/000032018726000088/nke-20260531.htm",
+        "filingDate": "2026-07-15",
+        "retrievedAt": "2026-07-30",
+        "note": "Figures reported directly in USD millions in the filing (no thousands conversion needed). interestIncome and interestExpenseGross are null because NIKE discloses only the net figure ('Interest (income) expense, net'), not separate gross lines. Cash interest paid ($389M per the cash-flow statement) is a different figure and was not used here. Accession number 0000320187-26-000088."
+      }
+    }
+  ],
+  "market": {
+    "sharePrice": 42.89,
+    "priceCurrency": "USD",
+    "priceAsOf": "2026-07-08",
+    "priceSource": {
+      "kind": "MARKET_QUOTE",
+      "documentUrl": null,
+      "filingDate": null,
+      "retrievedAt": "2026-07-30",
+      "note": "Historical close for 2026-07-08, matching the 10-K cover-page share count date. An earlier figure of $46.23 was for 2026-05-31 (the balance-sheet date) and was not used, since it doesn't match the cover-page share count date."
+    },
+    "sharesOutstanding": 1483.498703,
+    "sharesOutstandingAsOf": "2026-07-08",
+    "sharesOutstandingNote": "Class A 281.387752 + Class B 1,202.110951 (millions)",
+    "sharesSource": {
+      "kind": "SEC_EDGAR_10K",
+      "documentUrl": "https://www.sec.gov/Archives/edgar/data/320187/000032018726000088/nke-20260531.htm",
+      "filingDate": "2026-07-15",
+      "retrievedAt": "2026-07-30",
+      "note": "Shares outstanding as stated on the 10-K cover page, as of 2026-07-08. Total combines Class A and Class B share classes."
+    }
+  }
+}
