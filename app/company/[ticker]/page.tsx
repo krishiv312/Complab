@@ -2,7 +2,9 @@ import { notFound } from "next/navigation";
 import { getDemoCompany, listDemoTickers } from "@/lib/data/demo";
 import { computeCompanyMetrics, directResult } from "@/lib/finance/compute";
 import { MetricCard } from "@/components/company/metric-card";
+import { buttonVariants } from "@/components/ui/button";
 import { formatCurrency, formatMultiple, formatPercent } from "@/lib/format";
+import { cn } from "@/lib/utils";
 
 export function generateStaticParams() {
   return listDemoTickers().map((ticker) => ({ ticker }));
@@ -28,7 +30,7 @@ export default async function CompanyPage({
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-10 px-6 py-12">
       <header className="flex flex-col gap-1">
         <div className="flex items-baseline gap-3">
-          <h1 className="text-3xl font-semibold">{company.profile.name}</h1>
+          <h1 className="font-heading text-3xl font-semibold tracking-tight">{company.profile.name}</h1>
           <span className="text-lg text-muted-foreground">{company.profile.ticker}</span>
         </div>
         <p className="text-sm text-muted-foreground">
@@ -122,6 +124,32 @@ export default async function CompanyPage({
             source={company.market.priceSource}
           />
         </div>
+      </section>
+
+      <section className="flex flex-col gap-3 border-t border-border pt-8">
+        <h2 className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
+          Download
+        </h2>
+        <div className="flex flex-wrap gap-3">
+          <a
+            href={`/api/company/${company.profile.ticker}/csv`}
+            download
+            className={cn(buttonVariants({ variant: "outline" }), "h-9 px-4")}
+          >
+            Download spreadsheet (.csv)
+          </a>
+          <a
+            href={`/api/company/${company.profile.ticker}/pdf`}
+            download
+            className={cn(buttonVariants({ variant: "outline" }), "h-9 px-4")}
+          >
+            Download PDF
+          </a>
+        </div>
+        <p className="text-xs text-muted-foreground">
+          The spreadsheet opens directly in Excel or Google Sheets; the PDF is a one-page summary
+          for viewing or sharing.
+        </p>
       </section>
     </div>
   );
