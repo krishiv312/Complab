@@ -6,9 +6,11 @@ export default function CompanyNotFound() {
 
   return (
     <div className="mx-auto flex w-full max-w-md flex-1 flex-col items-center justify-center gap-4 px-6 py-24 text-center">
-      <h1 className="text-2xl font-semibold">That ticker isn&apos;t in the demo set</h1>
+      <h1 className="font-heading text-2xl font-semibold tracking-tight">
+        That ticker isn&apos;t in the demo set
+      </h1>
       <p className="text-sm text-muted-foreground">
-        CompLab currently covers a small, hand-verified set of companies. Try one of these:
+        Company Labs currently covers a small, hand-verified set of companies. Try one of these:
       </p>
       <ul className="flex flex-col gap-2">
         {companies.map((c) => (

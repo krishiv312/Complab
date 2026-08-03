@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { listDemoCompanySummaries } from "@/lib/data/demo";
 import { SearchBox } from "@/components/search/search-box";
 
@@ -6,10 +7,10 @@ export default function Home() {
   const companies = listDemoCompanySummaries();
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-center px-6 py-24">
-      <div className="flex w-full max-w-2xl flex-col items-center gap-8 text-center">
+    <div className="flex flex-1 flex-col items-center justify-between px-6 py-16">
+      <div className="flex w-full max-w-2xl flex-1 flex-col items-center justify-center gap-8 text-center">
         <div className="flex flex-col gap-3">
-          <h1 className="text-4xl font-semibold">CompLab</h1>
+          <h1 className="font-heading text-4xl font-semibold tracking-tight">Company Labs</h1>
           <p className="text-lg text-muted-foreground">
             Comparable-company valuation multiples, computed from hand-verified SEC filings —
             not AI-generated numbers, not vibes.
@@ -42,6 +43,14 @@ export default function Home() {
           with their source and retrieval date on every card. Nothing here is investment advice.
         </p>
       </div>
+
+      <Image
+        src="/logo-lockup.png"
+        alt="Company Labs"
+        width={169}
+        height={138}
+        className="mt-16 h-24 w-auto opacity-90"
+      />
     </div>
   );
 }
