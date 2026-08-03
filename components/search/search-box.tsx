@@ -48,7 +48,7 @@ export function SearchBox({ companies }: { companies: DemoCompanySummary[] }) {
         type="text"
         value={query}
         placeholder="Search by ticker or company name (try “nike”)"
-        className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-ring/50"
+        className="w-full rounded-xl border border-border bg-background px-4 py-3.5 text-sm shadow-sm outline-none transition-shadow focus:border-primary/40 focus:ring-4 focus:ring-ring"
         onChange={(e) => {
           setQuery(e.target.value);
           setIsOpen(true);

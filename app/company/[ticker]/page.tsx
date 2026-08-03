@@ -134,7 +134,7 @@ export default async function CompanyPage({
           <a
             href={`/api/company/${company.profile.ticker}/csv`}
             download
-            className={cn(buttonVariants({ variant: "outline" }), "h-9 px-4")}
+            className={cn(buttonVariants({ variant: "default" }), "h-9 px-4")}
           >
             Download spreadsheet (.csv)
           </a>

@@ -36,7 +36,7 @@ export default function RootLayout({
       className={`${bodyFont.variable} ${headingFont.variable} ${monoFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <header className="flex items-center border-b border-border px-6 py-3">
+        <header className="sticky top-0 z-10 flex items-center border-b border-border/70 bg-background/80 px-6 py-3 backdrop-blur-md">
           <Link href="/" className="flex items-center gap-2" aria-label="Company Labs home">
             <Image src="/logo-icon.png" alt="" width={28} height={14} priority className="h-6 w-auto" />
             <span className="font-heading text-sm font-semibold tracking-tight">

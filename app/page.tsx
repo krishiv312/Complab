@@ -7,10 +7,30 @@ export default function Home() {
   const companies = listDemoCompanySummaries();
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-between px-6 py-16">
+    <div className="relative flex flex-1 flex-col items-center justify-between overflow-hidden px-6 py-16">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[560px] bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,var(--primary)_0%,transparent_70%)] opacity-[0.08]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-24 right-[8%] -z-10 size-72 rounded-full bg-primary/10 blur-3xl"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute top-40 left-[6%] -z-10 size-56 rounded-full bg-primary/10 blur-3xl"
+      />
+
       <div className="flex w-full max-w-2xl flex-1 flex-col items-center justify-center gap-8 text-center">
-        <div className="flex flex-col gap-3">
-          <h1 className="font-heading text-4xl font-semibold tracking-tight">Company Labs</h1>
+        <div className="flex flex-col items-center gap-3">
+          <Image
+            src="/logo-lockup.png"
+            alt="Company Labs"
+            width={169}
+            height={138}
+            priority
+            className="h-32 w-auto"
+          />
           <p className="text-lg text-muted-foreground">
             Comparable-company valuation multiples, computed from hand-verified SEC filings —
             not AI-generated numbers, not vibes.
@@ -30,7 +50,7 @@ export default function Home() {
             <Link
               key={c.ticker}
               href={`/company/${c.ticker}`}
-              className="rounded-full border border-border px-3 py-1 hover:bg-accent hover:text-accent-foreground"
+              className="rounded-full border border-border px-3 py-1 transition-colors hover:border-primary/30 hover:bg-accent hover:text-accent-foreground"
             >
               {c.ticker}
             </Link>
@@ -45,11 +65,11 @@ export default function Home() {
       </div>
 
       <Image
-        src="/logo-lockup.png"
-        alt="Company Labs"
-        width={169}
-        height={138}
-        className="mt-16 h-24 w-auto opacity-90"
+        src="/logo-icon.png"
+        alt=""
+        width={422}
+        height={214}
+        className="mt-16 h-10 w-auto opacity-70"
       />
     </div>
   );
