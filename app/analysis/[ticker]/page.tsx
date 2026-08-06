@@ -8,6 +8,7 @@ import { impliedValuation } from "@/lib/finance/valuation";
 import { PeerPicker } from "@/components/comps/peer-picker";
 import { CompsTable, type CompsRow } from "@/components/comps/comps-table";
 import { QuartileTable, ValuationRangeCard } from "@/components/comps/valuation-summary";
+import { MultipleBarChart } from "@/components/charts/multiple-bar-chart";
 import type { DemoCompany } from "@/lib/finance/types";
 
 export function generateStaticParams() {
@@ -160,6 +161,22 @@ export default async function AnalysisPage({
         >
           Download comps table (.csv)
         </a>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h2 className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
+          Charts
+        </h2>
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+          <div className="flex flex-col gap-1">
+            <p className="text-xs text-muted-foreground">EV / EBITDA</p>
+            <MultipleBarChart rows={rows} metricKey="evEbitda" label="EV/EBITDA" />
+          </div>
+          <div className="flex flex-col gap-1">
+            <p className="text-xs text-muted-foreground">EV / Revenue</p>
+            <MultipleBarChart rows={rows} metricKey="evRevenue" label="EV/Revenue" />
+          </div>
+        </div>
       </section>
 
       <section className="flex flex-col gap-3">
