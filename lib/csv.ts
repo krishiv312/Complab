@@ -86,3 +86,54 @@ export function buildCompanyCsv(company: DemoCompany): string {
 
   return lines.join("\r\n") + "\r\n";
 }
+
+export function buildCompsCsv(subject: DemoCompany, peers: DemoCompany[]): string {
+  const lines: string[] = [];
+  const companies = [subject, ...peers];
+
+  lines.push(
+    row([
+      "Ticker",
+      "Company",
+      "Is Subject",
+      "Revenue ($M)",
+      "Market Cap ($M)",
+      "Enterprise Value ($M)",
+      "EV/Revenue",
+      "EV/EBITDA",
+      "EV/EBIT",
+      "P/E",
+      "P/B",
+      "EBITDA Margin",
+      "Net Margin",
+      "Revenue Growth",
+    ])
+  );
+
+  for (const c of companies) {
+    const m = computeCompanyMetrics(c);
+    lines.push(
+      row([
+        c.profile.ticker,
+        c.profile.name,
+        c.profile.ticker === subject.profile.ticker ? "Yes" : "No",
+        c.financials[0].incomeStatement.revenue,
+        metricCell(m.marketCap),
+        metricCell(m.enterpriseValue),
+        metricCell(m.evRevenue),
+        metricCell(m.evEbitda),
+        metricCell(m.evEbit),
+        metricCell(m.pe),
+        metricCell(m.pb),
+        metricCell(m.margins.ebitdaMargin),
+        metricCell(m.margins.netMargin),
+        metricCell(m.revenueGrowth),
+      ])
+    );
+  }
+
+  lines.push("");
+  lines.push(row(["Disclaimer", "Not investment advice. Demo data, hand-verified or auto-ingested from SEC filings."]));
+
+  return lines.join("\r\n") + "\r\n";
+}
