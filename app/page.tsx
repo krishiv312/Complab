@@ -29,6 +29,7 @@ export default function Home() {
             width={169}
             height={138}
             priority
+            unoptimized
             className="h-32 w-auto"
           />
           <p className="text-lg text-muted-foreground">
@@ -69,6 +70,7 @@ export default function Home() {
         alt=""
         width={422}
         height={214}
+        unoptimized
         className="mt-16 h-10 w-auto opacity-70"
       />
     </div>
