@@ -1,0 +1,139 @@
+{
+  "profile": {
+    "cik": "0000103379",
+    "ticker": "VFC",
+    "name": "V F Corp",
+    "exchange": "NYSE",
+    "sector": "",
+    "industry": "Men's & Boys' Furnishgs, Work Clothg, & Allied Garments",
+    "subIndustry": "",
+    "sicCode": "2320",
+    "description": "",
+    "headquarters": "DENVER, CO",
+    "fiscalYearEndMonth": 3,
+    "isFinancial": false
+  },
+  "financials": [
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2026,
+        "periodStart": "2025-03-30",
+        "periodEnd": "2026-03-28",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 9605.207,
+        "costOfRevenue": 4343.492,
+        "grossProfit": null,
+        "operatingIncome": 576.569,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 280.529,
+        "interestIncome": 18.028,
+        "interestExpenseGross": 166.771,
+        "interestExpenseNet": 148.743,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 341.218,
+        "netIncome": 254.92,
+        "netIncomeConsolidated": null,
+        "epsBasic": 0.65,
+        "epsDiluted": 0.64,
+        "weightedAvgSharesBasic": 390.739,
+        "weightedAvgSharesDiluted": 395.875
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 823.943,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 4009.514,
+        "totalAssets": 9290.177,
+        "shortTermDebt": 10.139,
+        "longTermDebt": 3519.87,
+        "operatingLeaseLiabilitiesCurrent": 333.469,
+        "operatingLeaseLiabilitiesNoncurrent": 1119.876,
+        "preferredStock": 0,
+        "noncontrollingInterest": null,
+        "noncontrollingInterestNonredeemable": null,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 1849.878
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/103379/000010337926000030/vfc-20260328.htm",
+        "filingDate": "2026-05-20",
+        "retrievedAt": "2026-08-06",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    },
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2026,
+        "periodStart": "2024-03-31",
+        "periodEnd": "2025-03-29",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 9504.691,
+        "costOfRevenue": 4420.826,
+        "grossProfit": null,
+        "operatingIncome": 303.773,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 259.616,
+        "interestIncome": 24.893,
+        "interestExpenseGross": 174.136,
+        "interestExpenseNet": 149.243,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 145.161,
+        "netIncome": -189.716,
+        "netIncomeConsolidated": null,
+        "epsBasic": -0.49,
+        "epsDiluted": -0.48,
+        "weightedAvgSharesBasic": 389.152,
+        "weightedAvgSharesDiluted": 392.571
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 429.382,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 3786.098,
+        "totalAssets": 9377.536,
+        "shortTermDebt": 11.916,
+        "longTermDebt": null,
+        "operatingLeaseLiabilitiesCurrent": 308.741,
+        "operatingLeaseLiabilitiesNoncurrent": 1079.182,
+        "preferredStock": 0,
+        "noncontrollingInterest": null,
+        "noncontrollingInterestNonredeemable": null,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 1487.359
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/103379/000010337926000030/vfc-20260328.htm",
+        "filingDate": "2026-05-20",
+        "retrievedAt": "2026-08-06",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    }
+  ],
+  "market": {
+    "sharePrice": 15.22,
+    "priceCurrency": "USD",
+    "priceAsOf": "2026-08-06",
+    "priceSource": {
+      "kind": "MARKET_QUOTE",
+      "documentUrl": null,
+      "filingDate": null,
+      "retrievedAt": "2026-08-06",
+      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-06) does NOT match sharesOutstandingAsOf (2026-04-25). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
+    },
+    "sharesOutstanding": 391.769705,
+    "sharesOutstandingAsOf": "2026-04-25",
+    "sharesSource": {
+      "kind": "SEC_EDGAR_10K",
+      "documentUrl": "https://www.sec.gov/Archives/edgar/data/103379/000010337926000030/vfc-20260328.htm",
+      "filingDate": "2026-05-20",
+      "retrievedAt": "2026-08-06",
+      "note": "Shares outstanding from the 10-K cover page (dei:EntityCommonStockSharesOutstanding)."
+    }
+  }
+}

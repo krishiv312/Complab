@@ -1,0 +1,139 @@
+{
+  "profile": {
+    "cik": "0001397187",
+    "ticker": "LULU",
+    "name": "Lululemon Athletica Inc.",
+    "exchange": "Nasdaq",
+    "sector": "",
+    "industry": "Apparel & Other Finishd Prods of  Fabrics & Similar Matl",
+    "subIndustry": "",
+    "sicCode": "2300",
+    "description": "",
+    "headquarters": "VANCOUVER, A1",
+    "fiscalYearEndMonth": 2,
+    "isFinancial": false
+  },
+  "financials": [
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2025-02-03",
+        "periodEnd": "2026-02-01",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 11102.6,
+        "costOfRevenue": 4818.468,
+        "grossProfit": 6284.132,
+        "operatingIncome": 2210.615,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 496.228,
+        "interestIncome": null,
+        "interestExpenseGross": null,
+        "interestExpenseNet": null,
+        "interestExpenseNetIsDerived": false,
+        "pretaxIncome": 2238.967,
+        "netIncome": 1579.183,
+        "netIncomeConsolidated": null,
+        "epsBasic": 13.27,
+        "epsDiluted": 13.26,
+        "weightedAvgSharesBasic": 118.981,
+        "weightedAvgSharesDiluted": 119.068
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": null,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 4262.701,
+        "totalAssets": 8456.743,
+        "shortTermDebt": null,
+        "longTermDebt": null,
+        "operatingLeaseLiabilitiesCurrent": 298.724,
+        "operatingLeaseLiabilitiesNoncurrent": 1499.717,
+        "preferredStock": 0,
+        "noncontrollingInterest": null,
+        "noncontrollingInterestNonredeemable": null,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 4961.84
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000020/lulu-20260201.htm",
+        "filingDate": "2026-03-17",
+        "retrievedAt": "2026-08-06",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    },
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2024-01-29",
+        "periodEnd": "2025-02-02",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 10588.126,
+        "costOfRevenue": 4317.315,
+        "grossProfit": 6270.811,
+        "operatingIncome": 2505.697,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 446.524,
+        "interestIncome": null,
+        "interestExpenseGross": null,
+        "interestExpenseNet": null,
+        "interestExpenseNetIsDerived": false,
+        "pretaxIncome": 2576.077,
+        "netIncome": 1814.616,
+        "netIncomeConsolidated": null,
+        "epsBasic": 14.67,
+        "epsDiluted": 14.64,
+        "weightedAvgSharesBasic": 123.735,
+        "weightedAvgSharesDiluted": 123.935
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": null,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 3980.302,
+        "totalAssets": 7603.292,
+        "shortTermDebt": null,
+        "longTermDebt": null,
+        "operatingLeaseLiabilitiesCurrent": 275.154,
+        "operatingLeaseLiabilitiesNoncurrent": 1300.637,
+        "preferredStock": 0,
+        "noncontrollingInterest": null,
+        "noncontrollingInterestNonredeemable": null,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 4324.047
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000020/lulu-20260201.htm",
+        "filingDate": "2026-03-17",
+        "retrievedAt": "2026-08-06",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    }
+  ],
+  "market": {
+    "sharePrice": 123.51,
+    "priceCurrency": "USD",
+    "priceAsOf": "2026-08-06",
+    "priceSource": {
+      "kind": "MARKET_QUOTE",
+      "documentUrl": null,
+      "filingDate": null,
+      "retrievedAt": "2026-08-06",
+      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-06) does NOT match sharesOutstandingAsOf (2026-03-11). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
+    },
+    "sharesOutstanding": 110.482671,
+    "sharesOutstandingAsOf": "2026-03-11",
+    "sharesSource": {
+      "kind": "SEC_EDGAR_10K",
+      "documentUrl": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000020/lulu-20260201.htm",
+      "filingDate": "2026-03-17",
+      "retrievedAt": "2026-08-06",
+      "note": "Shares outstanding from the 10-K cover page (dei:EntityCommonStockSharesOutstanding)."
+    }
+  }
+}

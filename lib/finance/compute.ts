@@ -46,11 +46,19 @@ export function computeCompanyMetrics(company: DemoCompany): CompanyMetrics {
       ? bs.shortTermDebt + bs.longTermDebt
       : null;
 
+  // Hand-verified companies always have an explicit 0 here (a human confirmed
+  // no preferred stock / no minority interest exists) - null only shows up for
+  // auto-ingested companies where no matching XBRL tag was found at all, which
+  // for these two fields specifically is the normal signal for "doesn't exist,"
+  // not "couldn't determine." Defaulting to 0 here (EV calculation only, not the
+  // underlying data) keeps EV/EBITDA usable for the common case instead of going
+  // N/A on virtually every auto-ingested company, most of which simply have
+  // neither. This is a no-op for hand-verified companies since they're never null.
   const enterpriseValue = calculateEnterpriseValue(
     marketCap.value,
     totalDebt,
-    bs.preferredStock,
-    bs.noncontrollingInterest,
+    bs.preferredStock ?? 0,
+    bs.noncontrollingInterest ?? 0,
     bs.cashAndEquivalents
   );
 

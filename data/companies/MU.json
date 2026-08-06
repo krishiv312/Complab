@@ -1,0 +1,139 @@
+{
+  "profile": {
+    "cik": "0000723125",
+    "ticker": "MU",
+    "name": "Micron Technology Inc",
+    "exchange": "Nasdaq",
+    "sector": "",
+    "industry": "Semiconductors & Related Devices",
+    "subIndustry": "",
+    "sicCode": "3674",
+    "description": "",
+    "headquarters": "BOISE, ID",
+    "fiscalYearEndMonth": 9,
+    "isFinancial": false
+  },
+  "financials": [
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2024-08-30",
+        "periodEnd": "2025-08-28",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 37378,
+        "costOfRevenue": 22505,
+        "grossProfit": 14873,
+        "operatingIncome": 9770,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 8352,
+        "interestIncome": null,
+        "interestExpenseGross": 477,
+        "interestExpenseNet": null,
+        "interestExpenseNetIsDerived": false,
+        "pretaxIncome": 9654,
+        "netIncome": 8539,
+        "netIncomeConsolidated": null,
+        "epsBasic": 7.65,
+        "epsDiluted": 7.59,
+        "weightedAvgSharesBasic": 1116,
+        "weightedAvgSharesDiluted": 1125
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 9642,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 28841,
+        "totalAssets": 82798,
+        "shortTermDebt": null,
+        "longTermDebt": null,
+        "operatingLeaseLiabilitiesCurrent": 74,
+        "operatingLeaseLiabilitiesNoncurrent": 701,
+        "preferredStock": null,
+        "noncontrollingInterest": null,
+        "noncontrollingInterestNonredeemable": null,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 54165
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000028/mu-20250828.htm",
+        "filingDate": "2025-10-03",
+        "retrievedAt": "2026-08-06",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    },
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2023-09-01",
+        "periodEnd": "2024-08-29",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 25111,
+        "costOfRevenue": 19498,
+        "grossProfit": 5613,
+        "operatingIncome": 1304,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 7780,
+        "interestIncome": null,
+        "interestExpenseGross": 562,
+        "interestExpenseNet": null,
+        "interestExpenseNetIsDerived": false,
+        "pretaxIncome": 1240,
+        "netIncome": 778,
+        "netIncomeConsolidated": null,
+        "epsBasic": 0.7,
+        "epsDiluted": 0.7,
+        "weightedAvgSharesBasic": 1105,
+        "weightedAvgSharesDiluted": 1118
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 7041,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 24372,
+        "totalAssets": 69416,
+        "shortTermDebt": null,
+        "longTermDebt": null,
+        "operatingLeaseLiabilitiesCurrent": 71,
+        "operatingLeaseLiabilitiesNoncurrent": 610,
+        "preferredStock": null,
+        "noncontrollingInterest": null,
+        "noncontrollingInterestNonredeemable": null,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 45131
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000028/mu-20250828.htm",
+        "filingDate": "2025-10-03",
+        "retrievedAt": "2026-08-06",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    }
+  ],
+  "market": {
+    "sharePrice": 893.19,
+    "priceCurrency": "USD",
+    "priceAsOf": "2026-08-06",
+    "priceSource": {
+      "kind": "MARKET_QUOTE",
+      "documentUrl": null,
+      "filingDate": null,
+      "retrievedAt": "2026-08-06",
+      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-06) does NOT match sharesOutstandingAsOf (2025-09-26). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
+    },
+    "sharesOutstanding": 1122.466035,
+    "sharesOutstandingAsOf": "2025-09-26",
+    "sharesSource": {
+      "kind": "SEC_EDGAR_10K",
+      "documentUrl": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000028/mu-20250828.htm",
+      "filingDate": "2025-10-03",
+      "retrievedAt": "2026-08-06",
+      "note": "Shares outstanding from the 10-K cover page (dei:EntityCommonStockSharesOutstanding)."
+    }
+  }
+}

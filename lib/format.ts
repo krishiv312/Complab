@@ -4,6 +4,9 @@ import type { MetricResult } from "./finance/types";
 export function formatCurrency(millions: number): string {
   const sign = millions < 0 ? "-" : "";
   const abs = Math.abs(millions);
+  if (abs >= 1_000_000) {
+    return `${sign}$${(abs / 1_000_000).toFixed(2)}T`;
+  }
   if (abs >= 1000) {
     return `${sign}$${(abs / 1000).toFixed(2)}B`;
   }

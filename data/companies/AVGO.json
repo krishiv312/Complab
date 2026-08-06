@@ -1,0 +1,139 @@
+{
+  "profile": {
+    "cik": "0001730168",
+    "ticker": "AVGO",
+    "name": "Broadcom Inc.",
+    "exchange": "Nasdaq",
+    "sector": "",
+    "industry": "Semiconductors & Related Devices",
+    "subIndustry": "",
+    "sicCode": "3674",
+    "description": "",
+    "headquarters": "PALO ALTO, CA",
+    "fiscalYearEndMonth": 11,
+    "isFinancial": false
+  },
+  "financials": [
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2024-11-04",
+        "periodEnd": "2025-11-02",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 63887,
+        "costOfRevenue": 20593,
+        "grossProfit": 43294,
+        "operatingIncome": 25484,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": null,
+        "interestIncome": 347,
+        "interestExpenseGross": 3210,
+        "interestExpenseNet": 2863,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 22729,
+        "netIncome": null,
+        "netIncomeConsolidated": 23126,
+        "epsBasic": 4.91,
+        "epsDiluted": 4.77,
+        "weightedAvgSharesBasic": 4712,
+        "weightedAvgSharesDiluted": 4853
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 16178,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 31573,
+        "totalAssets": 171092,
+        "shortTermDebt": 3152,
+        "longTermDebt": null,
+        "operatingLeaseLiabilitiesCurrent": 144,
+        "operatingLeaseLiabilitiesNoncurrent": 1181,
+        "preferredStock": 0,
+        "noncontrollingInterest": null,
+        "noncontrollingInterestNonredeemable": null,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": null
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000121/avgo-20251102.htm",
+        "filingDate": "2025-12-18",
+        "retrievedAt": "2026-08-06",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    },
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2023-10-30",
+        "periodEnd": "2024-11-03",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 51574,
+        "costOfRevenue": 19065,
+        "grossProfit": 32509,
+        "operatingIncome": 13463,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": null,
+        "interestIncome": 461,
+        "interestExpenseGross": 3953,
+        "interestExpenseNet": 3492,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 9916,
+        "netIncome": null,
+        "netIncomeConsolidated": 5895,
+        "epsBasic": 1.27,
+        "epsDiluted": 1.23,
+        "weightedAvgSharesBasic": 4624,
+        "weightedAvgSharesDiluted": 4778
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 9348,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 19595,
+        "totalAssets": 165645,
+        "shortTermDebt": 1245,
+        "longTermDebt": null,
+        "operatingLeaseLiabilitiesCurrent": 207,
+        "operatingLeaseLiabilitiesNoncurrent": 1143,
+        "preferredStock": 0,
+        "noncontrollingInterest": null,
+        "noncontrollingInterestNonredeemable": null,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": null
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000121/avgo-20251102.htm",
+        "filingDate": "2025-12-18",
+        "retrievedAt": "2026-08-06",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    }
+  ],
+  "market": {
+    "sharePrice": 418.28,
+    "priceCurrency": "USD",
+    "priceAsOf": "2026-08-06",
+    "priceSource": {
+      "kind": "MARKET_QUOTE",
+      "documentUrl": null,
+      "filingDate": null,
+      "retrievedAt": "2026-08-06",
+      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-06) does NOT match sharesOutstandingAsOf (2025-11-28). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
+    },
+    "sharesOutstanding": 4741.273799,
+    "sharesOutstandingAsOf": "2025-11-28",
+    "sharesSource": {
+      "kind": "SEC_EDGAR_10K",
+      "documentUrl": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000121/avgo-20251102.htm",
+      "filingDate": "2025-12-18",
+      "retrievedAt": "2026-08-06",
+      "note": "Shares outstanding from the 10-K cover page (dei:EntityCommonStockSharesOutstanding)."
+    }
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "profile": {
+    "cik": "0000804328",
+    "ticker": "QCOM",
+    "name": "Qualcomm Inc/De",
+    "exchange": "Nasdaq",
+    "sector": "",
+    "industry": "Radio & Tv Broadcasting & Communications Equipment",
+    "subIndustry": "",
+    "sicCode": "3663",
+    "description": "",
+    "headquarters": "SAN DIEGO, CA",
+    "fiscalYearEndMonth": 9,
+    "isFinancial": false
+  },
+  "financials": [
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2024-09-30",
+        "periodEnd": "2025-09-28",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 44284,
+        "costOfRevenue": 19738,
+        "grossProfit": null,
+        "operatingIncome": 12355,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 1602,
+        "interestIncome": 639,
+        "interestExpenseGross": 664,
+        "interestExpenseNet": 25,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 12663,
+        "netIncome": 5541,
+        "netIncomeConsolidated": null,
+        "epsBasic": 5.05,
+        "epsDiluted": 5.01,
+        "weightedAvgSharesBasic": 1096,
+        "weightedAvgSharesDiluted": 1105
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 5520,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 25754,
+        "totalAssets": 50143,
+        "shortTermDebt": 0,
+        "longTermDebt": 14811,
+        "operatingLeaseLiabilitiesCurrent": 102,
+        "operatingLeaseLiabilitiesNoncurrent": 730,
+        "preferredStock": 0,
+        "noncontrollingInterest": null,
+        "noncontrollingInterestNonredeemable": null,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": null
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/804328/000080432825000085/qcom-20250928.htm",
+        "filingDate": "2025-11-05",
+        "retrievedAt": "2026-08-06",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    },
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2023-09-25",
+        "periodEnd": "2024-09-29",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 38962,
+        "costOfRevenue": 17060,
+        "grossProfit": null,
+        "operatingIncome": 10071,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 1706,
+        "interestIncome": 675,
+        "interestExpenseGross": 697,
+        "interestExpenseNet": 22,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 10336,
+        "netIncome": 10142,
+        "netIncomeConsolidated": null,
+        "epsBasic": 9.09,
+        "epsDiluted": 8.97,
+        "weightedAvgSharesBasic": 1116,
+        "weightedAvgSharesDiluted": 1130
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 7849,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 25231,
+        "totalAssets": 55154,
+        "shortTermDebt": 1364,
+        "longTermDebt": 13270,
+        "operatingLeaseLiabilitiesCurrent": 98,
+        "operatingLeaseLiabilitiesNoncurrent": 708,
+        "preferredStock": 0,
+        "noncontrollingInterest": null,
+        "noncontrollingInterestNonredeemable": null,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": null
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/804328/000080432825000085/qcom-20250928.htm",
+        "filingDate": "2025-11-05",
+        "retrievedAt": "2026-08-06",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    }
+  ],
+  "market": {
+    "sharePrice": 157.53,
+    "priceCurrency": "USD",
+    "priceAsOf": "2026-08-06",
+    "priceSource": {
+      "kind": "MARKET_QUOTE",
+      "documentUrl": null,
+      "filingDate": null,
+      "retrievedAt": "2026-08-06",
+      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-06) does NOT match sharesOutstandingAsOf (2025-11-03). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
+    },
+    "sharesOutstanding": 1071,
+    "sharesOutstandingAsOf": "2025-11-03",
+    "sharesSource": {
+      "kind": "SEC_EDGAR_10K",
+      "documentUrl": "https://www.sec.gov/Archives/edgar/data/804328/000080432825000085/qcom-20250928.htm",
+      "filingDate": "2025-11-05",
+      "retrievedAt": "2026-08-06",
+      "note": "Shares outstanding from the 10-K cover page (dei:EntityCommonStockSharesOutstanding)."
+    }
+  }
+}

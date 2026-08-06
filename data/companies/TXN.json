@@ -1,0 +1,139 @@
+{
+  "profile": {
+    "cik": "0000097476",
+    "ticker": "TXN",
+    "name": "Texas Instruments Inc",
+    "exchange": "Nasdaq",
+    "sector": "",
+    "industry": "Semiconductors & Related Devices",
+    "subIndustry": "",
+    "sicCode": "3674",
+    "description": "",
+    "headquarters": "DALLAS, TX",
+    "fiscalYearEndMonth": 12,
+    "isFinancial": false
+  },
+  "financials": [
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2025-01-01",
+        "periodEnd": "2025-12-31",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 17682,
+        "costOfRevenue": 7599,
+        "grossProfit": 10083,
+        "operatingIncome": 6023,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": null,
+        "interestIncome": null,
+        "interestExpenseGross": null,
+        "interestExpenseNet": null,
+        "interestExpenseNetIsDerived": false,
+        "pretaxIncome": 5710,
+        "netIncome": 5001,
+        "netIncomeConsolidated": null,
+        "epsBasic": 5.47,
+        "epsDiluted": 5.45,
+        "weightedAvgSharesBasic": 909,
+        "weightedAvgSharesDiluted": 913
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 3225,
+        "shortTermInvestments": 1656,
+        "totalCurrentAssets": 13750,
+        "totalAssets": 34585,
+        "shortTermDebt": 500,
+        "longTermDebt": 13548,
+        "operatingLeaseLiabilitiesCurrent": 119,
+        "operatingLeaseLiabilitiesNoncurrent": 612,
+        "preferredStock": 0,
+        "noncontrollingInterest": null,
+        "noncontrollingInterestNonredeemable": null,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 16273
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/97476/000009747626000059/txn-20251231.htm",
+        "filingDate": "2026-02-06",
+        "retrievedAt": "2026-08-06",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    },
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2024-01-01",
+        "periodEnd": "2024-12-31",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 15641,
+        "costOfRevenue": 6547,
+        "grossProfit": 9094,
+        "operatingIncome": 5465,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": null,
+        "interestIncome": null,
+        "interestExpenseGross": null,
+        "interestExpenseNet": null,
+        "interestExpenseNetIsDerived": false,
+        "pretaxIncome": 5453,
+        "netIncome": 4799,
+        "netIncomeConsolidated": null,
+        "epsBasic": 5.24,
+        "epsDiluted": 5.2,
+        "weightedAvgSharesBasic": 912,
+        "weightedAvgSharesDiluted": 919
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 3200,
+        "shortTermInvestments": 4380,
+        "totalCurrentAssets": 15026,
+        "totalAssets": 35509,
+        "shortTermDebt": 750,
+        "longTermDebt": 12846,
+        "operatingLeaseLiabilitiesCurrent": 118,
+        "operatingLeaseLiabilitiesNoncurrent": 663,
+        "preferredStock": 0,
+        "noncontrollingInterest": null,
+        "noncontrollingInterestNonredeemable": null,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 16903
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/97476/000009747626000059/txn-20251231.htm",
+        "filingDate": "2026-02-06",
+        "retrievedAt": "2026-08-06",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    }
+  ],
+  "market": {
+    "sharePrice": 277.72,
+    "priceCurrency": "USD",
+    "priceAsOf": "2026-08-06",
+    "priceSource": {
+      "kind": "MARKET_QUOTE",
+      "documentUrl": null,
+      "filingDate": null,
+      "retrievedAt": "2026-08-06",
+      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-06) does NOT match sharesOutstandingAsOf (2026-01-27). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
+    },
+    "sharesOutstanding": 907.550774,
+    "sharesOutstandingAsOf": "2026-01-27",
+    "sharesSource": {
+      "kind": "SEC_EDGAR_10K",
+      "documentUrl": "https://www.sec.gov/Archives/edgar/data/97476/000009747626000059/txn-20251231.htm",
+      "filingDate": "2026-02-06",
+      "retrievedAt": "2026-08-06",
+      "note": "Shares outstanding from the 10-K cover page (dei:EntityCommonStockSharesOutstanding)."
+    }
+  }
+}

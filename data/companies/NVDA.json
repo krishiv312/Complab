@@ -1,0 +1,139 @@
+{
+  "profile": {
+    "cik": "0001045810",
+    "ticker": "NVDA",
+    "name": "Nvidia Corp",
+    "exchange": "Nasdaq",
+    "sector": "",
+    "industry": "Semiconductors & Related Devices",
+    "subIndustry": "",
+    "sicCode": "3674",
+    "description": "",
+    "headquarters": "SANTA CLARA, CA",
+    "fiscalYearEndMonth": 1,
+    "isFinancial": false
+  },
+  "financials": [
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2026,
+        "periodStart": "2025-01-27",
+        "periodEnd": "2026-01-25",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 215938,
+        "costOfRevenue": 62475,
+        "grossProfit": 153463,
+        "operatingIncome": 130387,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 2843,
+        "interestIncome": 2300,
+        "interestExpenseGross": 259,
+        "interestExpenseNet": -2041,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 141450,
+        "netIncome": 120067,
+        "netIncomeConsolidated": null,
+        "epsBasic": 4.93,
+        "epsDiluted": 4.9,
+        "weightedAvgSharesBasic": 24359,
+        "weightedAvgSharesDiluted": 24514
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 10605,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 125605,
+        "totalAssets": 206803,
+        "shortTermDebt": 999,
+        "longTermDebt": 7469,
+        "operatingLeaseLiabilitiesCurrent": 372,
+        "operatingLeaseLiabilitiesNoncurrent": 2572,
+        "preferredStock": 0,
+        "noncontrollingInterest": null,
+        "noncontrollingInterestNonredeemable": null,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 157293
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "filingDate": "2026-02-25",
+        "retrievedAt": "2026-08-06",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    },
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2026,
+        "periodStart": "2024-01-29",
+        "periodEnd": "2025-01-26",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 130497,
+        "costOfRevenue": 32639,
+        "grossProfit": 97858,
+        "operatingIncome": 81453,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 1864,
+        "interestIncome": 1786,
+        "interestExpenseGross": 247,
+        "interestExpenseNet": -1539,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 84026,
+        "netIncome": 72880,
+        "netIncomeConsolidated": null,
+        "epsBasic": 2.97,
+        "epsDiluted": 2.94,
+        "weightedAvgSharesBasic": 24555,
+        "weightedAvgSharesDiluted": 24804
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 8589,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 80126,
+        "totalAssets": 111601,
+        "shortTermDebt": 0,
+        "longTermDebt": 8463,
+        "operatingLeaseLiabilitiesCurrent": null,
+        "operatingLeaseLiabilitiesNoncurrent": 1519,
+        "preferredStock": 0,
+        "noncontrollingInterest": null,
+        "noncontrollingInterestNonredeemable": null,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 79327
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "filingDate": "2026-02-25",
+        "retrievedAt": "2026-08-06",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    }
+  ],
+  "market": {
+    "sharePrice": 219.22,
+    "priceCurrency": "USD",
+    "priceAsOf": "2026-08-06",
+    "priceSource": {
+      "kind": "MARKET_QUOTE",
+      "documentUrl": null,
+      "filingDate": null,
+      "retrievedAt": "2026-08-06",
+      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-06) does NOT match sharesOutstandingAsOf (2026-02-20). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
+    },
+    "sharesOutstanding": 24300,
+    "sharesOutstandingAsOf": "2026-02-20",
+    "sharesSource": {
+      "kind": "SEC_EDGAR_10K",
+      "documentUrl": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+      "filingDate": "2026-02-25",
+      "retrievedAt": "2026-08-06",
+      "note": "Shares outstanding from the 10-K cover page (dei:EntityCommonStockSharesOutstanding)."
+    }
+  }
+}
