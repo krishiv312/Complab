@@ -323,16 +323,72 @@ function titleCaseCompanyName(name: string): string {
     .replace(/\bCo\b/g, "Co");
 }
 
+/**
+ * SIC codes are a coarse, 1987-vintage government classification that doesn't
+ * map cleanly onto modern comps groupings (Qualcomm is SIC 3663 "Radio & TV
+ * Broadcasting Equipment," not 3674 "Semiconductors," despite being a
+ * semiconductor company by any comps analyst's definition). Hand-verified
+ * companies already carry hand-picked GICS-style sector/industry/subIndustry
+ * labels; without a matching mapping here, auto-ingested companies would carry
+ * raw SIC description text instead - a different taxonomy that would silently
+ * fail to match for peer suggestion even between genuine peers. Covers the four
+ * target industries from docs/DATA_SOURCE_REVIEW.md; falls back to the raw SIC
+ * description for anything else rather than guessing a classification.
+ */
+const SIC_TO_GICS: { test: (sic: number) => boolean; sector: string; industry: string; subIndustry: string }[] = [
+  {
+    test: (s) => s === 3021 || s === 3140 || s === 3149,
+    sector: "Consumer Discretionary",
+    industry: "Textiles, Apparel & Luxury Goods",
+    subIndustry: "Footwear",
+  },
+  {
+    test: (s) => s >= 2200 && s <= 2399,
+    sector: "Consumer Discretionary",
+    industry: "Textiles, Apparel & Luxury Goods",
+    subIndustry: "Apparel",
+  },
+  {
+    test: (s) => s === 3674 || s === 3663 || s === 3559,
+    sector: "Information Technology",
+    industry: "Semiconductors & Semiconductor Equipment",
+    subIndustry: "Semiconductors",
+  },
+  {
+    test: (s) => s >= 7370 && s <= 7379,
+    sector: "Information Technology",
+    industry: "Software",
+    subIndustry: "Systems Software",
+  },
+  {
+    test: (s) => s >= 2000 && s <= 2099,
+    sector: "Consumer Staples",
+    industry: "Food, Beverage & Tobacco",
+    subIndustry: "Packaged Foods & Meats",
+  },
+];
+
+function classifyIndustry(
+  sicCode: string | null,
+  fallbackDescription: string
+): { sector: string; industry: string; subIndustry: string } {
+  const sic = sicCode ? Number(sicCode) : NaN;
+  const match = SIC_TO_GICS.find((m) => m.test(sic));
+  if (match) return { sector: match.sector, industry: match.industry, subIndustry: match.subIndustry };
+  return { sector: "", industry: fallbackDescription, subIndustry: "" };
+}
+
 export function normalizeProfile(submissions: EdgarSubmissions, ticker: string): CompanyProfile {
   const sicCode = submissions.sic ?? null;
+  const classification = classifyIndustry(sicCode, submissions.sicDescription ?? "");
   return {
     cik: submissions.cik.padStart(10, "0"),
     ticker,
     name: titleCaseCompanyName(submissions.name),
     exchange: submissions.exchanges[0] ?? "",
-    sector: "",
-    industry: submissions.sicDescription ?? "",
-    subIndustry: "",
+    sector: classification.sector,
+    industry: classification.industry,
+    subIndustry: classification.subIndustry,
     sicCode,
     description: "",
     headquarters: submissions.addresses?.business
