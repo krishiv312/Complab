@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { getDemoCompany, listDemoTickers } from "@/lib/data/demo";
 import { computeCompanyMetrics, directResult } from "@/lib/finance/compute";
 import { MetricCard } from "@/components/company/metric-card";
@@ -36,6 +37,12 @@ export default async function CompanyPage({
         <p className="text-sm text-muted-foreground">
           {company.profile.exchange} · {company.profile.sector} · {company.profile.industry}
         </p>
+        <Link
+          href={`/analysis/${company.profile.ticker}`}
+          className="mt-1 text-xs text-muted-foreground underline underline-offset-4"
+        >
+          Compare against peers
+        </Link>
       </header>
 
       <section className="flex flex-col gap-3">
