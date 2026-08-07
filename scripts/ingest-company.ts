@@ -9,6 +9,7 @@ import { writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { ingestCompany } from "../lib/data/ingest";
 import { checkCompleteness, formatCompletenessReport, type CompletenessReport } from "../lib/data/completeness";
+import { getDemoCompany } from "../lib/data/demo";
 
 const OUT_DIR = join(process.cwd(), "data", "companies");
 
@@ -55,6 +56,21 @@ async function main() {
   if (skipped.length) {
     console.log(`${skipped.length} skipped:`);
     for (const s of skipped) console.log(`  ${s.ticker}: ${s.detail}`);
+  }
+
+  // lib/data/demo.ts registers companies via explicit, hand-added static
+  // imports (deliberately, not a directory scan - see that file's own
+  // comment) - a file can land in data/companies/ without ever being wired
+  // up to actually appear on the site. That's a silent, easy-to-miss failure
+  // mode distinct from a data-completeness gap, so it gets its own loud check
+  // rather than being buried in the report above.
+  const unregistered = ok.filter((r) => getDemoCompany(r.ticker) === null);
+  if (unregistered.length > 0) {
+    console.log(
+      `\n⚠ ${unregistered.length} compan${unregistered.length === 1 ? "y was" : "ies were"} ingested to data/companies/ ` +
+        `but ${unregistered.length === 1 ? "is" : "are"} NOT yet registered in lib/data/demo.ts, so ${unregistered.length === 1 ? "it won't" : "they won't"} appear on the site: ` +
+        `${unregistered.map((r) => r.ticker).join(", ")}. Add an import + registry entry for each in lib/data/demo.ts.`
+    );
   }
 
   console.log("\n--- Data completeness ---");

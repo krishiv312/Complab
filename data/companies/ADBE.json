@@ -1,0 +1,139 @@
+{
+  "profile": {
+    "cik": "0000796343",
+    "ticker": "ADBE",
+    "name": "Adobe Inc.",
+    "exchange": "Nasdaq",
+    "sector": "Information Technology",
+    "industry": "Software",
+    "subIndustry": "Systems Software",
+    "sicCode": "7372",
+    "description": "",
+    "headquarters": "SAN JOSE, CA",
+    "fiscalYearEndMonth": 11,
+    "isFinancial": false
+  },
+  "financials": [
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2024-11-30",
+        "periodEnd": "2025-11-28",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 23769,
+        "costOfRevenue": 2551,
+        "grossProfit": 21218,
+        "operatingIncome": 8706,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 818,
+        "interestIncome": 264,
+        "interestExpenseGross": 263,
+        "interestExpenseNet": -1,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 8734,
+        "netIncome": 7130,
+        "netIncomeConsolidated": null,
+        "epsBasic": 16.73,
+        "epsDiluted": 16.7,
+        "weightedAvgSharesBasic": 426.2,
+        "weightedAvgSharesDiluted": 427
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 5431,
+        "shortTermInvestments": 1164,
+        "totalCurrentAssets": 10163,
+        "totalAssets": 29496,
+        "shortTermDebt": 0,
+        "longTermDebt": 6210,
+        "operatingLeaseLiabilitiesCurrent": 77,
+        "operatingLeaseLiabilitiesNoncurrent": 361,
+        "preferredStock": 0,
+        "noncontrollingInterest": null,
+        "noncontrollingInterestNonredeemable": null,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 11623
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+        "filingDate": "2026-01-15",
+        "retrievedAt": "2026-08-07",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    },
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2023-12-02",
+        "periodEnd": "2024-11-29",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 21505,
+        "costOfRevenue": 2358,
+        "grossProfit": 19147,
+        "operatingIncome": 6741,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 857,
+        "interestIncome": 341,
+        "interestExpenseGross": 169,
+        "interestExpenseNet": -172,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 6931,
+        "netIncome": 5560,
+        "netIncomeConsolidated": null,
+        "epsBasic": 12.43,
+        "epsDiluted": 12.36,
+        "weightedAvgSharesBasic": 447.1,
+        "weightedAvgSharesDiluted": 449.7
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 7613,
+        "shortTermInvestments": 273,
+        "totalCurrentAssets": 11232,
+        "totalAssets": 30230,
+        "shortTermDebt": 1500,
+        "longTermDebt": 4129,
+        "operatingLeaseLiabilitiesCurrent": 75,
+        "operatingLeaseLiabilitiesNoncurrent": 353,
+        "preferredStock": 0,
+        "noncontrollingInterest": null,
+        "noncontrollingInterestNonredeemable": null,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 14105
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+        "filingDate": "2026-01-15",
+        "retrievedAt": "2026-08-07",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    }
+  ],
+  "market": {
+    "sharePrice": 260.24,
+    "priceCurrency": "USD",
+    "priceAsOf": "2026-08-07",
+    "priceSource": {
+      "kind": "MARKET_QUOTE",
+      "documentUrl": null,
+      "filingDate": null,
+      "retrievedAt": "2026-08-07",
+      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-07) does NOT match sharesOutstandingAsOf (2026-01-09). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
+    },
+    "sharesOutstanding": 410.5,
+    "sharesOutstandingAsOf": "2026-01-09",
+    "sharesSource": {
+      "kind": "SEC_EDGAR_10K",
+      "documentUrl": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000003/adbe-20251128.htm",
+      "filingDate": "2026-01-15",
+      "retrievedAt": "2026-08-07",
+      "note": "Shares outstanding from the 10-K cover page (dei:EntityCommonStockSharesOutstanding)."
+    }
+  }
+}

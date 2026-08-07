@@ -1,0 +1,139 @@
+{
+  "profile": {
+    "cik": "0000896878",
+    "ticker": "INTU",
+    "name": "Intuit Inc.",
+    "exchange": "Nasdaq",
+    "sector": "Information Technology",
+    "industry": "Software",
+    "subIndustry": "Systems Software",
+    "sicCode": "7372",
+    "description": "",
+    "headquarters": "MOUNTAIN VIEW, CA",
+    "fiscalYearEndMonth": 7,
+    "isFinancial": false
+  },
+  "financials": [
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2024-08-01",
+        "periodEnd": "2025-07-31",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 18831,
+        "costOfRevenue": null,
+        "grossProfit": null,
+        "operatingIncome": 4923,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 653,
+        "interestIncome": null,
+        "interestExpenseGross": 247,
+        "interestExpenseNet": null,
+        "interestExpenseNetIsDerived": false,
+        "pretaxIncome": 4834,
+        "netIncome": 3869,
+        "netIncomeConsolidated": null,
+        "epsBasic": 13.82,
+        "epsDiluted": 13.67,
+        "weightedAvgSharesBasic": 280,
+        "weightedAvgSharesDiluted": 283
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 2884,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 14107,
+        "totalAssets": 36958,
+        "shortTermDebt": 0,
+        "longTermDebt": 5973,
+        "operatingLeaseLiabilitiesCurrent": 69,
+        "operatingLeaseLiabilitiesNoncurrent": 597,
+        "preferredStock": 0,
+        "noncontrollingInterest": null,
+        "noncontrollingInterestNonredeemable": null,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 19710
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/896878/000089687825000035/intu-20250731.htm",
+        "filingDate": "2025-09-03",
+        "retrievedAt": "2026-08-07",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    },
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2023-08-01",
+        "periodEnd": "2024-07-31",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 16285,
+        "costOfRevenue": null,
+        "grossProfit": null,
+        "operatingIncome": 3630,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 642,
+        "interestIncome": null,
+        "interestExpenseGross": 242,
+        "interestExpenseNet": null,
+        "interestExpenseNetIsDerived": false,
+        "pretaxIncome": 3550,
+        "netIncome": 2963,
+        "netIncomeConsolidated": null,
+        "epsBasic": 10.58,
+        "epsDiluted": 10.43,
+        "weightedAvgSharesBasic": 280,
+        "weightedAvgSharesDiluted": 284
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 3609,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 9678,
+        "totalAssets": 32132,
+        "shortTermDebt": 499,
+        "longTermDebt": 5539,
+        "operatingLeaseLiabilitiesCurrent": 71,
+        "operatingLeaseLiabilitiesNoncurrent": 458,
+        "preferredStock": 0,
+        "noncontrollingInterest": null,
+        "noncontrollingInterestNonredeemable": null,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 18436
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/896878/000089687825000035/intu-20250731.htm",
+        "filingDate": "2025-09-03",
+        "retrievedAt": "2026-08-07",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    }
+  ],
+  "market": {
+    "sharePrice": 321.91,
+    "priceCurrency": "USD",
+    "priceAsOf": "2026-08-07",
+    "priceSource": {
+      "kind": "MARKET_QUOTE",
+      "documentUrl": null,
+      "filingDate": null,
+      "retrievedAt": "2026-08-07",
+      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-07) does NOT match sharesOutstandingAsOf (2025-08-26). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
+    },
+    "sharesOutstanding": 278.805,
+    "sharesOutstandingAsOf": "2025-08-26",
+    "sharesSource": {
+      "kind": "SEC_EDGAR_10K",
+      "documentUrl": "https://www.sec.gov/Archives/edgar/data/896878/000089687825000035/intu-20250731.htm",
+      "filingDate": "2025-09-03",
+      "retrievedAt": "2026-08-07",
+      "note": "Shares outstanding from the 10-K cover page (dei:EntityCommonStockSharesOutstanding)."
+    }
+  }
+}

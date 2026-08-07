@@ -81,8 +81,14 @@ export const TAG_LISTS = {
   noncontrollingInterestRedeemable: ["RedeemableNoncontrollingInterestEquityCarryingAmount"],
 } as const;
 
-// Multi-tag SUM fields - shortTermDebt is notes payable + current portion of long-term debt.
-const SHORT_TERM_DEBT_TAGS = [["NotesPayableCurrent", "ShortTermBorrowings"], ["LongTermDebtCurrent"]];
+// Multi-tag SUM fields - shortTermDebt is notes payable/commercial paper plus
+// the current portion of long-term debt. CommercialPaper (KO confirmed) and
+// DebtCurrent (PEP confirmed, a generic tag some filers use instead of
+// LongTermDebtCurrent for the same concept) added against live EDGAR data.
+const SHORT_TERM_DEBT_TAGS = [
+  ["NotesPayableCurrent", "ShortTermBorrowings", "CommercialPaper"],
+  ["LongTermDebtCurrent", "DebtCurrent"],
+];
 
 // Some filers (Deckers) split pretax income into Domestic + Foreign with no
 // consolidated tag at all - sum them when the direct tag list comes up empty.

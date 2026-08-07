@@ -1,0 +1,139 @@
+{
+  "profile": {
+    "cik": "0000077476",
+    "ticker": "PEP",
+    "name": "Pepsico Inc",
+    "exchange": "Nasdaq",
+    "sector": "Consumer Staples",
+    "industry": "Food, Beverage & Tobacco",
+    "subIndustry": "Packaged Foods & Meats",
+    "sicCode": "2080",
+    "description": "",
+    "headquarters": "PURCHASE, NY",
+    "fiscalYearEndMonth": 12,
+    "isFinancial": false
+  },
+  "financials": [
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2024-12-29",
+        "periodEnd": "2025-12-27",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 93925,
+        "costOfRevenue": 43066,
+        "grossProfit": 50859,
+        "operatingIncome": 11498,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 3451,
+        "interestIncome": null,
+        "interestExpenseGross": 1121,
+        "interestExpenseNet": null,
+        "interestExpenseNetIsDerived": false,
+        "pretaxIncome": 10244,
+        "netIncome": 8240,
+        "netIncomeConsolidated": 8295,
+        "epsBasic": 6.02,
+        "epsDiluted": 6,
+        "weightedAvgSharesBasic": 1369,
+        "weightedAvgSharesDiluted": 1373
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 9159,
+        "shortTermInvestments": 371,
+        "totalCurrentAssets": 27949,
+        "totalAssets": 107399,
+        "shortTermDebt": 6861,
+        "longTermDebt": 42321,
+        "operatingLeaseLiabilitiesCurrent": 719,
+        "operatingLeaseLiabilitiesNoncurrent": 3127,
+        "preferredStock": null,
+        "noncontrollingInterest": 141,
+        "noncontrollingInterestNonredeemable": 141,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 20406
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/77476/000007747626000007/pep-20251227.htm",
+        "filingDate": "2026-02-03",
+        "retrievedAt": "2026-08-07",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    },
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2023-12-31",
+        "periodEnd": "2024-12-28",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 91854,
+        "costOfRevenue": 41744,
+        "grossProfit": 50110,
+        "operatingIncome": 12887,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 3160,
+        "interestIncome": null,
+        "interestExpenseGross": 919,
+        "interestExpenseNet": null,
+        "interestExpenseNetIsDerived": false,
+        "pretaxIncome": 11946,
+        "netIncome": 9578,
+        "netIncomeConsolidated": 9626,
+        "epsBasic": 6.97,
+        "epsDiluted": 6.95,
+        "weightedAvgSharesBasic": 1373,
+        "weightedAvgSharesDiluted": 1378
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 8505,
+        "shortTermInvestments": 761,
+        "totalCurrentAssets": 25826,
+        "totalAssets": 99467,
+        "shortTermDebt": 7082,
+        "longTermDebt": 37224,
+        "operatingLeaseLiabilitiesCurrent": 642,
+        "operatingLeaseLiabilitiesNoncurrent": 2803,
+        "preferredStock": null,
+        "noncontrollingInterest": 130,
+        "noncontrollingInterestNonredeemable": 130,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 18041
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/77476/000007747626000007/pep-20251227.htm",
+        "filingDate": "2026-02-03",
+        "retrievedAt": "2026-08-07",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    }
+  ],
+  "market": {
+    "sharePrice": 138.44,
+    "priceCurrency": "USD",
+    "priceAsOf": "2026-08-07",
+    "priceSource": {
+      "kind": "MARKET_QUOTE",
+      "documentUrl": null,
+      "filingDate": null,
+      "retrievedAt": "2026-08-07",
+      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-07) does NOT match sharesOutstandingAsOf (2026-01-23). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
+    },
+    "sharesOutstanding": 1366.649053,
+    "sharesOutstandingAsOf": "2026-01-23",
+    "sharesSource": {
+      "kind": "SEC_EDGAR_10K",
+      "documentUrl": "https://www.sec.gov/Archives/edgar/data/77476/000007747626000007/pep-20251227.htm",
+      "filingDate": "2026-02-03",
+      "retrievedAt": "2026-08-07",
+      "note": "Shares outstanding from the 10-K cover page (dei:EntityCommonStockSharesOutstanding)."
+    }
+  }
+}

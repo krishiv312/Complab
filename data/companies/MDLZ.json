@@ -1,0 +1,139 @@
+{
+  "profile": {
+    "cik": "0001103982",
+    "ticker": "MDLZ",
+    "name": "Mondelez International, Inc.",
+    "exchange": "Nasdaq",
+    "sector": "Consumer Staples",
+    "industry": "Food, Beverage & Tobacco",
+    "subIndustry": "Packaged Foods & Meats",
+    "sicCode": "2000",
+    "description": "",
+    "headquarters": "CHICAGO, IL",
+    "fiscalYearEndMonth": 12,
+    "isFinancial": false
+  },
+  "financials": [
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2025-01-01",
+        "periodEnd": "2025-12-31",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 38537,
+        "costOfRevenue": 27602,
+        "grossProfit": 10935,
+        "operatingIncome": 3548,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 1358,
+        "interestIncome": null,
+        "interestExpenseGross": 599,
+        "interestExpenseNet": null,
+        "interestExpenseNetIsDerived": false,
+        "pretaxIncome": 3014,
+        "netIncome": 2451,
+        "netIncomeConsolidated": 2466,
+        "epsBasic": 1.89,
+        "epsDiluted": 1.89,
+        "weightedAvgSharesBasic": 1294,
+        "weightedAvgSharesDiluted": 1298
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 2195,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 12951,
+        "totalAssets": 71487,
+        "shortTermDebt": 2688,
+        "longTermDebt": null,
+        "operatingLeaseLiabilitiesCurrent": 164,
+        "operatingLeaseLiabilitiesNoncurrent": 599,
+        "preferredStock": null,
+        "noncontrollingInterest": 53,
+        "noncontrollingInterestNonredeemable": 53,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 25838
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000162828026005345/mdlz-20251231.htm",
+        "filingDate": "2026-02-04",
+        "retrievedAt": "2026-08-07",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    },
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2024-01-01",
+        "periodEnd": "2024-12-31",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 36441,
+        "costOfRevenue": 22184,
+        "grossProfit": 14257,
+        "operatingIncome": 6345,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 1302,
+        "interestIncome": null,
+        "interestExpenseGross": 508,
+        "interestExpenseNet": null,
+        "interestExpenseNetIsDerived": false,
+        "pretaxIncome": 6261,
+        "netIncome": 4611,
+        "netIncomeConsolidated": 4623,
+        "epsBasic": 3.44,
+        "epsDiluted": 3.42,
+        "weightedAvgSharesBasic": 1341,
+        "weightedAvgSharesDiluted": 1347
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 1400,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 13242,
+        "totalAssets": 68497,
+        "shortTermDebt": 71,
+        "longTermDebt": null,
+        "operatingLeaseLiabilitiesCurrent": 172,
+        "operatingLeaseLiabilitiesNoncurrent": 623,
+        "preferredStock": null,
+        "noncontrollingInterest": 26,
+        "noncontrollingInterestNonredeemable": 26,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 26932
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000162828026005345/mdlz-20251231.htm",
+        "filingDate": "2026-02-04",
+        "retrievedAt": "2026-08-07",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    }
+  ],
+  "market": {
+    "sharePrice": 62.75,
+    "priceCurrency": "USD",
+    "priceAsOf": "2026-08-07",
+    "priceSource": {
+      "kind": "MARKET_QUOTE",
+      "documentUrl": null,
+      "filingDate": null,
+      "retrievedAt": "2026-08-07",
+      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-07) does NOT match sharesOutstandingAsOf (2026-01-30). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
+    },
+    "sharesOutstanding": 1281.845669,
+    "sharesOutstandingAsOf": "2026-01-30",
+    "sharesSource": {
+      "kind": "SEC_EDGAR_10K",
+      "documentUrl": "https://www.sec.gov/Archives/edgar/data/1103982/000162828026005345/mdlz-20251231.htm",
+      "filingDate": "2026-02-04",
+      "retrievedAt": "2026-08-07",
+      "note": "Shares outstanding from the 10-K cover page (dei:EntityCommonStockSharesOutstanding)."
+    }
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "profile": {
+    "cik": "0001341439",
+    "ticker": "ORCL",
+    "name": "Oracle Corp",
+    "exchange": "NYSE",
+    "sector": "Information Technology",
+    "industry": "Software",
+    "subIndustry": "Systems Software",
+    "sicCode": "7372",
+    "description": "",
+    "headquarters": "AUSTIN, TX",
+    "fiscalYearEndMonth": 5,
+    "isFinancial": false
+  },
+  "financials": [
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2026,
+        "periodStart": "2025-06-01",
+        "periodEnd": "2026-05-31",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 67357,
+        "costOfRevenue": null,
+        "grossProfit": null,
+        "operatingIncome": 20606,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 9294,
+        "interestIncome": 780,
+        "interestExpenseGross": 4599,
+        "interestExpenseNet": 3819,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 19554,
+        "netIncome": 17087,
+        "netIncomeConsolidated": 17309,
+        "epsBasic": 5.94,
+        "epsDiluted": 5.83,
+        "weightedAvgSharesBasic": 2860,
+        "weightedAvgSharesDiluted": 2914
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 31289,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 46567,
+        "totalAssets": 261759,
+        "shortTermDebt": 14398,
+        "longTermDebt": null,
+        "operatingLeaseLiabilitiesCurrent": 3542,
+        "operatingLeaseLiabilitiesNoncurrent": 26648,
+        "preferredStock": 4954,
+        "noncontrollingInterest": 548,
+        "noncontrollingInterestNonredeemable": 548,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 42508
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526277521/orcl-20260531.htm",
+        "filingDate": "2026-06-22",
+        "retrievedAt": "2026-08-07",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    },
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2026,
+        "periodStart": "2024-06-01",
+        "periodEnd": "2025-05-31",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 57399,
+        "costOfRevenue": null,
+        "grossProfit": null,
+        "operatingIncome": 17678,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 6174,
+        "interestIncome": 578,
+        "interestExpenseGross": 3578,
+        "interestExpenseNet": 3000,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 14160,
+        "netIncome": 12443,
+        "netIncomeConsolidated": 12627,
+        "epsBasic": 4.46,
+        "epsDiluted": 4.34,
+        "weightedAvgSharesBasic": 2789,
+        "weightedAvgSharesDiluted": 2866
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 10786,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 24579,
+        "totalAssets": 168361,
+        "shortTermDebt": 14542,
+        "longTermDebt": null,
+        "operatingLeaseLiabilitiesCurrent": 1914,
+        "operatingLeaseLiabilitiesNoncurrent": 11536,
+        "preferredStock": 0,
+        "noncontrollingInterest": 518,
+        "noncontrollingInterestNonredeemable": 518,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 20451
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526277521/orcl-20260531.htm",
+        "filingDate": "2026-06-22",
+        "retrievedAt": "2026-08-07",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    }
+  ],
+  "market": {
+    "sharePrice": 143.47,
+    "priceCurrency": "USD",
+    "priceAsOf": "2026-08-07",
+    "priceSource": {
+      "kind": "MARKET_QUOTE",
+      "documentUrl": null,
+      "filingDate": null,
+      "retrievedAt": "2026-08-07",
+      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-07) does NOT match sharesOutstandingAsOf (2026-06-12). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
+    },
+    "sharesOutstanding": 2880.471,
+    "sharesOutstandingAsOf": "2026-06-12",
+    "sharesSource": {
+      "kind": "SEC_EDGAR_10K",
+      "documentUrl": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526277521/orcl-20260531.htm",
+      "filingDate": "2026-06-22",
+      "retrievedAt": "2026-08-07",
+      "note": "Shares outstanding from the 10-K cover page (dei:EntityCommonStockSharesOutstanding)."
+    }
+  }
+}

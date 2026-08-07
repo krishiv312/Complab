@@ -1,0 +1,139 @@
+{
+  "profile": {
+    "cik": "0000040704",
+    "ticker": "GIS",
+    "name": "General Mills Inc",
+    "exchange": "NYSE",
+    "sector": "Consumer Staples",
+    "industry": "Food, Beverage & Tobacco",
+    "subIndustry": "Packaged Foods & Meats",
+    "sicCode": "2040",
+    "description": "",
+    "headquarters": "MINNEAPOLIS, MN",
+    "fiscalYearEndMonth": 5,
+    "isFinancial": false
+  },
+  "financials": [
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2026,
+        "periodStart": "2025-05-26",
+        "periodEnd": "2026-05-31",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 18424.6,
+        "costOfRevenue": 12228.9,
+        "grossProfit": 6195.699999999999,
+        "operatingIncome": 885.8,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 555.2,
+        "interestIncome": null,
+        "interestExpenseGross": null,
+        "interestExpenseNet": 538.6,
+        "interestExpenseNetIsDerived": false,
+        "pretaxIncome": 405.5,
+        "netIncome": -87.6,
+        "netIncomeConsolidated": -85.3,
+        "epsBasic": -0.16,
+        "epsDiluted": -0.16,
+        "weightedAvgSharesBasic": 537.7,
+        "weightedAvgSharesDiluted": 537.7
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 453.8,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 4618.3,
+        "totalAssets": 30016.7,
+        "shortTermDebt": 1122,
+        "longTermDebt": 12416,
+        "operatingLeaseLiabilitiesCurrent": 102,
+        "operatingLeaseLiabilitiesNoncurrent": 300.4,
+        "preferredStock": null,
+        "noncontrollingInterest": 12.2,
+        "noncontrollingInterestNonredeemable": 12.2,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 7368.4
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/40704/000162828026046466/gis-20260531.htm",
+        "filingDate": "2026-07-01",
+        "retrievedAt": "2026-08-07",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    },
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2026,
+        "periodStart": "2024-05-27",
+        "periodEnd": "2025-05-25",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 19486.6,
+        "costOfRevenue": 12753.6,
+        "grossProfit": 6732.999999999998,
+        "operatingIncome": 3304.8,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 539,
+        "interestIncome": null,
+        "interestExpenseGross": null,
+        "interestExpenseNet": 524.2,
+        "interestExpenseNetIsDerived": false,
+        "pretaxIncome": 2835,
+        "netIncome": 2295.2,
+        "netIncomeConsolidated": 2318.9,
+        "epsBasic": 4.12,
+        "epsDiluted": 4.1,
+        "weightedAvgSharesBasic": 554.5,
+        "weightedAvgSharesDiluted": 557.5
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 363.9,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 5275.7,
+        "totalAssets": 33071.1,
+        "shortTermDebt": 2205.4,
+        "longTermDebt": 12673.2,
+        "operatingLeaseLiabilitiesCurrent": 115.3,
+        "operatingLeaseLiabilitiesNoncurrent": 302.8,
+        "preferredStock": null,
+        "noncontrollingInterest": 12,
+        "noncontrollingInterestNonredeemable": 12,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 9199.2
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/40704/000162828026046466/gis-20260531.htm",
+        "filingDate": "2026-07-01",
+        "retrievedAt": "2026-08-07",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    }
+  ],
+  "market": {
+    "sharePrice": 36.07,
+    "priceCurrency": "USD",
+    "priceAsOf": "2026-08-07",
+    "priceSource": {
+      "kind": "MARKET_QUOTE",
+      "documentUrl": null,
+      "filingDate": null,
+      "retrievedAt": "2026-08-07",
+      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-07) does NOT match sharesOutstandingAsOf (2026-06-15). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
+    },
+    "sharesOutstanding": 533.708396,
+    "sharesOutstandingAsOf": "2026-06-15",
+    "sharesSource": {
+      "kind": "SEC_EDGAR_10K",
+      "documentUrl": "https://www.sec.gov/Archives/edgar/data/40704/000162828026046466/gis-20260531.htm",
+      "filingDate": "2026-07-01",
+      "retrievedAt": "2026-08-07",
+      "note": "Shares outstanding from the 10-K cover page (dei:EntityCommonStockSharesOutstanding)."
+    }
+  }
+}

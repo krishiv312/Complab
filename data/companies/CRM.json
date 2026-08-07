@@ -1,0 +1,139 @@
+{
+  "profile": {
+    "cik": "0001108524",
+    "ticker": "CRM",
+    "name": "Salesforce, Inc.",
+    "exchange": "NYSE",
+    "sector": "Information Technology",
+    "industry": "Software",
+    "subIndustry": "Systems Software",
+    "sicCode": "7372",
+    "description": "",
+    "headquarters": "SAN FRANCISCO, CA",
+    "fiscalYearEndMonth": 1,
+    "isFinancial": false
+  },
+  "financials": [
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2025-02-01",
+        "periodEnd": "2026-01-31",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 41525,
+        "costOfRevenue": 9270,
+        "grossProfit": 32255,
+        "operatingIncome": 8331,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 1200,
+        "interestIncome": 539,
+        "interestExpenseGross": 324,
+        "interestExpenseNet": -215,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 9520,
+        "netIncome": 7457,
+        "netIncomeConsolidated": null,
+        "epsBasic": 7.85,
+        "epsDiluted": 7.8,
+        "weightedAvgSharesBasic": 950,
+        "weightedAvgSharesDiluted": 956
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 7327,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 28222,
+        "totalAssets": 112305,
+        "shortTermDebt": 4000,
+        "longTermDebt": 10439,
+        "operatingLeaseLiabilitiesCurrent": 548,
+        "operatingLeaseLiabilitiesNoncurrent": 2189,
+        "preferredStock": 0,
+        "noncontrollingInterest": null,
+        "noncontrollingInterestNonredeemable": null,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 59142
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000060/crm-20260131.htm",
+        "filingDate": "2026-03-02",
+        "retrievedAt": "2026-08-07",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    },
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2024-02-01",
+        "periodEnd": "2025-01-31",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 37895,
+        "costOfRevenue": 8643,
+        "grossProfit": 29252,
+        "operatingIncome": 7205,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 1000,
+        "interestIncome": 647,
+        "interestExpenseGross": 272,
+        "interestExpenseNet": -375,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 7438,
+        "netIncome": 6197,
+        "netIncomeConsolidated": null,
+        "epsBasic": 6.44,
+        "epsDiluted": 6.36,
+        "weightedAvgSharesBasic": 962,
+        "weightedAvgSharesDiluted": 974
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 8848,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 29727,
+        "totalAssets": 102928,
+        "shortTermDebt": 0,
+        "longTermDebt": 8433,
+        "operatingLeaseLiabilitiesCurrent": 579,
+        "operatingLeaseLiabilitiesNoncurrent": 2380,
+        "preferredStock": 0,
+        "noncontrollingInterest": null,
+        "noncontrollingInterestNonredeemable": null,
+        "noncontrollingInterestRedeemable": null,
+        "totalShareholdersEquity": 61173
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000060/crm-20260131.htm",
+        "filingDate": "2026-03-02",
+        "retrievedAt": "2026-08-07",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    }
+  ],
+  "market": {
+    "sharePrice": 186.77,
+    "priceCurrency": "USD",
+    "priceAsOf": "2026-08-07",
+    "priceSource": {
+      "kind": "MARKET_QUOTE",
+      "documentUrl": null,
+      "filingDate": null,
+      "retrievedAt": "2026-08-07",
+      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-07) does NOT match sharesOutstandingAsOf (2026-02-25). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
+    },
+    "sharesOutstanding": 923,
+    "sharesOutstandingAsOf": "2026-02-25",
+    "sharesSource": {
+      "kind": "SEC_EDGAR_10K",
+      "documentUrl": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000060/crm-20260131.htm",
+      "filingDate": "2026-03-02",
+      "retrievedAt": "2026-08-07",
+      "note": "Shares outstanding from the 10-K cover page (dei:EntityCommonStockSharesOutstanding)."
+    }
+  }
+}

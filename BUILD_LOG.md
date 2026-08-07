@@ -2,10 +2,12 @@
 
 ## Entry 3 — Data completeness audit and an automated gap-detection tool
 
-**Scope covered:** an audit of every null field across all 14 companies, fixing
-the ones that were pipeline gaps rather than genuine N/A, and a new tool so
-future company additions surface these gaps immediately instead of silently
-shipping them.
+**Scope covered:** an audit of every null field across all 14 companies then
+live, fixing the ones that were pipeline gaps rather than genuine N/A; a new
+tool so future company additions surface these gaps immediately instead of
+silently shipping them; and, using that tool, expanding to the two
+originally-planned industries not yet covered (24 companies total by the
+end of this entry).
 
 ### What I built
 
@@ -73,14 +75,53 @@ instead of an unexplained N/A on the comps table - the difference between
   place - every fallback tag added here was checked against a real company's
   real filed entry first, not added because it seemed plausible.
 
+### Expanding to the two remaining planned industries
+
+Ingested 10 companies covering the last two industries `MVP_SCOPE.md` named
+from the start but never got to: Enterprise Software (CRM, ADBE, NOW, INTU,
+ORCL) and Packaged Food & Beverage (KO, PEP, GIS, MDLZ, KHC) - 24 companies
+total now, across all four originally-planned industries. WDAY and HSY were
+tried first and cleanly skipped by the existing fail-safe (no
+`dei:EntityCommonStockSharesOutstanding` found - likely a multi-class-share
+structure, same category as the Nike case) - replaced with ORCL and KHC
+rather than chased, matching how SKX's clean skip was already treated as the
+fail-safe working, not a bug.
+
+This immediately exercised the new completeness tool for real: 6 of the 10
+newly-ingested companies came back with an EV-blocking debt gap on first
+ingestion. Investigating why (same live-EDGAR-data discipline as the fixes
+above) found two more generalizable fallback tags - `CommercialPaper` (KO)
+and `DebtCurrent` (PEP), both real, common ways large-caps tag short-term
+debt that weren't in `SHORT_TERM_DEBT_TAGS` - which fixed 2 of the 6.
+Applied, re-validated against the four hand-verified companies again (no
+regressions), and re-ingested. The remaining 4 (KO's own `longTermDebt`,
+NOW, MDLZ, ORCL, KHC) didn't resolve to any tag with a value at the target
+filing - NOW's taxonomy suggests convertible notes rather than conventional
+long-term debt, and the others may require summing multiple named bond
+tranches rather than one tag. Left null rather than guessed at, same as the
+three gaps from earlier in this entry.
+
+**Also found and fixed a second, different kind of gap**: `lib/data/demo.ts`
+registers companies via explicit, hand-added imports, not a directory scan
+(deliberately - see that file's own comment). The 10 newly-ingested files
+landed in `data/companies/` but weren't wired into `demo.ts` yet - a company
+can be fully, correctly ingested and still be completely invisible on the
+site, which is a different failure mode from a data-completeness gap and
+wouldn't have been caught by `checkCompleteness()` at all. Added a check for
+this specifically: `ingest-company.ts` now warns if a just-ingested company
+isn't registered, and `check-completeness.ts` checks the whole
+`data/companies/` directory against the registry independent of any
+ingestion run, so it's caught even for files added in an earlier session.
+
 ### Not done yet
 
-- LULU/MU `shortTermDebt`, AVGO `longTermDebt` - see above. Precisely
-  diagnosed, not silently missing; `npm run check-completeness` surfaces
-  these three by name.
-- More companies/industries (Enterprise Software, Packaged Food & Beverage)
-  - queued as the next piece of work, now on top of a meaningfully more
-  complete pipeline than before this entry.
+- KO `longTermDebt`; NOW, MDLZ, ORCL, KHC `shortTermDebt`/`longTermDebt` -
+  see above. `npm run check-completeness` names all of them, with which
+  multiple each blocks.
+- Company count is 24 against `MVP_SCOPE.md`'s original ~40 target. Getting
+  the rest of the way there is now mostly repeating this entry's playbook
+  (ingest, let `check-completeness` name the gaps, fix what's generalizable,
+  leave the rest precisely diagnosed) rather than new engineering.
 
 ## Entry 2 — Compressing the remaining MVP into a 1-2 week timeline
 

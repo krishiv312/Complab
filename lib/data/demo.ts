@@ -20,6 +20,16 @@ import avgo from "../../data/companies/AVGO.json";
 import qcom from "../../data/companies/QCOM.json";
 import mu from "../../data/companies/MU.json";
 import adi from "../../data/companies/ADI.json";
+import crm from "../../data/companies/CRM.json";
+import adbe from "../../data/companies/ADBE.json";
+import now from "../../data/companies/NOW.json";
+import intu from "../../data/companies/INTU.json";
+import orcl from "../../data/companies/ORCL.json";
+import ko from "../../data/companies/KO.json";
+import pep from "../../data/companies/PEP.json";
+import gis from "../../data/companies/GIS.json";
+import mdlz from "../../data/companies/MDLZ.json";
+import khc from "../../data/companies/KHC.json";
 
 const HAND_VERIFIED: Record<string, DemoCompany> = {
   CROX: crox as unknown as DemoCompany,
@@ -39,6 +49,16 @@ const AUTO_INGESTED: Record<string, DemoCompany> = {
   QCOM: qcom as unknown as DemoCompany,
   MU: mu as unknown as DemoCompany,
   ADI: adi as unknown as DemoCompany,
+  CRM: crm as unknown as DemoCompany,
+  ADBE: adbe as unknown as DemoCompany,
+  NOW: now as unknown as DemoCompany,
+  INTU: intu as unknown as DemoCompany,
+  ORCL: orcl as unknown as DemoCompany,
+  KO: ko as unknown as DemoCompany,
+  PEP: pep as unknown as DemoCompany,
+  GIS: gis as unknown as DemoCompany,
+  MDLZ: mdlz as unknown as DemoCompany,
+  KHC: khc as unknown as DemoCompany,
 };
 
 const ALL_COMPANIES: Record<string, DemoCompany> = { ...HAND_VERIFIED, ...AUTO_INGESTED };

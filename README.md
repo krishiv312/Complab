@@ -44,6 +44,12 @@ then:
 npx tsx scripts/ingest-company.ts TICKER...
 ```
 
+This writes to `data/companies/`, prints a data-completeness report (which
+field is missing and which multiple it blocks, if any), and warns if a
+company isn't yet registered in `lib/data/demo.ts` — that registration is a
+deliberate, explicit step (see that file's own comment), not automatic, so
+the script checks for it rather than silently shipping an invisible company.
+
 ## Other useful commands
 
 ```bash
@@ -67,8 +73,9 @@ npm run check-completeness            # audits every company for gaps that block
 - `data/demo/` — the hand-verified seed data (CROX, DECK, SKX, NKE), one JSON
   file per company, each figure tagged with its source, filing date, and
   retrieval date. Permanent ground truth, never touched by the pipeline.
-- `data/companies/` — the auto-ingested companies (currently VFC, LULU, NVDA,
-  AMD, INTC, TXN, AVGO, QCOM, MU, ADI), same shape, validated against EDGAR.
+- `data/companies/` — the 20 auto-ingested companies across Footwear &
+  Apparel, Semiconductors, Enterprise Software, and Packaged Food &
+  Beverage, same shape as the hand-verified set, validated against EDGAR.
 - `app/company/[ticker]/` — the single-company profile page.
 - `app/analysis/[ticker]/` — the comps analysis workspace (peer group, table,
   charts, valuation range).

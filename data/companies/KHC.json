@@ -1,0 +1,139 @@
+{
+  "profile": {
+    "cik": "0001637459",
+    "ticker": "KHC",
+    "name": "Kraft Heinz Co",
+    "exchange": "Nasdaq",
+    "sector": "Consumer Staples",
+    "industry": "Food, Beverage & Tobacco",
+    "subIndustry": "Packaged Foods & Meats",
+    "sicCode": "2030",
+    "description": "",
+    "headquarters": "PITTSBURGH, PA",
+    "fiscalYearEndMonth": 12,
+    "isFinancial": false
+  },
+  "financials": [
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2024-12-29",
+        "periodEnd": "2025-12-27",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 24942,
+        "costOfRevenue": 16633,
+        "grossProfit": 8309,
+        "operatingIncome": -4669,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 968,
+        "interestIncome": 122,
+        "interestExpenseGross": 947,
+        "interestExpenseNet": 825,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": -5445,
+        "netIncome": -5846,
+        "netIncomeConsolidated": -5848,
+        "epsBasic": -4.93,
+        "epsDiluted": -4.93,
+        "weightedAvgSharesBasic": 1187,
+        "weightedAvgSharesDiluted": 1187
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 2615,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 10127,
+        "totalAssets": 81786,
+        "shortTermDebt": null,
+        "longTermDebt": null,
+        "operatingLeaseLiabilitiesCurrent": 126,
+        "operatingLeaseLiabilitiesNoncurrent": 427,
+        "preferredStock": null,
+        "noncontrollingInterest": 125,
+        "noncontrollingInterestNonredeemable": 113,
+        "noncontrollingInterestRedeemable": 12,
+        "totalShareholdersEquity": 41664
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/1637459/000163745926000009/khc-20251227.htm",
+        "filingDate": "2026-02-12",
+        "retrievedAt": "2026-08-07",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    },
+    {
+      "period": {
+        "periodType": "FY",
+        "fiscalYear": 2025,
+        "periodStart": "2023-12-31",
+        "periodEnd": "2024-12-28",
+        "currency": "USD"
+      },
+      "incomeStatement": {
+        "revenue": 25846,
+        "costOfRevenue": 16878,
+        "grossProfit": 8968,
+        "operatingIncome": 1683,
+        "operatingIncomeIsDerived": false,
+        "depreciationAmortization": 948,
+        "interestIncome": 69,
+        "interestExpenseGross": 912,
+        "interestExpenseNet": 843,
+        "interestExpenseNetIsDerived": true,
+        "pretaxIncome": 856,
+        "netIncome": 2744,
+        "netIncomeConsolidated": 2746,
+        "epsBasic": 2.27,
+        "epsDiluted": 2.26,
+        "weightedAvgSharesBasic": 1210,
+        "weightedAvgSharesDiluted": 1215
+      },
+      "balanceSheet": {
+        "cashAndEquivalents": 1334,
+        "shortTermInvestments": null,
+        "totalCurrentAssets": 7655,
+        "totalAssets": 88287,
+        "shortTermDebt": null,
+        "longTermDebt": null,
+        "operatingLeaseLiabilitiesCurrent": 117,
+        "operatingLeaseLiabilitiesNoncurrent": 464,
+        "preferredStock": null,
+        "noncontrollingInterest": 140,
+        "noncontrollingInterestNonredeemable": 134,
+        "noncontrollingInterestRedeemable": 6,
+        "totalShareholdersEquity": 49185
+      },
+      "source": {
+        "kind": "SEC_EDGAR_10K",
+        "documentUrl": "https://www.sec.gov/Archives/edgar/data/1637459/000163745926000009/khc-20251227.htm",
+        "filingDate": "2026-02-12",
+        "retrievedAt": "2026-08-07",
+        "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
+      }
+    }
+  ],
+  "market": {
+    "sharePrice": 24.96,
+    "priceCurrency": "USD",
+    "priceAsOf": "2026-08-07",
+    "priceSource": {
+      "kind": "MARKET_QUOTE",
+      "documentUrl": null,
+      "filingDate": null,
+      "retrievedAt": "2026-08-07",
+      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-07) does NOT match sharesOutstandingAsOf (2026-02-07). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
+    },
+    "sharesOutstanding": 1183.744751,
+    "sharesOutstandingAsOf": "2026-02-07",
+    "sharesSource": {
+      "kind": "SEC_EDGAR_10K",
+      "documentUrl": "https://www.sec.gov/Archives/edgar/data/1637459/000163745926000009/khc-20251227.htm",
+      "filingDate": "2026-02-12",
+      "retrievedAt": "2026-08-07",
+      "note": "Shares outstanding from the 10-K cover page (dei:EntityCommonStockSharesOutstanding)."
+    }
+  }
+}
