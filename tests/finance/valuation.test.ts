@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { impliedValuation } from "../../lib/finance/valuation";
+import { impliedValuation, impliedSharePriceDirect } from "../../lib/finance/valuation";
 
 describe("impliedValuation", () => {
   it("matches a hand-computed case: EV -> equity -> per-share", () => {
@@ -38,5 +38,35 @@ describe("impliedValuation", () => {
     const result = impliedValuation(10, 200, 300, 0, 0, 100, 0);
     expect(result.impliedSharePrice.value).toBeNull();
     expect(result.impliedSharePrice.meaningful).toBe(false);
+  });
+});
+
+describe("impliedSharePriceDirect", () => {
+  it("applies a per-share multiple directly (P/E case)", () => {
+    // peer median P/E = 15x, subject EPS = 3 -> implied price = 45
+    const result = impliedSharePriceDirect(15, 3);
+    expect(result.value).toBe(45);
+    expect(result.meaningful).toBe(true);
+  });
+
+  it("is N/A when the peer multiple is missing", () => {
+    const result = impliedSharePriceDirect(null, 3);
+    expect(result.value).toBeNull();
+    expect(result.meaningful).toBe(false);
+  });
+
+  it("is N/A when the subject's per-share metric is missing", () => {
+    const result = impliedSharePriceDirect(15, null);
+    expect(result.value).toBeNull();
+    expect(result.meaningful).toBe(false);
+  });
+
+  it("is N/M (not N/A) when the subject's per-share metric is negative", () => {
+    // A peer P/E applied to the subject's own negative EPS produces a number,
+    // but not a meaningful implied price - same reason the subject's own P/E
+    // shows N/M in the comps table.
+    const result = impliedSharePriceDirect(15, -2);
+    expect(result.value).toBe(-30);
+    expect(result.meaningful).toBe(false);
   });
 });

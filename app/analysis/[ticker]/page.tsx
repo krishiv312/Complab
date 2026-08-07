@@ -4,11 +4,14 @@ import { getDemoCompany, listDemoTickers, listDemoCompanySummaries } from "@/lib
 import { suggestPeers } from "@/lib/finance/peers";
 import { computeCompanyMetrics } from "@/lib/finance/compute";
 import { quartilesFromMetrics } from "@/lib/finance/statistics";
-import { impliedValuation } from "@/lib/finance/valuation";
+import { impliedValuation, impliedSharePriceDirect } from "@/lib/finance/valuation";
+import { safeDivide } from "@/lib/finance/multiples";
 import { PeerPicker } from "@/components/comps/peer-picker";
 import { CompsTable, type CompsRow } from "@/components/comps/comps-table";
 import { QuartileTable, ValuationRangeCard } from "@/components/comps/valuation-summary";
 import { MultipleBarChart } from "@/components/charts/multiple-bar-chart";
+import { GrowthMarginScatter } from "@/components/charts/growth-margin-scatter";
+import { FootballFieldChart, type FootballFieldRow } from "@/components/charts/football-field-chart";
 import type { DemoCompany } from "@/lib/finance/types";
 
 export function generateStaticParams() {
@@ -115,6 +118,58 @@ export default async function AnalysisPage({
     subjectShares
   );
 
+  function evImplied(peerMultiple: number | null, subjectMetric: number | null) {
+    return impliedValuation(
+      peerMultiple,
+      subjectMetric,
+      subjectTotalDebt,
+      bs.preferredStock ?? 0,
+      bs.noncontrollingInterest ?? 0,
+      bs.cashAndEquivalents,
+      subjectShares
+    ).impliedSharePrice.value;
+  }
+
+  const bookValuePerShare = safeDivide(bs.totalShareholdersEquity, subjectShares).value;
+
+  function directImplied(peerMultiple: number | null, subjectPerShareMetric: number | null) {
+    const result = impliedSharePriceDirect(peerMultiple, subjectPerShareMetric);
+    return result.meaningful ? result.value : null;
+  }
+
+  const footballFieldRows: FootballFieldRow[] = [
+    {
+      label: "EV / Revenue",
+      q1: evImplied(peerQuartiles.evRevenue?.q1 ?? null, subjectCurrent.incomeStatement.revenue),
+      median: evImplied(peerQuartiles.evRevenue?.median ?? null, subjectCurrent.incomeStatement.revenue),
+      q3: evImplied(peerQuartiles.evRevenue?.q3 ?? null, subjectCurrent.incomeStatement.revenue),
+    },
+    {
+      label: "EV / EBITDA",
+      q1: q1Valuation.impliedSharePrice.value,
+      median: medianValuation.impliedSharePrice.value,
+      q3: q3Valuation.impliedSharePrice.value,
+    },
+    {
+      label: "EV / EBIT",
+      q1: evImplied(peerQuartiles.evEbit?.q1 ?? null, subjectCurrent.incomeStatement.operatingIncome),
+      median: evImplied(peerQuartiles.evEbit?.median ?? null, subjectCurrent.incomeStatement.operatingIncome),
+      q3: evImplied(peerQuartiles.evEbit?.q3 ?? null, subjectCurrent.incomeStatement.operatingIncome),
+    },
+    {
+      label: "P / E",
+      q1: directImplied(peerQuartiles.pe?.q1 ?? null, subjectCurrent.incomeStatement.epsDiluted),
+      median: directImplied(peerQuartiles.pe?.median ?? null, subjectCurrent.incomeStatement.epsDiluted),
+      q3: directImplied(peerQuartiles.pe?.q3 ?? null, subjectCurrent.incomeStatement.epsDiluted),
+    },
+    {
+      label: "P / B",
+      q1: directImplied(peerQuartiles.pb?.q1 ?? null, bookValuePerShare),
+      median: directImplied(peerQuartiles.pb?.median ?? null, bookValuePerShare),
+      q3: directImplied(peerQuartiles.pb?.q3 ?? null, bookValuePerShare),
+    },
+  ];
+
   const summaries = listDemoCompanySummaries();
   const suggestedOptions = suggested.map((p) => ({ ticker: p.ticker, name: p.name, rationale: p.rationale }));
   const otherOptions = summaries
@@ -176,6 +231,10 @@ export default async function AnalysisPage({
             <p className="text-xs text-muted-foreground">EV / Revenue</p>
             <MultipleBarChart rows={rows} metricKey="evRevenue" label="EV/Revenue" />
           </div>
+          <div className="flex flex-col gap-1 lg:col-span-2">
+            <p className="text-xs text-muted-foreground">Revenue growth vs. EBITDA margin</p>
+            <GrowthMarginScatter rows={rows} />
+          </div>
         </div>
       </section>
 
@@ -204,6 +263,13 @@ export default async function AnalysisPage({
           q3Price={q3Valuation.impliedSharePrice}
           currentPrice={company.market.sharePrice}
         />
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h2 className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
+          Implied valuation across methods (football field)
+        </h2>
+        <FootballFieldChart rows={footballFieldRows} currentPrice={company.market.sharePrice} />
       </section>
 
       <p className="text-xs text-muted-foreground">

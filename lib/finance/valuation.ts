@@ -52,3 +52,26 @@ export function impliedValuation(
 
   return { impliedEnterpriseValue, impliedEquityValue, impliedSharePrice };
 }
+
+/**
+ * For per-share multiples (P/E, P/B) the peer multiple applies directly to the
+ * subject's own per-share metric (EPS, book value per share) — there's no
+ * enterprise-value bridge to walk, unlike impliedValuation() above.
+ */
+export function impliedSharePriceDirect(
+  peerMultiple: number | null,
+  subjectPerShareMetric: number | null
+): MetricResult {
+  if (peerMultiple === null || subjectPerShareMetric === null) {
+    return { value: null, meaningful: false, note: "missing input" };
+  }
+  const value = peerMultiple * subjectPerShareMetric;
+  if (subjectPerShareMetric < 0) {
+    // Mirrors calculatePE()/calculatePB()'s own N/M rule: a peer multiple applied
+    // to the subject's own negative EPS or book value produces a number, but not
+    // a meaningful implied price - same reason the subject's own P/E or P/B shows
+    // N/M in the comps table.
+    return { value, meaningful: false, note: "N/M — negative subject metric makes this implied price meaningless" };
+  }
+  return { value, meaningful: true };
+}
