@@ -21,10 +21,27 @@ const monoFont = Geist_Mono({
   subsets: ["latin"],
 });
 
+const description =
+  "Comparable-company valuation multiples, computed from hand-verified SEC filings.";
+
 export const metadata: Metadata = {
-  title: "Company Labs",
-  description:
-    "Comparable-company valuation multiples, computed from hand-verified SEC filings.",
+  metadataBase: new URL("https://complab-nine.vercel.app"),
+  title: {
+    default: "Company Labs",
+    template: "%s · Company Labs",
+  },
+  description,
+  openGraph: {
+    title: "Company Labs",
+    description,
+    siteName: "Company Labs",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Company Labs",
+    description,
+  },
 };
 
 export default function RootLayout({

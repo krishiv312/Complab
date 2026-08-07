@@ -39,6 +39,19 @@ pitchbook (.pptx) export cut in favor of the PDF export already built.
 - **Dark mode, methodology/privacy/feedback pages, and a visual redesign** —
   brand color, modern SaaS layout, CSV export at both the single-company and
   comps-table level.
+- **The two stretch charts** (`docs/MVP_SCOPE.md` feature 10, charts 3-4),
+  built after the 5-phase plan itself was otherwise complete: a growth-vs-
+  margin scatter, and a football-field chart showing the implied share-price
+  range across all five multiples (not just EV/EBITDA) — Q1-Q3 band, median
+  tick, current-price line.
+- **Favicon, Apple touch icon, Open Graph image, `robots.txt`, and
+  `sitemap.xml`** — re-derived from the same clean source PDF as the header
+  logo (see the transparency-bug entry below), using Next's file-based
+  `app/icon.png` / `app/apple-icon.png` / `app/opengraph-image.png`
+  conventions so no manual `<head>` wiring was needed beyond `metadataBase`
+  and the Open Graph/Twitter card text in `layout.tsx`. `sitemap.ts` is
+  generated from `listDemoTickers()` rather than hardcoded, so it can't drift
+  from the actual company set.
 
 ### What broke
 
@@ -73,6 +86,19 @@ pitchbook (.pptx) export cut in favor of the PDF export already built.
   agreed the file's alpha channel was clean at `0`/`255`, yet every engine
   painted it opaque) was never fully identified; the fix didn't require
   knowing why, only a clean re-derivation from source.
+- **The football-field chart inverted its own range for negative-earnings
+  companies.** `impliedSharePriceDirect()` (new, for the P/E and P/B legs,
+  which multiply a peer multiple straight against the subject's own EPS or
+  book value rather than bridging through enterprise value) doesn't preserve
+  Q1-below-Q3 when the subject's own metric is negative — CROX's peer-implied
+  P/E range printed as `$-21.56 - $-30.64`, backwards. Fixed at the source the
+  same way `calculatePE()`/`calculatePB()` already flag N/M for a negative
+  denominator: a negative subject metric marks the result not-meaningful and
+  the row is excluded, rather than shown misleadingly. Also normalized
+  low/high in the chart component itself as a general safety net for any
+  other sign-inversion case (e.g. a negative subject EBIT feeding the
+  EV/EBIT bridge), rather than relying solely on catching every individual
+  sign combination upstream.
 
 ### What I learned
 
@@ -94,11 +120,12 @@ pitchbook (.pptx) export cut in favor of the PDF export already built.
 
 ### Not done yet
 
-- Stretch charts (growth-vs-margin scatter, football field) — explicitly
-  deferred per the plan's own priority order, not started.
-- Vercel env vars for `SEC_USER_AGENT`/`FINNHUB_API_KEY` were planned but
-  turned out unnecessary — the deployed app only reads pre-ingested static
-  JSON; the pipeline runs locally via scripts, not at build or request time.
+Nothing from `docs/MVP_SCOPE.md`'s original 15-feature list remains — the
+5-phase plan plus the two stretch charts closes it out completely. The only
+item ever marked "planned but turned out unnecessary" was Vercel env vars for
+`SEC_USER_AGENT`/`FINNHUB_API_KEY` — the deployed app only reads
+pre-ingested static JSON; the pipeline runs locally via scripts, not at
+build or request time.
 
 ## Entry 1 — Week 1: environment, seed data, calculation library, first UI
 
