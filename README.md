@@ -52,6 +52,7 @@ npm run lint                          # ESLint
 npm run build                         # production build
 npx tsx scripts/print-multiples.ts    # prints every computed multiple for the hand-verified companies
 npx tsx scripts/validate-pipeline.ts  # diffs live-ingested CROX/DECK/SKX/NKE against the hand-verified ground truth
+npm run check-completeness            # audits every company for gaps that block a displayed multiple, with the exact field and cause named
 ```
 
 ## How it's organized

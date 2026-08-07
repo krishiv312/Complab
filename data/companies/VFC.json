@@ -25,7 +25,7 @@
       "incomeStatement": {
         "revenue": 9605.207,
         "costOfRevenue": 4343.492,
-        "grossProfit": null,
+        "grossProfit": 5261.715,
         "operatingIncome": 576.569,
         "operatingIncomeIsDerived": false,
         "depreciationAmortization": 280.529,
@@ -60,7 +60,7 @@
         "kind": "SEC_EDGAR_10K",
         "documentUrl": "https://www.sec.gov/Archives/edgar/data/103379/000010337926000030/vfc-20260328.htm",
         "filingDate": "2026-05-20",
-        "retrievedAt": "2026-08-06",
+        "retrievedAt": "2026-08-07",
         "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
       }
     },
@@ -75,7 +75,7 @@
       "incomeStatement": {
         "revenue": 9504.691,
         "costOfRevenue": 4420.826,
-        "grossProfit": null,
+        "grossProfit": 5083.865000000001,
         "operatingIncome": 303.773,
         "operatingIncomeIsDerived": false,
         "depreciationAmortization": 259.616,
@@ -110,21 +110,21 @@
         "kind": "SEC_EDGAR_10K",
         "documentUrl": "https://www.sec.gov/Archives/edgar/data/103379/000010337926000030/vfc-20260328.htm",
         "filingDate": "2026-05-20",
-        "retrievedAt": "2026-08-06",
+        "retrievedAt": "2026-08-07",
         "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
       }
     }
   ],
   "market": {
-    "sharePrice": 15.22,
+    "sharePrice": 14.75,
     "priceCurrency": "USD",
-    "priceAsOf": "2026-08-06",
+    "priceAsOf": "2026-08-07",
     "priceSource": {
       "kind": "MARKET_QUOTE",
       "documentUrl": null,
       "filingDate": null,
-      "retrievedAt": "2026-08-06",
-      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-06) does NOT match sharesOutstandingAsOf (2026-04-25). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
+      "retrievedAt": "2026-08-07",
+      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-07) does NOT match sharesOutstandingAsOf (2026-04-25). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
     },
     "sharesOutstanding": 391.769705,
     "sharesOutstandingAsOf": "2026-04-25",
@@ -132,7 +132,7 @@
       "kind": "SEC_EDGAR_10K",
       "documentUrl": "https://www.sec.gov/Archives/edgar/data/103379/000010337926000030/vfc-20260328.htm",
       "filingDate": "2026-05-20",
-      "retrievedAt": "2026-08-06",
+      "retrievedAt": "2026-08-07",
       "note": "Shares outstanding from the 10-K cover page (dei:EntityCommonStockSharesOutstanding)."
     }
   }

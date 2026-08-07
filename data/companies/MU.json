@@ -47,7 +47,7 @@
         "totalCurrentAssets": 28841,
         "totalAssets": 82798,
         "shortTermDebt": null,
-        "longTermDebt": null,
+        "longTermDebt": 11533,
         "operatingLeaseLiabilitiesCurrent": 74,
         "operatingLeaseLiabilitiesNoncurrent": 701,
         "preferredStock": null,
@@ -60,7 +60,7 @@
         "kind": "SEC_EDGAR_10K",
         "documentUrl": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000028/mu-20250828.htm",
         "filingDate": "2025-10-03",
-        "retrievedAt": "2026-08-06",
+        "retrievedAt": "2026-08-07",
         "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
       }
     },
@@ -110,21 +110,21 @@
         "kind": "SEC_EDGAR_10K",
         "documentUrl": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000028/mu-20250828.htm",
         "filingDate": "2025-10-03",
-        "retrievedAt": "2026-08-06",
+        "retrievedAt": "2026-08-07",
         "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
       }
     }
   ],
   "market": {
-    "sharePrice": 893.19,
+    "sharePrice": 881.47,
     "priceCurrency": "USD",
-    "priceAsOf": "2026-08-06",
+    "priceAsOf": "2026-08-07",
     "priceSource": {
       "kind": "MARKET_QUOTE",
       "documentUrl": null,
       "filingDate": null,
-      "retrievedAt": "2026-08-06",
-      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-06) does NOT match sharesOutstandingAsOf (2025-09-26). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
+      "retrievedAt": "2026-08-07",
+      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-07) does NOT match sharesOutstandingAsOf (2025-09-26). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
     },
     "sharesOutstanding": 1122.466035,
     "sharesOutstandingAsOf": "2025-09-26",
@@ -132,7 +132,7 @@
       "kind": "SEC_EDGAR_10K",
       "documentUrl": "https://www.sec.gov/Archives/edgar/data/723125/000072312525000028/mu-20250828.htm",
       "filingDate": "2025-10-03",
-      "retrievedAt": "2026-08-06",
+      "retrievedAt": "2026-08-07",
       "note": "Shares outstanding from the 10-K cover page (dei:EntityCommonStockSharesOutstanding)."
     }
   }

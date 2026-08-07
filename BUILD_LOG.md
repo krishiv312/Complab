@@ -1,5 +1,87 @@
 # BUILD_LOG.md
 
+## Entry 3 — Data completeness audit and an automated gap-detection tool
+
+**Scope covered:** an audit of every null field across all 14 companies, fixing
+the ones that were pipeline gaps rather than genuine N/A, and a new tool so
+future company additions surface these gaps immediately instead of silently
+shipping them.
+
+### What I built
+
+- **Root-caused every high-null-count field against live SEC EDGAR data**
+  (not guessed): for each frequently-null field, pulled the company's actual
+  XBRL facts and compared against the tag lists in `lib/data/normalize.ts`.
+  This found a clear, generalizable pattern - large-cap filers increasingly
+  don't tag one combined concept (`DepreciationAndAmortization`,
+  `NetIncomeLoss`, `StockholdersEquity`, `LongTermDebtNoncurrent`) and instead
+  tag the components separately, or tag the NCI-inclusive variant instead of
+  the parent-only one.
+- **Fixed `depreciationAmortization`** (the highest-impact gap - it silently
+  broke EV/EBITDA, the headline multiple) with a sum-fallback: `Depreciation`
+  + `AmortizationOfIntangibleAssets` when no combined tag exists. Confirmed
+  against live data for AMD, ADI, AVGO, INTC, TXN - all five now show a real
+  EV/EBITDA instead of N/A.
+- **Added evidence-based fallback tags** for `netIncome` (→ `ProfitLoss`),
+  `totalShareholdersEquity` (→ `StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest`),
+  `cashAndEquivalents` (→ the ASU 2016-18 combined cash + restricted-cash
+  tag), and `longTermDebt` (→ the un-split combined `LongTermDebt` tag).
+  Each was verified against a real company's actual filed XBRL entries
+  before being added, not added speculatively.
+- **Added a safe mathematical derivation for `grossProfit`** (`revenue -
+  costOfRevenue`) when a filer doesn't tag `GrossProfit` directly - both
+  inputs are real reported figures, so this isn't an estimate, it's the same
+  arithmetic a human would do reading the filing.
+- **`lib/data/completeness.ts` + `scripts/check-completeness.ts`** - the
+  actual automated system asked for. `checkCompleteness()` distinguishes
+  fields that block a displayed multiple (with which multiple, named) from
+  fields that are captured but not currently used anywhere on the site, so a
+  report isn't dominated by gaps nobody can see. Wired into
+  `ingest-company.ts` so it prints automatically after every future
+  ingestion, and available standalone (`npm run check-completeness`) to
+  re-audit the whole dataset any time - including right now, which is how
+  this entry's "not done yet" section below is precisely scoped instead of
+  vague.
+
+### What I explicitly did NOT do
+
+Three residual gaps remain (LULU and MU's `shortTermDebt`, AVGO's
+`longTermDebt`), all blocking EV-based multiples for those companies. I
+looked - none of them resolved to a tag with a value at the company's actual
+target filing, the way every fix above did. The honest options at that point
+were: guess these companies have zero short-term debt (plausible, but
+unverified against the actual filing), or leave them null. Given the
+project's own explicit rule against inventing figures, I left them null.
+This is exactly the situation `checkCompleteness()` exists for: these three
+gaps are now precisely named (field, company, which multiple it blocks)
+instead of an unexplained N/A on the comps table - the difference between
+"we don't know why" and "we know why and haven't solved it yet."
+
+### What I learned
+
+- A null field isn't automatically a bug. Of the ~150 null fields across the
+  10 auto-ingested companies, most (interest income/expense detail,
+  operating lease liabilities, the NCI split fields, `shortTermInvestments`)
+  aren't consumed by any calculation on the site today - fixing those would
+  have been effort spent on invisible completeness rather than real user-
+  facing correctness. Tracing each null field to whether it actually feeds a
+  displayed multiple (via `lib/finance/compute.ts`) before spending time on
+  it was the highest-leverage step in this whole pass.
+- The same "confirm against live data before changing a tag list" discipline
+  from the original pipeline build (documented in Entry 2) applies just as
+  much to *fixing* gaps as it did to building the pipeline in the first
+  place - every fallback tag added here was checked against a real company's
+  real filed entry first, not added because it seemed plausible.
+
+### Not done yet
+
+- LULU/MU `shortTermDebt`, AVGO `longTermDebt` - see above. Precisely
+  diagnosed, not silently missing; `npm run check-completeness` surfaces
+  these three by name.
+- More companies/industries (Enterprise Software, Packaged Food & Beverage)
+  - queued as the next piece of work, now on top of a meaningfully more
+  complete pipeline than before this entry.
+
 ## Entry 2 — Compressing the remaining MVP into a 1-2 week timeline
 
 **Scope covered:** the rest of Gate 1 (`docs/MVP_SCOPE.md`) plus feature #15

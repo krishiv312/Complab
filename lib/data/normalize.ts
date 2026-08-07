@@ -18,11 +18,18 @@ export const TAG_LISTS = {
   costOfRevenue: ["CostOfRevenue", "CostOfGoodsAndServicesSold", "CostOfGoodsSold"],
   grossProfit: ["GrossProfit"],
   operatingIncome: ["OperatingIncomeLoss"],
+  // A single combined tag, tried first - many large-cap filers (AMD, ADI, AVGO,
+  // INTC, TXN confirmed against live EDGAR data) stopped tagging this combined
+  // concept years ago and only tag Depreciation and intangible amortization
+  // separately now. DEPRECIATION_AMORTIZATION_SPLIT_TAGS below is the fallback
+  // sum for exactly that case.
   depreciationAmortization: [
     "DepreciationDepletionAndAmortization",
     "DepreciationAmortizationAndAccretionNet",
     "DepreciationAndAmortization",
   ],
+  depreciation: ["Depreciation"],
+  amortizationOfIntangibles: ["AmortizationOfIntangibleAssets", "AmortizationOfAcquiredIntangibleAssets"],
   interestExpenseGross: ["InterestExpense", "InterestExpenseDebt", "InterestExpenseNonoperating"],
   interestIncome: [
     "InvestmentIncomeInterest",
@@ -38,20 +45,37 @@ export const TAG_LISTS = {
   // this tag is the opposite of ours - positive here means net benefit, so it
   // must be negated when used.
   interestExpenseNetDirect: ["InterestIncomeExpenseNonoperatingNet"],
-  netIncome: ["NetIncomeLoss"],
+  // ProfitLoss (consolidated, including NCI) as a fallback: several filers
+  // (AVGO confirmed against live EDGAR data) only tag ProfitLoss for a given
+  // year, not NetIncomeLoss. When noncontrollingInterest is nil, the two
+  // figures are the same number by definition, so this is a safe fallback,
+  // not a guess - it's the real filed figure, just under the other tag.
+  netIncome: ["NetIncomeLoss", "ProfitLoss"],
   netIncomeConsolidated: ["ProfitLoss"],
   epsBasic: ["EarningsPerShareBasic"],
   epsDiluted: ["EarningsPerShareDiluted"],
   weightedAvgSharesBasic: ["WeightedAverageNumberOfSharesOutstandingBasic"],
   weightedAvgSharesDiluted: ["WeightedAverageNumberOfDilutedSharesOutstanding"],
-  cashAndEquivalents: ["CashAndCashEquivalentsAtCarryingValue"],
+  // LULU (confirmed against live EDGAR data) tags a combined cash + restricted
+  // cash figure (ASU 2016-18 reconciliation) instead of the plain carrying-value
+  // tag - a real, filed figure, just a different, equally valid presentation.
+  cashAndEquivalents: [
+    "CashAndCashEquivalentsAtCarryingValue",
+    "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+  ],
   shortTermInvestments: ["ShortTermInvestments"],
   totalCurrentAssets: ["AssetsCurrent"],
   totalAssets: ["Assets"],
-  longTermDebt: ["LongTermDebtNoncurrent"],
+  // The combined (un-split) tag as a fallback - MU and VFC (confirmed against
+  // live EDGAR data) report one LongTermDebt figure rather than splitting
+  // current/noncurrent portions into separate tags.
+  longTermDebt: ["LongTermDebtNoncurrent", "LongTermDebt"],
   operatingLeaseLiabilitiesCurrent: ["OperatingLeaseLiabilityCurrent"],
   operatingLeaseLiabilitiesNoncurrent: ["OperatingLeaseLiabilityNoncurrent"],
-  totalShareholdersEquity: ["StockholdersEquity"],
+  // Same NCI-fallback logic as netIncome above: includes the NCI portion, but
+  // when NCI is nil that's the same number as parent-only equity, and it's a
+  // real filed figure (AVGO confirmed) rather than an estimate.
+  totalShareholdersEquity: ["StockholdersEquity", "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"],
   preferredStock: ["PreferredStockValue", "PreferredStockValueOutstanding"],
   noncontrollingInterestNonredeemable: ["MinorityInterest"],
   noncontrollingInterestRedeemable: ["RedeemableNoncontrollingInterestEquityCarryingAmount"],
@@ -65,6 +89,15 @@ const SHORT_TERM_DEBT_TAGS = [["NotesPayableCurrent", "ShortTermBorrowings"], ["
 const PRETAX_INCOME_SPLIT_TAGS = [
   ["IncomeLossFromContinuingOperationsBeforeIncomeTaxesDomestic"],
   ["IncomeLossFromContinuingOperationsBeforeIncomeTaxesForeign"],
+];
+
+// Fallback for depreciationAmortization when no combined tag is found - sum
+// Depreciation + intangible amortization instead. Confirmed against live EDGAR
+// data for AMD, ADI, AVGO, INTC, TXN, all of which report these as two
+// separate tags rather than one combined DepreciationAndAmortization figure.
+const DEPRECIATION_AMORTIZATION_SPLIT_TAGS = [
+  TAG_LISTS.depreciation,
+  TAG_LISTS.amortizationOfIntangibles,
 ];
 
 function unitsFor(facts: EdgarCompanyFacts, tag: string, unit: string): XbrlFactEntry[] | null {
@@ -194,6 +227,28 @@ export function normalizeIncomeStatement(
     toMillions(pickTagValue(facts, TAG_LISTS[field], accnDashed, durationPeriod, "shares").value);
 
   const revenue = num("revenue");
+  const costOfRevenue = num("costOfRevenue");
+
+  let grossProfit = num("grossProfit");
+  if (grossProfit === null && revenue !== null && costOfRevenue !== null) {
+    // Not a guess - grossProfit is definitionally revenue minus costOfRevenue,
+    // and both are real reported figures. Some filers (QCOM, VFC confirmed)
+    // simply don't tag GrossProfit as its own concept.
+    grossProfit = revenue - costOfRevenue;
+  }
+
+  let depreciationAmortization = num("depreciationAmortization");
+  if (depreciationAmortization === null) {
+    const split = toMillions(
+      sumTagValues(facts, DEPRECIATION_AMORTIZATION_SPLIT_TAGS, accnDashed, durationPeriod)
+    );
+    if (split !== null) {
+      depreciationAmortization = split;
+      warnings.push(
+        `depreciationAmortization for FY${period.fiscalYear} summed from separate Depreciation + amortization tags - no combined tag in this filing`
+      );
+    }
+  }
 
   let pretaxIncome = num("pretaxIncome");
   if (pretaxIncome === null) {
@@ -249,12 +304,12 @@ export function normalizeIncomeStatement(
   return {
     statement: {
       revenue,
-      costOfRevenue: num("costOfRevenue"),
-      grossProfit: num("grossProfit"),
+      costOfRevenue,
+      grossProfit,
       operatingIncome,
       operatingIncomeIsDerived,
       derivationNote,
-      depreciationAmortization: num("depreciationAmortization"),
+      depreciationAmortization,
       interestIncome,
       interestExpenseGross,
       interestExpenseNet,

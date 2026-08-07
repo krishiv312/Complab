@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest",
-    "multiples": "tsx scripts/print-multiples.ts"
+    "multiples": "tsx scripts/print-multiples.ts",
+    "check-completeness": "tsx scripts/check-completeness.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

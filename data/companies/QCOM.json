@@ -25,7 +25,7 @@
       "incomeStatement": {
         "revenue": 44284,
         "costOfRevenue": 19738,
-        "grossProfit": null,
+        "grossProfit": 24546,
         "operatingIncome": 12355,
         "operatingIncomeIsDerived": false,
         "depreciationAmortization": 1602,
@@ -54,13 +54,13 @@
         "noncontrollingInterest": null,
         "noncontrollingInterestNonredeemable": null,
         "noncontrollingInterestRedeemable": null,
-        "totalShareholdersEquity": null
+        "totalShareholdersEquity": 21206
       },
       "source": {
         "kind": "SEC_EDGAR_10K",
         "documentUrl": "https://www.sec.gov/Archives/edgar/data/804328/000080432825000085/qcom-20250928.htm",
         "filingDate": "2025-11-05",
-        "retrievedAt": "2026-08-06",
+        "retrievedAt": "2026-08-07",
         "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
       }
     },
@@ -75,7 +75,7 @@
       "incomeStatement": {
         "revenue": 38962,
         "costOfRevenue": 17060,
-        "grossProfit": null,
+        "grossProfit": 21902,
         "operatingIncome": 10071,
         "operatingIncomeIsDerived": false,
         "depreciationAmortization": 1706,
@@ -104,27 +104,27 @@
         "noncontrollingInterest": null,
         "noncontrollingInterestNonredeemable": null,
         "noncontrollingInterestRedeemable": null,
-        "totalShareholdersEquity": null
+        "totalShareholdersEquity": 26274
       },
       "source": {
         "kind": "SEC_EDGAR_10K",
         "documentUrl": "https://www.sec.gov/Archives/edgar/data/804328/000080432825000085/qcom-20250928.htm",
         "filingDate": "2025-11-05",
-        "retrievedAt": "2026-08-06",
+        "retrievedAt": "2026-08-07",
         "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
       }
     }
   ],
   "market": {
-    "sharePrice": 157.53,
+    "sharePrice": 160.39,
     "priceCurrency": "USD",
-    "priceAsOf": "2026-08-06",
+    "priceAsOf": "2026-08-07",
     "priceSource": {
       "kind": "MARKET_QUOTE",
       "documentUrl": null,
       "filingDate": null,
-      "retrievedAt": "2026-08-06",
-      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-06) does NOT match sharesOutstandingAsOf (2025-11-03). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
+      "retrievedAt": "2026-08-07",
+      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-07) does NOT match sharesOutstandingAsOf (2025-11-03). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
     },
     "sharesOutstanding": 1071,
     "sharesOutstandingAsOf": "2025-11-03",
@@ -132,7 +132,7 @@
       "kind": "SEC_EDGAR_10K",
       "documentUrl": "https://www.sec.gov/Archives/edgar/data/804328/000080432825000085/qcom-20250928.htm",
       "filingDate": "2025-11-05",
-      "retrievedAt": "2026-08-06",
+      "retrievedAt": "2026-08-07",
       "note": "Shares outstanding from the 10-K cover page (dei:EntityCommonStockSharesOutstanding)."
     }
   }

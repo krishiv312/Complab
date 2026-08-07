@@ -28,13 +28,13 @@
         "grossProfit": 43294,
         "operatingIncome": 25484,
         "operatingIncomeIsDerived": false,
-        "depreciationAmortization": null,
+        "depreciationAmortization": 8636,
         "interestIncome": 347,
         "interestExpenseGross": 3210,
         "interestExpenseNet": 2863,
         "interestExpenseNetIsDerived": true,
         "pretaxIncome": 22729,
-        "netIncome": null,
+        "netIncome": 23126,
         "netIncomeConsolidated": 23126,
         "epsBasic": 4.91,
         "epsDiluted": 4.77,
@@ -54,13 +54,13 @@
         "noncontrollingInterest": null,
         "noncontrollingInterestNonredeemable": null,
         "noncontrollingInterestRedeemable": null,
-        "totalShareholdersEquity": null
+        "totalShareholdersEquity": 81292
       },
       "source": {
         "kind": "SEC_EDGAR_10K",
         "documentUrl": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000121/avgo-20251102.htm",
         "filingDate": "2025-12-18",
-        "retrievedAt": "2026-08-06",
+        "retrievedAt": "2026-08-07",
         "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
       }
     },
@@ -78,13 +78,13 @@
         "grossProfit": 32509,
         "operatingIncome": 13463,
         "operatingIncomeIsDerived": false,
-        "depreciationAmortization": null,
+        "depreciationAmortization": 9860,
         "interestIncome": 461,
         "interestExpenseGross": 3953,
         "interestExpenseNet": 3492,
         "interestExpenseNetIsDerived": true,
         "pretaxIncome": 9916,
-        "netIncome": null,
+        "netIncome": 5895,
         "netIncomeConsolidated": 5895,
         "epsBasic": 1.27,
         "epsDiluted": 1.23,
@@ -104,27 +104,27 @@
         "noncontrollingInterest": null,
         "noncontrollingInterestNonredeemable": null,
         "noncontrollingInterestRedeemable": null,
-        "totalShareholdersEquity": null
+        "totalShareholdersEquity": 67678
       },
       "source": {
         "kind": "SEC_EDGAR_10K",
         "documentUrl": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000121/avgo-20251102.htm",
         "filingDate": "2025-12-18",
-        "retrievedAt": "2026-08-06",
+        "retrievedAt": "2026-08-07",
         "note": "Auto-ingested via SEC EDGAR XBRL (companyfacts), tag-fallback normalized. See docs/FINANCE_METHODOLOGY.md."
       }
     }
   ],
   "market": {
-    "sharePrice": 418.28,
+    "sharePrice": 420.565,
     "priceCurrency": "USD",
-    "priceAsOf": "2026-08-06",
+    "priceAsOf": "2026-08-07",
     "priceSource": {
       "kind": "MARKET_QUOTE",
       "documentUrl": null,
       "filingDate": null,
-      "retrievedAt": "2026-08-06",
-      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-06) does NOT match sharesOutstandingAsOf (2025-11-28). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
+      "retrievedAt": "2026-08-07",
+      "note": "Live quote via Finnhub (free tier has no historical-close endpoint) - priceAsOf (2026-08-07) does NOT match sharesOutstandingAsOf (2025-11-28). Market cap is an approximation, not a date-matched figure like the hand-verified companies."
     },
     "sharesOutstanding": 4741.273799,
     "sharesOutstandingAsOf": "2025-11-28",
@@ -132,7 +132,7 @@
       "kind": "SEC_EDGAR_10K",
       "documentUrl": "https://www.sec.gov/Archives/edgar/data/1730168/000173016825000121/avgo-20251102.htm",
       "filingDate": "2025-12-18",
-      "retrievedAt": "2026-08-06",
+      "retrievedAt": "2026-08-07",
       "note": "Shares outstanding from the 10-K cover page (dei:EntityCommonStockSharesOutstanding)."
     }
   }
