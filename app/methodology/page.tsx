@@ -37,11 +37,11 @@ export default function MethodologyPage() {
         </p>
         <p>
           The remaining companies are ingested automatically from SEC EDGAR&apos;s XBRL{" "}
-          <code className="rounded bg-muted px-1 py-0.5 text-xs">companyfacts</code> API — the
+          <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">companyfacts</code> API — the
           same structured data the filings themselves are built from, not a third-party
           reseller&apos;s normalization of it. Market prices come from Finnhub. Full detail on the
           ingestion pipeline, its tag-matching logic, and its known limitations lives in{" "}
-          <code className="rounded bg-muted px-1 py-0.5 text-xs">docs/FINANCE_METHODOLOGY.md</code>{" "}
+          <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">docs/FINANCE_METHODOLOGY.md</code>{" "}
           in the project&apos;s repository.
         </p>
       </Section>
