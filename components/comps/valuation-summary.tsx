@@ -20,7 +20,12 @@ export function QuartileTable({ rows }: { rows: MultipleQuartiles[] }) {
   }
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-border shadow-sm">
+    <div className="flex flex-col gap-3 rounded-xl border border-border bg-card p-4 shadow-sm ring-1 ring-foreground/[0.04]">
+      <div className="flex flex-col gap-0.5">
+        <h3 className="font-heading text-sm font-semibold">Quartile statistics</h3>
+        <p className="text-xs text-muted-foreground">Peer group distribution, subject vs. peers</p>
+      </div>
+      <div className="overflow-x-auto rounded-lg border border-border">
       <table className="w-full min-w-[560px] text-sm">
         <thead>
           <tr className="border-b border-border bg-muted/50">
@@ -51,6 +56,7 @@ export function QuartileTable({ rows }: { rows: MultipleQuartiles[] }) {
           ))}
         </motion.tbody>
       </table>
+      </div>
     </div>
   );
 }
@@ -75,38 +81,122 @@ export function ValuationRangeCard({
     );
   }
 
+  const pctVsCurrent =
+    medianPrice.value !== null && currentPrice !== 0
+      ? (medianPrice.value - currentPrice) / currentPrice
+      : null;
+  const isDown = pctVsCurrent !== null && pctVsCurrent < 0;
+
+  // Small standalone range bar - same low/median/high-against-current pattern
+  // as the football field chart, condensed to a single row for this one
+  // EV/EBITDA-based range.
+  const low = q1Price.value;
+  const high = q3Price.value;
+  const hasRange = low !== null && high !== null;
+  const rangeLow = hasRange ? Math.min(low, high) : null;
+  const rangeHigh = hasRange ? Math.max(low, high) : null;
+  const allValues = hasRange ? [rangeLow!, rangeHigh!, currentPrice] : [currentPrice];
+  const rawMin = Math.min(...allValues);
+  const rawMax = Math.max(...allValues);
+  const pad = (rawMax - rawMin) * 0.15 || rawMax * 0.1 || 1;
+  const domainMin = Math.min(0, rawMin - pad);
+  const domainMax = rawMax + pad;
+  const span = domainMax - domainMin || 1;
+  const toPct = (v: number) => ((v - domainMin) / span) * 100;
+
   return (
-    <div className="flex flex-col gap-3 rounded-xl border border-border p-4 shadow-sm">
-      <p className="text-xs text-muted-foreground">
-        Implied share price, applying the peer group&apos;s EV/EBITDA quartiles to the subject
-        company&apos;s own EBITDA.
-      </p>
+    <div className="flex flex-col gap-4 rounded-xl border border-border bg-card p-4 shadow-sm ring-1 ring-foreground/[0.04]">
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex flex-col gap-0.5">
+          <h3 className="font-heading text-sm font-semibold">Implied valuation range</h3>
+          <p className="text-xs text-muted-foreground">
+            Derived from peer EV/EBITDA quartiles × subject EBITDA
+          </p>
+        </div>
+        {pctVsCurrent !== null && (
+          <span
+            className={`flex shrink-0 items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium ${
+              isDown
+                ? "bg-red-500/10 text-red-600 dark:text-red-400"
+                : "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+            }`}
+          >
+            {isDown ? "▼" : "▲"} {Math.abs(pctVsCurrent * 100).toFixed(0)}% vs. current
+          </span>
+        )}
+      </div>
+
       <div className="grid grid-cols-4 gap-3 text-center">
         <div className="flex flex-col gap-0.5">
-          <span className="text-xs text-muted-foreground">Q1 implied</span>
+          <span className="text-xs text-muted-foreground uppercase">Current price</span>
+          <span className="font-mono text-lg font-semibold tabular-nums">
+            <CountUp value={currentPrice} format={formatPerShare} />
+          </span>
+        </div>
+        <div className="flex flex-col gap-0.5">
+          <span className="text-xs text-muted-foreground uppercase">Low (Q1)</span>
           <span className="font-mono text-lg font-semibold tabular-nums">
             {q1Price.value !== null ? <CountUp value={q1Price.value} format={formatPerShare} /> : "N/A"}
           </span>
         </div>
         <div className="flex flex-col gap-0.5">
-          <span className="text-xs text-muted-foreground">Median implied</span>
-          <span className="font-mono text-lg font-semibold tabular-nums">
+          <span className="text-xs text-muted-foreground uppercase">Base (median)</span>
+          <span className="font-mono text-lg font-semibold tabular-nums text-primary">
             {medianPrice.value !== null ? <CountUp value={medianPrice.value} format={formatPerShare} /> : "N/A"}
           </span>
         </div>
         <div className="flex flex-col gap-0.5">
-          <span className="text-xs text-muted-foreground">Q3 implied</span>
+          <span className="text-xs text-muted-foreground uppercase">High (Q3)</span>
           <span className="font-mono text-lg font-semibold tabular-nums">
             {q3Price.value !== null ? <CountUp value={q3Price.value} format={formatPerShare} /> : "N/A"}
           </span>
         </div>
-        <div className="flex flex-col gap-0.5">
-          <span className="text-xs text-muted-foreground">Current price</span>
-          <span className="font-mono text-lg font-semibold tabular-nums text-primary">
-            <CountUp value={currentPrice} format={formatPerShare} />
-          </span>
-        </div>
       </div>
+
+      {hasRange && (
+        <div className="relative pt-4 pb-4">
+          <span
+            className="absolute top-0 -translate-x-1/2 font-mono text-[10px] text-muted-foreground"
+            style={{ left: `${toPct(rangeLow!)}%` }}
+          >
+            {formatPerShare(rangeLow!)}
+          </span>
+          <span
+            className="absolute top-0 -translate-x-1/2 font-mono text-[10px] text-muted-foreground"
+            style={{ left: `${toPct(rangeHigh!)}%` }}
+          >
+            {formatPerShare(rangeHigh!)}
+          </span>
+          <div className="relative h-4 rounded-full bg-muted">
+            <div
+              className="absolute top-0 h-4 rounded-full bg-primary/25"
+              style={{
+                left: `${toPct(rangeLow!)}%`,
+                width: `${Math.max(toPct(rangeHigh!) - toPct(rangeLow!), 0.5)}%`,
+              }}
+            />
+            {medianPrice.value !== null && (
+              <div
+                className="absolute top-0 h-4 w-0.5 bg-primary"
+                style={{ left: `${toPct(medianPrice.value)}%` }}
+              />
+            )}
+            <div
+              className="absolute inset-y-0 border-l border-dashed border-foreground/50"
+              style={{ left: `${toPct(currentPrice)}%` }}
+            >
+              <span className="absolute -top-2 -translate-x-1/2 rounded-full bg-foreground px-1.5 py-0.5 text-[9px] font-medium whitespace-nowrap text-background">
+                NOW
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <p className="text-[11px] text-muted-foreground">
+        Implied equity value = (peer multiple × subject EBITDA) − subject net debt, ÷ shares
+        outstanding.
+      </p>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import type { CompsRow } from "@/components/comps/comps-table";
 import { ChartCard } from "@/components/charts/chart-card";
 import { niceAxisTicks } from "@/components/charts/chart-utils";
@@ -98,32 +98,25 @@ export function MultipleBarChart({
                   scaleY: { type: "spring", stiffness: 260, damping: 18, delay: hovered === i ? 0 : i * 0.09 },
                 }}
               />
-              <text x={cx} y={H - 8} textAnchor="middle" className="fill-muted-foreground text-[10px]">
+              <motion.text
+                x={cx}
+                y={y - 8}
+                textAnchor="middle"
+                className={`text-[10px] font-mono font-medium ${d.isSubject ? "fill-primary" : "fill-foreground"}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3, delay: i * 0.09 + 0.35 }}
+              >
+                {d.value.toFixed(1)}x
+              </motion.text>
+              <text x={cx} y={H - 20} textAnchor="middle" className={`text-[10px] ${d.isSubject ? "fill-primary font-medium" : "fill-muted-foreground"}`}>
                 {d.ticker}
               </text>
-              <AnimatePresence>
-                {hovered === i && (
-                  <motion.g
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 4 }}
-                    transition={{ duration: 0.15 }}
-                  >
-                    <rect
-                      x={cx - 26}
-                      y={y - 24}
-                      width={52}
-                      height={18}
-                      rx={5}
-                      fill="var(--popover)"
-                      stroke="var(--border)"
-                    />
-                    <text x={cx} y={y - 13} textAnchor="middle" dominantBaseline="middle" className="fill-foreground text-[10px] font-medium">
-                      {d.value.toFixed(2)}x
-                    </text>
-                  </motion.g>
-                )}
-              </AnimatePresence>
+              {d.isSubject && (
+                <text x={cx} y={H - 8} textAnchor="middle" className="fill-primary text-[8px] font-medium tracking-wide">
+                  SUBJECT
+                </text>
+              )}
             </g>
           );
         })}

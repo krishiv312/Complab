@@ -1,5 +1,83 @@
 # BUILD_LOG.md
 
+## Entry 5 — Fidelity pass against the real base44 screenshots
+
+**Scope covered:** Entry 4's redesign was built from one reference
+screenshot plus a text "Master Prompt" - every gap beyond that one screen
+was filled with judgment. The user then provided the full 10-screenshot
+set covering every screen. Reviewing them found real gaps beyond visual
+polish - some were genuine information-architecture differences, not just
+spacing: a far denser company detail page, a completely different peer-
+selection flow, and materially richer charts. Five phases, same
+display/interaction-only scope as Entry 4 - no calculation logic touched.
+
+### What I built
+
+- **Nav and header** - the dropdown gained a gradient top bar, a colored
+  dot + one-line description per item, and two new links (Home, About -
+  new `app/about/page.tsx`, matching the existing static-page pattern). The
+  header now shows a per-page subtitle under the wordmark via a route→label
+  lookup on `usePathname()`.
+- **Homepage hero** - icon + wordmark now sit together as one lockup
+  (replacing a standalone lockup image), the tagline highlights "hand-
+  verified SEC filings" in the accent color, the search box gained a
+  leading icon and a trailing circular submit button.
+- **Company detail page rebuilt** - the previous 4-metric-card layout
+  became a 12-metric Financials grid + 5-metric Valuation multiples grid
+  (Price, EBIT, EPS, book value/share, shares outstanding, and
+  color-coded revenue growth are all new *on screen* - none of it is new
+  *calculation*: `computeCompanyMetrics()` already produced all of it, or
+  it was one `safeDivide()` call away, the same pattern already used
+  elsewhere). One page-level source/legend line replaced the previous
+  per-card footer.
+- **Peer selection restructured** - replaced the always-expanded Suggested/
+  Other chip sections with a compact "Compared (N)" pill row and a new
+  dedicated full-page picker at `/analysis/[ticker]/compare` (search +
+  checkbox list, suggested peers ordered first via the existing
+  `suggestPeers()`, subject locked as "BASE"). Tested the full edit ->
+  toggle -> choose round trip end-to-end, including in production. Real
+  companies only - the reference screenshots' mock data included tickers
+  we don't have (ADS, UAA, PUM, ONON, COLM, GES); none of those made it in.
+- **Chart richness** - bar charts show a value label above every bar
+  permanently now (the old hover-only tooltip became redundant and was
+  removed rather than left overlapping) plus a "SUBJECT" sublabel; the
+  football field gained inline Q1/median/Q3 labels, a "NOW" pill with a
+  dashed line spanning all rows, and a bottom axis; `ValuationRangeCard`
+  gained a colored "▲/▼ N% vs. current" badge, a compact single-row mini
+  range bar reusing the football field's positioning math, and a formula
+  note; `QuartileTable` got a title/description header matching the other
+  cards.
+
+### What broke / needed real judgment calls
+
+- **Mobile label collision on the football field.** When a row's Q1 and
+  Q3 are close together (a narrow implied range), the two edge labels
+  overlapped into unreadable garbled text on narrow viewports. Fixed with
+  a width threshold: below 14% of the track width, show one combined
+  "$X – $Y" label centered on the bar instead of two separate edge labels
+  that don't have room to coexist. Caught by mobile screenshot testing,
+  not by the desktop-sized checks that covered everything else fine.
+- Reused the "confirm against something real before building" discipline
+  from every prior entry: the comparison-picker's company list is the real
+  24-company universe (not the screenshots' fictional mock companies), and
+  every new company-page metric was verified to already exist in
+  `lib/finance/compute.ts` or be a one-line derivation of existing fields
+  before being wired into the UI - nothing was invented to fill a grid.
+
+### What I learned
+
+- A screenshot set beats a single screenshot plus a text description by
+  more than "more detail" - it surfaces flow-level and information-
+  architecture differences (the dedicated comparison picker, the denser
+  metrics grid) that no amount of extrapolation from one image would have
+  found. Worth asking for the fuller reference set up front next time
+  fidelity actually matters, rather than filling gaps with judgment first
+  and finding the real answer later.
+- Chart label collision is a real, recurring category of bug at narrow
+  widths that's easy to miss on desktop-only testing - worth checking
+  specifically whenever a chart shows text labels positioned by
+  data-driven percentages rather than fixed layout.
+
 ## Entry 4 — Full visual/interaction redesign
 
 **Scope covered:** a ground-up redesign of the visual layer, from a design

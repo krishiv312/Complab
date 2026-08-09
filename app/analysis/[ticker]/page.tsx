@@ -252,32 +252,22 @@ export default async function AnalysisPage({
         </div>
       </section>
 
-      <section className="flex flex-col gap-3">
-        <h2 className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
-          Peer quartile statistics
-        </h2>
-        <QuartileTable
-          rows={[
-            { label: "EV / Revenue", stats: peerQuartiles.evRevenue, subjectValue: subjectRow.evRevenue },
-            { label: "EV / EBITDA", stats: peerQuartiles.evEbitda, subjectValue: subjectRow.evEbitda },
-            { label: "EV / EBIT", stats: peerQuartiles.evEbit, subjectValue: subjectRow.evEbit },
-            { label: "P / E", stats: peerQuartiles.pe, subjectValue: subjectRow.pe },
-            { label: "P / B", stats: peerQuartiles.pb, subjectValue: subjectRow.pb },
-          ]}
-        />
-      </section>
+      <QuartileTable
+        rows={[
+          { label: "EV / Revenue", stats: peerQuartiles.evRevenue, subjectValue: subjectRow.evRevenue },
+          { label: "EV / EBITDA", stats: peerQuartiles.evEbitda, subjectValue: subjectRow.evEbitda },
+          { label: "EV / EBIT", stats: peerQuartiles.evEbit, subjectValue: subjectRow.evEbit },
+          { label: "P / E", stats: peerQuartiles.pe, subjectValue: subjectRow.pe },
+          { label: "P / B", stats: peerQuartiles.pb, subjectValue: subjectRow.pb },
+        ]}
+      />
 
-      <section className="flex flex-col gap-3">
-        <h2 className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
-          Implied valuation range
-        </h2>
-        <ValuationRangeCard
-          q1Price={q1Valuation.impliedSharePrice}
-          medianPrice={medianValuation.impliedSharePrice}
-          q3Price={q3Valuation.impliedSharePrice}
-          currentPrice={company.market.sharePrice}
-        />
-      </section>
+      <ValuationRangeCard
+        q1Price={q1Valuation.impliedSharePrice}
+        medianPrice={medianValuation.impliedSharePrice}
+        q3Price={q3Valuation.impliedSharePrice}
+        currentPrice={company.market.sharePrice}
+      />
 
       <FootballFieldChart rows={footballFieldRows} currentPrice={company.market.sharePrice} />
 
