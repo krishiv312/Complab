@@ -9,9 +9,11 @@ import {
   useTable,
   type SortingState,
 } from "@tanstack/react-table";
+import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import type { MetricResult } from "@/lib/finance/types";
 import { formatCurrency, formatMultiple, formatPercent } from "@/lib/format";
+import { staggerContainer, staggerItem } from "@/components/motion/stagger";
 
 export interface CompsRow {
   ticker: string;
@@ -36,12 +38,12 @@ function metricCell(result: MetricResult, format: (v: number) => string) {
   }
   if (!result.meaningful) {
     return (
-      <Badge className="border-amber-500/30 bg-amber-500/10 px-1.5 py-0 text-[10px] text-amber-700 dark:text-amber-400">
+      <Badge variant="warning" className="px-1.5 py-0 text-[10px]">
         N/M
       </Badge>
     );
   }
-  return <span>{format(result.value)}</span>;
+  return <span className="font-mono tabular-nums">{format(result.value)}</span>;
 }
 
 const features = tableFeatures({
@@ -123,10 +125,11 @@ export function CompsTable({ rows }: { rows: CompsRow[] }) {
     <div className="flex flex-col gap-3">
       <div className="flex flex-wrap gap-1.5">
         {METRIC_COLUMNS.map((c) => (
-          <button
+          <motion.button
             key={c.key}
             type="button"
             onClick={() => toggleColumn(c.key)}
+            whileTap={{ scale: 0.94 }}
             className={`rounded-full border px-2.5 py-0.5 text-[11px] transition-colors ${
               hiddenColumns.has(c.key)
                 ? "border-border text-muted-foreground"
@@ -134,7 +137,7 @@ export function CompsTable({ rows }: { rows: CompsRow[] }) {
             }`}
           >
             {c.label}
-          </button>
+          </motion.button>
         ))}
       </div>
 
@@ -143,23 +146,35 @@ export function CompsTable({ rows }: { rows: CompsRow[] }) {
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id} className="border-b border-border bg-muted/50">
-                {headerGroup.headers.map((header) => (
-                  <th
-                    key={header.id}
-                    className="cursor-pointer select-none whitespace-nowrap px-3 py-2 text-left text-xs font-medium text-muted-foreground"
-                    onClick={header.column.getToggleSortingHandler()}
-                  >
-                    {header.isPlaceholder ? null : <table.FlexRender header={header} />}
-                    {{ asc: " ↑", desc: " ↓" }[header.column.getIsSorted() as string] ?? ""}
-                  </th>
-                ))}
+                {headerGroup.headers.map((header) => {
+                  const sortDir = header.column.getIsSorted();
+                  return (
+                    <th
+                      key={header.id}
+                      className="cursor-pointer select-none whitespace-nowrap px-3 py-2 text-left text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+                      onClick={header.column.getToggleSortingHandler()}
+                    >
+                      {header.isPlaceholder ? null : <table.FlexRender header={header} />}
+                      <motion.span
+                        className="inline-block"
+                        animate={{ rotate: sortDir === "desc" ? 180 : 0, opacity: sortDir ? 1 : 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {sortDir ? " ↑" : ""}
+                      </motion.span>
+                    </th>
+                  );
+                })}
               </tr>
             ))}
           </thead>
-          <tbody>
+          <motion.tbody initial="hidden" animate="visible" variants={staggerContainer(0.04)}>
             {table.getRowModel().rows.map((row) => (
-              <tr
+              <motion.tr
                 key={row.id}
+                layout
+                variants={staggerItem}
+                transition={{ layout: { type: "spring", stiffness: 350, damping: 32 } }}
                 className={`border-b border-border last:border-0 ${
                   row.original.isSubject ? "bg-accent/40" : ""
                 }`}
@@ -169,9 +184,9 @@ export function CompsTable({ rows }: { rows: CompsRow[] }) {
                     <table.FlexRender cell={cell} />
                   </td>
                 ))}
-              </tr>
+              </motion.tr>
             ))}
-          </tbody>
+          </motion.tbody>
         </table>
       </div>
     </div>

@@ -1,6 +1,11 @@
+"use client";
+
+import { motion } from "framer-motion";
 import type { QuartileStats } from "@/lib/finance/statistics";
 import type { MetricResult } from "@/lib/finance/types";
 import { formatMultiple, formatPerShare } from "@/lib/format";
+import { staggerContainer, staggerItem } from "@/components/motion/stagger";
+import { CountUp } from "@/components/motion/count-up";
 
 export interface MultipleQuartiles {
   label: string;
@@ -28,10 +33,10 @@ export function QuartileTable({ rows }: { rows: MultipleQuartiles[] }) {
             <th className="px-3 py-2 text-right text-xs font-medium text-foreground">Subject</th>
           </tr>
         </thead>
-        <tbody>
+        <motion.tbody initial="hidden" animate="visible" variants={staggerContainer(0.05)}>
           {withData.map((r) => (
-            <tr key={r.label} className="border-b border-border last:border-0">
-              <td className="px-3 py-2 text-muted-foreground">{r.label}</td>
+            <motion.tr key={r.label} variants={staggerItem} className="border-b border-border last:border-0 font-mono tabular-nums">
+              <td className="px-3 py-2 font-sans text-muted-foreground">{r.label}</td>
               <td className="px-3 py-2 text-right">{formatMultiple(r.stats!.min)}</td>
               <td className="px-3 py-2 text-right">{formatMultiple(r.stats!.q1)}</td>
               <td className="px-3 py-2 text-right">{formatMultiple(r.stats!.median)}</td>
@@ -42,9 +47,9 @@ export function QuartileTable({ rows }: { rows: MultipleQuartiles[] }) {
                   ? formatMultiple(r.subjectValue.value)
                   : "N/A"}
               </td>
-            </tr>
+            </motion.tr>
           ))}
-        </tbody>
+        </motion.tbody>
       </table>
     </div>
   );
@@ -79,26 +84,26 @@ export function ValuationRangeCard({
       <div className="grid grid-cols-4 gap-3 text-center">
         <div className="flex flex-col gap-0.5">
           <span className="text-xs text-muted-foreground">Q1 implied</span>
-          <span className="font-heading text-lg font-semibold">
-            {q1Price.value !== null ? formatPerShare(q1Price.value) : "N/A"}
+          <span className="font-mono text-lg font-semibold tabular-nums">
+            {q1Price.value !== null ? <CountUp value={q1Price.value} format={formatPerShare} /> : "N/A"}
           </span>
         </div>
         <div className="flex flex-col gap-0.5">
           <span className="text-xs text-muted-foreground">Median implied</span>
-          <span className="font-heading text-lg font-semibold">
-            {medianPrice.value !== null ? formatPerShare(medianPrice.value) : "N/A"}
+          <span className="font-mono text-lg font-semibold tabular-nums">
+            {medianPrice.value !== null ? <CountUp value={medianPrice.value} format={formatPerShare} /> : "N/A"}
           </span>
         </div>
         <div className="flex flex-col gap-0.5">
           <span className="text-xs text-muted-foreground">Q3 implied</span>
-          <span className="font-heading text-lg font-semibold">
-            {q3Price.value !== null ? formatPerShare(q3Price.value) : "N/A"}
+          <span className="font-mono text-lg font-semibold tabular-nums">
+            {q3Price.value !== null ? <CountUp value={q3Price.value} format={formatPerShare} /> : "N/A"}
           </span>
         </div>
         <div className="flex flex-col gap-0.5">
           <span className="text-xs text-muted-foreground">Current price</span>
-          <span className="font-heading text-lg font-semibold text-primary">
-            {formatPerShare(currentPrice)}
+          <span className="font-mono text-lg font-semibold tabular-nums text-primary">
+            <CountUp value={currentPrice} format={formatPerShare} />
           </span>
         </div>
       </div>

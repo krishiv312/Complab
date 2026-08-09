@@ -1,9 +1,11 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { StaggerList, staggerItem } from "@/components/motion/stagger";
 
 export interface PeerOption {
   ticker: string;
@@ -69,15 +71,18 @@ export function PeerPicker({
         <p className="text-xs text-muted-foreground">
           Suggested — transparently scored on industry match and revenue-size similarity
         </p>
-        <div className="flex flex-wrap gap-2">
+        <StaggerList className="flex flex-wrap gap-2" stagger={0.03}>
           {suggested.map((p) => {
             const active = currentPeers.includes(p.ticker);
             return (
-              <button
+              <motion.button
                 key={p.ticker}
                 type="button"
                 onClick={() => toggle(p.ticker)}
                 title={p.rationale}
+                variants={staggerItem}
+                whileTap={{ scale: 0.94 }}
+                whileHover={{ scale: 1.02 }}
                 className="group"
               >
                 <Badge
@@ -87,20 +92,27 @@ export function PeerPicker({
                   {p.name} ({p.ticker})
                   <span className="text-[10px] opacity-70">{active ? "×" : "+"}</span>
                 </Badge>
-              </button>
+              </motion.button>
             );
           })}
-        </div>
+        </StaggerList>
       </div>
 
       {others.length > 0 && (
         <div className="flex flex-col gap-2">
           <p className="text-xs text-muted-foreground">Other companies</p>
-          <div className="flex flex-wrap gap-2">
+          <StaggerList className="flex flex-wrap gap-2" stagger={0.015}>
             {others.map((p) => {
               const active = currentPeers.includes(p.ticker);
               return (
-                <button key={p.ticker} type="button" onClick={() => toggle(p.ticker)}>
+                <motion.button
+                  key={p.ticker}
+                  type="button"
+                  onClick={() => toggle(p.ticker)}
+                  variants={staggerItem}
+                  whileTap={{ scale: 0.94 }}
+                  whileHover={{ scale: 1.02 }}
+                >
                   <Badge
                     variant={active ? "default" : "outline"}
                     className="cursor-pointer gap-1.5 px-3 py-1 text-xs opacity-80"
@@ -108,10 +120,10 @@ export function PeerPicker({
                     {p.name} ({p.ticker})
                     <span className="text-[10px] opacity-70">{active ? "×" : "+"}</span>
                   </Badge>
-                </button>
+                </motion.button>
               );
             })}
-          </div>
+          </StaggerList>
         </div>
       )}
     </div>
