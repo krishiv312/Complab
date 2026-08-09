@@ -1,20 +1,11 @@
 "use client";
 
-import {
-  CartesianGrid,
-  ResponsiveContainer,
-  Scatter,
-  ScatterChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-  ZAxis,
-} from "recharts";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import type { CompsRow } from "@/components/comps/comps-table";
+import { ChartCard } from "@/components/charts/chart-card";
+import { niceDomainTicks } from "@/components/charts/chart-utils";
 import { formatPercent } from "@/lib/format";
-
-const PRIMARY = "#2B63E9"; // matches --primary in globals.css, sampled from the logo
-const MUTED = "#9CA3AF";
 
 interface ScatterPoint {
   ticker: string;
@@ -23,7 +14,15 @@ interface ScatterPoint {
   isSubject: boolean;
 }
 
+const W = 560;
+const H = 260;
+const PAD = { top: 14, right: 16, bottom: 28, left: 46 };
+const PLOT_W = W - PAD.left - PAD.right;
+const PLOT_H = H - PAD.top - PAD.bottom;
+
 export function GrowthMarginScatter({ rows }: { rows: CompsRow[] }) {
+  const [hovered, setHovered] = useState<number | null>(null);
+
   const data: ScatterPoint[] = rows
     .filter(
       (r) =>
@@ -50,59 +49,103 @@ export function GrowthMarginScatter({ rows }: { rows: CompsRow[] }) {
     );
   }
 
-  const subject = data.filter((d) => d.isSubject);
-  const peers = data.filter((d) => !d.isSubject);
+  const xTicks = niceDomainTicks(Math.min(...data.map((d) => d.growth)), Math.max(...data.map((d) => d.growth)));
+  const yTicks = niceDomainTicks(Math.min(...data.map((d) => d.margin)), Math.max(...data.map((d) => d.margin)));
+  const [xMin, xMax] = [xTicks[0], xTicks[xTicks.length - 1]];
+  const [yMin, yMax] = [yTicks[0], yTicks[yTicks.length - 1]];
+
+  const xFor = (v: number) => PAD.left + (PLOT_W * (v - xMin)) / (xMax - xMin);
+  const yFor = (v: number) => PAD.top + PLOT_H * (1 - (v - yMin) / (yMax - yMin));
 
   return (
-    <div className="flex flex-col gap-2">
-      <div className="h-64 w-full rounded-xl border border-border p-4 shadow-sm">
-        <ResponsiveContainer width="100%" height="100%">
-          <ScatterChart margin={{ top: 8, right: 16, left: 8, bottom: 8 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-            <XAxis
-              type="number"
-              dataKey="growth"
-              name="Revenue growth"
-              tick={{ fontSize: 12, fill: "var(--muted-foreground)" }}
-              axisLine={{ stroke: "var(--border)" }}
-              tickLine={false}
-              tickFormatter={(v: number) => formatPercent(v)}
-              label={{ value: "Revenue growth", position: "insideBottom", offset: -4, fontSize: 11, fill: "var(--muted-foreground)" }}
-            />
-            <YAxis
-              type="number"
-              dataKey="margin"
-              name="EBITDA margin"
-              tick={{ fontSize: 12, fill: "var(--muted-foreground)" }}
-              axisLine={false}
-              tickLine={false}
-              tickFormatter={(v: number) => formatPercent(v)}
-              label={{ value: "EBITDA margin", angle: -90, position: "insideLeft", fontSize: 11, fill: "var(--muted-foreground)" }}
-            />
-            <ZAxis range={[80, 80]} />
-            <Tooltip
-              cursor={{ strokeDasharray: "3 3" }}
-              formatter={(value, name) => [formatPercent(Number(value)), name]}
-              labelFormatter={() => ""}
-              content={({ active, payload }) => {
-                if (!active || !payload || payload.length === 0) return null;
-                const point = payload[0].payload as ScatterPoint;
-                return (
-                  <div
-                    className="rounded-lg border px-2 py-1.5 text-xs"
-                    style={{ backgroundColor: "var(--popover)", borderColor: "var(--border)" }}
-                  >
-                    <p className="font-medium">{point.ticker}</p>
-                    <p className="text-muted-foreground">Growth: {formatPercent(point.growth)}</p>
-                    <p className="text-muted-foreground">Margin: {formatPercent(point.margin)}</p>
-                  </div>
-                );
-              }}
-            />
-            <Scatter data={peers} fill={MUTED} />
-            <Scatter data={subject} fill={PRIMARY} />
-          </ScatterChart>
-        </ResponsiveContainer>
+    <ChartCard title="Revenue growth vs. EBITDA margin" description="Peer positioning on growth and profitability">
+      <div className="h-64 w-full">
+        <svg viewBox={`0 0 ${W} ${H}`} className="h-full w-full overflow-visible" role="img" aria-label="Revenue growth vs EBITDA margin scatter plot">
+          {yTicks.map((t) => (
+            <g key={`y-${t}`}>
+              <line x1={PAD.left} x2={W - PAD.right} y1={yFor(t)} y2={yFor(t)} stroke="var(--border)" strokeDasharray="3 3" />
+              <text x={PAD.left - 8} y={yFor(t)} textAnchor="end" dominantBaseline="middle" className="fill-muted-foreground text-[10px]">
+                {formatPercent(t)}
+              </text>
+            </g>
+          ))}
+          {xTicks.map((t) => (
+            <g key={`x-${t}`}>
+              <line
+                x1={xFor(t)}
+                x2={xFor(t)}
+                y1={PAD.top}
+                y2={PAD.top + PLOT_H}
+                stroke={t === 0 ? "var(--muted-foreground)" : "var(--border)"}
+                strokeDasharray={t === 0 ? undefined : "3 3"}
+                strokeOpacity={t === 0 ? 0.5 : 1}
+              />
+              <text x={xFor(t)} y={H - 10} textAnchor="middle" className="fill-muted-foreground text-[10px]">
+                {formatPercent(t)}
+              </text>
+            </g>
+          ))}
+
+          {data.map((d, i) => {
+            const cx = xFor(d.growth);
+            const cy = yFor(d.margin);
+            const r = d.isSubject ? 6 : 4.5;
+            return (
+              <g key={d.ticker} onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)}>
+                <motion.circle
+                  cx={cx}
+                  cy={cy}
+                  r={r}
+                  fill={d.isSubject ? "var(--primary)" : "var(--chart-2)"}
+                  stroke={d.isSubject ? "var(--primary)" : "transparent"}
+                  strokeOpacity={0.25}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: hovered === i ? 1.3 : 1, opacity: 1 }}
+                  style={{ transformBox: "fill-box", transformOrigin: "center" }}
+                  transition={{
+                    scale: hovered === i
+                      ? { type: "spring", stiffness: 300, damping: 15 }
+                      : { type: "spring", stiffness: 260, damping: 16, delay: i * 0.06 },
+                    opacity: { duration: 0.25, delay: i * 0.06 },
+                  }}
+                />
+                {d.isSubject && (
+                  <motion.circle
+                    cx={cx}
+                    cy={cy}
+                    r={r + 5}
+                    fill="none"
+                    stroke="var(--primary)"
+                    strokeWidth={1.5}
+                    strokeOpacity={0.35}
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    style={{ transformBox: "fill-box", transformOrigin: "center" }}
+                    transition={{ type: "spring", stiffness: 200, damping: 16, delay: 0.15 }}
+                  />
+                )}
+                <AnimatePresence>
+                  {hovered === i && (
+                    <motion.g
+                      initial={{ opacity: 0, y: 4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 4 }}
+                      transition={{ duration: 0.15 }}
+                    >
+                      <rect x={cx - 44} y={cy - 44} width={88} height={34} rx={6} fill="var(--popover)" stroke="var(--border)" />
+                      <text x={cx} y={cy - 32} textAnchor="middle" className="fill-foreground text-[10px] font-medium">
+                        {d.ticker}
+                      </text>
+                      <text x={cx} y={cy - 20} textAnchor="middle" className="fill-muted-foreground text-[9px]">
+                        {formatPercent(d.growth)} · {formatPercent(d.margin)}
+                      </text>
+                    </motion.g>
+                  )}
+                </AnimatePresence>
+              </g>
+            );
+          })}
+        </svg>
       </div>
       {excludedCount > 0 && (
         <p className="text-xs text-muted-foreground">
@@ -110,6 +153,6 @@ export function GrowthMarginScatter({ rows }: { rows: CompsRow[] }) {
           EBITDA margin is N/A for {excludedCount === 1 ? "it" : "them"}.
         </p>
       )}
-    </div>
+    </ChartCard>
   );
 }

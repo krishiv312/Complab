@@ -223,16 +223,9 @@ export default async function AnalysisPage({
           Charts
         </h2>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-          <div className="flex flex-col gap-1">
-            <p className="text-xs text-muted-foreground">EV / EBITDA</p>
-            <MultipleBarChart rows={rows} metricKey="evEbitda" label="EV/EBITDA" />
-          </div>
-          <div className="flex flex-col gap-1">
-            <p className="text-xs text-muted-foreground">EV / Revenue</p>
-            <MultipleBarChart rows={rows} metricKey="evRevenue" label="EV/Revenue" />
-          </div>
-          <div className="flex flex-col gap-1 lg:col-span-2">
-            <p className="text-xs text-muted-foreground">Revenue growth vs. EBITDA margin</p>
+          <MultipleBarChart rows={rows} metricKey="evEbitda" label="EV/EBITDA" />
+          <MultipleBarChart rows={rows} metricKey="evRevenue" label="EV/Revenue" />
+          <div className="lg:col-span-2">
             <GrowthMarginScatter rows={rows} />
           </div>
         </div>
@@ -265,12 +258,7 @@ export default async function AnalysisPage({
         />
       </section>
 
-      <section className="flex flex-col gap-3">
-        <h2 className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
-          Implied valuation across methods (football field)
-        </h2>
-        <FootballFieldChart rows={footballFieldRows} currentPrice={company.market.sharePrice} />
-      </section>
+      <FootballFieldChart rows={footballFieldRows} currentPrice={company.market.sharePrice} />
 
       <p className="text-xs text-muted-foreground">
         The peer group above is encoded in the URL — copy the link to share or reload this exact
