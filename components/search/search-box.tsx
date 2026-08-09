@@ -2,6 +2,7 @@
 
 import { useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { ArrowRight, Search } from "lucide-react";
 import type { DemoCompanySummary } from "@/lib/data/demo";
 
 export function SearchBox({ companies }: { companies: DemoCompanySummary[] }) {
@@ -43,12 +44,16 @@ export function SearchBox({ companies }: { companies: DemoCompanySummary[] }) {
 
   return (
     <div className="relative w-full max-w-md">
+      <Search
+        size={16}
+        className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-muted-foreground"
+      />
       <input
         ref={inputRef}
         type="text"
         value={query}
         placeholder="Search by ticker or company name (try “nike”)"
-        className="w-full rounded-xl border border-border bg-background px-4 py-3.5 text-sm shadow-sm outline-none transition-shadow focus:border-primary/40 focus:ring-4 focus:ring-ring"
+        className="w-full rounded-xl border border-border bg-background py-3.5 pr-14 pl-10 text-sm shadow-sm outline-none transition-shadow focus:border-primary/40 focus:ring-4 focus:ring-ring"
         onChange={(e) => {
           setQuery(e.target.value);
           setIsOpen(true);
@@ -62,6 +67,16 @@ export function SearchBox({ companies }: { companies: DemoCompanySummary[] }) {
         aria-expanded={isOpen && matches.length > 0}
         aria-controls="search-results"
       />
+      <button
+        type="button"
+        aria-label="Go to search result"
+        disabled={matches.length === 0}
+        onMouseDown={(e) => e.preventDefault()}
+        onClick={() => matches.length > 0 && goTo(matches[highlighted].ticker)}
+        className="absolute top-1/2 right-2 flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-40"
+      >
+        <ArrowRight size={16} />
+      </button>
       {isOpen && query.trim() !== "" && (
         <ul id="search-results" role="listbox" className="absolute z-10 mt-1 w-full overflow-hidden rounded-lg border border-border bg-popover shadow-md">
           {matches.length === 0 ? (

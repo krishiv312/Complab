@@ -16,18 +16,24 @@ export function HeroContent({ companies }: { companies: DemoCompanySummary[] }) 
       className="flex w-full max-w-2xl flex-1 flex-col items-center justify-center gap-8 text-center"
     >
       <motion.div variants={staggerItem} className="flex flex-col items-center gap-3">
-        <Image
-          src="/logo-lockup.png"
-          alt="Company Labs"
-          width={169}
-          height={138}
-          priority
-          unoptimized
-          className="h-32 w-auto"
-        />
+        <div className="flex items-center gap-3">
+          <Image
+            src="/logo-icon.png"
+            alt=""
+            width={422}
+            height={214}
+            priority
+            unoptimized
+            className="h-12 w-auto"
+          />
+          <span className="font-heading text-2xl font-semibold tracking-tight whitespace-nowrap sm:text-4xl">
+            Company Labs
+          </span>
+        </div>
         <p className="text-lg text-muted-foreground">
-          Comparable-company valuation multiples, computed from hand-verified SEC filings —
-          not AI-generated numbers, not vibes.
+          Comparable-company valuation multiples, computed from{" "}
+          <span className="text-primary">hand-verified SEC filings</span> — not AI-generated
+          numbers, not vibes.
         </p>
         <p className="text-sm text-muted-foreground">
           Built for students and early-career analysts learning how equity comps actually work:
@@ -40,18 +46,25 @@ export function HeroContent({ companies }: { companies: DemoCompanySummary[] }) 
         <SearchBox companies={companies} />
       </motion.div>
 
-      <motion.div variants={staggerContainer(0.02, 0.1)} className="flex flex-wrap items-center justify-center gap-2 text-sm text-muted-foreground">
-        <motion.span variants={staggerItem}>Or jump straight to</motion.span>
-        {companies.map((c) => (
-          <motion.div key={c.ticker} variants={staggerItem}>
-            <Link
-              href={`/company/${c.ticker}`}
-              className="rounded-full border border-border px-3 py-1 transition-colors hover:border-primary/30 hover:bg-accent hover:text-accent-foreground"
-            >
-              {c.ticker}
-            </Link>
-          </motion.div>
-        ))}
+      <motion.div variants={staggerContainer(0.02, 0.1)} className="flex flex-col items-center gap-3">
+        <motion.span
+          variants={staggerItem}
+          className="text-xs font-medium tracking-wider text-muted-foreground uppercase"
+        >
+          Or jump straight to
+        </motion.span>
+        <div className="flex flex-wrap items-center justify-center gap-2 text-sm">
+          {companies.map((c) => (
+            <motion.div key={c.ticker} variants={staggerItem}>
+              <Link
+                href={`/company/${c.ticker}`}
+                className="rounded-full border border-border px-3 py-1 font-mono transition-colors hover:border-primary/30 hover:bg-accent hover:text-accent-foreground"
+              >
+                {c.ticker}
+              </Link>
+            </motion.div>
+          ))}
+        </div>
       </motion.div>
 
       <motion.p variants={staggerItem} className="max-w-md text-xs text-muted-foreground">
