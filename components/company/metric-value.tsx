@@ -3,27 +3,34 @@
 import { Badge } from "@/components/ui/badge";
 import { CountUp } from "@/components/motion/count-up";
 import type { MetricResult } from "@/lib/finance/types";
-import { formatCurrency, formatMultiple, formatPercent } from "@/lib/format";
+import { formatCurrency, formatMultiple, formatPercent, formatPerShare } from "@/lib/format";
 
 // A serializable key rather than the formatter function itself - functions
 // can't cross the Server -> Client Component boundary, and this component
 // needs to be a client component for the CountUp animation.
-export type MetricFormatType = "currency" | "multiple" | "percent";
+export type MetricFormatType = "currency" | "multiple" | "percent" | "perShare" | "shares";
 
 const FORMATTERS: Record<MetricFormatType, (value: number) => string> = {
   currency: formatCurrency,
   multiple: formatMultiple,
   percent: formatPercent,
+  perShare: formatPerShare,
+  shares: (v) => `${v.toLocaleString(undefined, { maximumFractionDigits: 0 })}M`,
 };
 
 export function MetricValue({
   result,
   formatType,
+  size = "lg",
+  colorBySign = false,
 }: {
   result: MetricResult;
   formatType: MetricFormatType;
+  size?: "sm" | "lg";
+  colorBySign?: boolean;
 }) {
   const format = FORMATTERS[formatType];
+  const sizeClass = size === "lg" ? "text-2xl" : "text-lg";
 
   if (result.value === null) {
     return (
@@ -44,8 +51,16 @@ export function MetricValue({
     );
   }
 
+  const signClass = colorBySign
+    ? result.value > 0
+      ? "text-emerald-600 dark:text-emerald-400"
+      : result.value < 0
+        ? "text-red-600 dark:text-red-400"
+        : ""
+    : "";
+
   return (
-    <span className="font-mono text-2xl font-semibold tabular-nums">
+    <span className={`font-mono ${sizeClass} font-semibold tabular-nums ${signClass}`}>
       <CountUp value={result.value} format={format} />
     </span>
   );
