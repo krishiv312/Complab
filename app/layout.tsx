@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Space_Grotesk, Geist_Mono } from "next/font/google";
+import { Montserrat, JetBrains_Mono } from "next/font/google";
 import Link from "next/link";
-import Image from "next/image";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
-const bodyFont = Plus_Jakarta_Sans({
+const bodyFont = Montserrat({
   variable: "--font-sans",
   subsets: ["latin"],
 });
 
-const headingFont = Space_Grotesk({
+const headingFont = Montserrat({
   variable: "--font-heading",
   subsets: ["latin"],
+  weight: ["600", "700"],
 });
 
-const monoFont = Geist_Mono({
+const monoFont = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
 });
@@ -57,15 +57,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <header className="sticky top-0 z-10 flex items-center justify-between border-b border-border/70 bg-background/80 px-6 py-3 backdrop-blur-md">
-            <Link href="/" className="flex items-center gap-2" aria-label="Company Labs home">
-              <Image src="/logo-icon.png" alt="" width={28} height={14} priority unoptimized className="h-6 w-auto" />
-              <span className="font-heading text-sm font-semibold tracking-tight">
-                Company Labs
-              </span>
-            </Link>
-            <ThemeToggle />
-          </header>
+          <SiteHeader />
           <div className="flex flex-1 flex-col">{children}</div>
           <footer className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 border-t border-border px-6 py-4 text-xs text-muted-foreground">
             <span>Not investment advice.</span>
