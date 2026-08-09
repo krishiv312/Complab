@@ -71,6 +71,11 @@ export function listDemoTickers(): string[] {
   return Object.keys(ALL_COMPANIES);
 }
 
+/** Full company records for every ticker - for peer scoring and comparison pickers. */
+export function listAllDemoCompanies(): DemoCompany[] {
+  return Object.values(ALL_COMPANIES);
+}
+
 /** Whether this ticker is one of the four permanently hand-verified companies. */
 export function isHandVerified(ticker: string): boolean {
   return ticker.toUpperCase() in HAND_VERIFIED;

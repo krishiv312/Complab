@@ -1,27 +1,23 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getDemoCompany, listDemoTickers, listDemoCompanySummaries } from "@/lib/data/demo";
+import { ArrowLeft } from "lucide-react";
+import { getDemoCompany, listDemoTickers, listAllDemoCompanies } from "@/lib/data/demo";
 import { suggestPeers } from "@/lib/finance/peers";
 import { computeCompanyMetrics } from "@/lib/finance/compute";
 import { quartilesFromMetrics } from "@/lib/finance/statistics";
 import { impliedValuation, impliedSharePriceDirect } from "@/lib/finance/valuation";
 import { safeDivide } from "@/lib/finance/multiples";
-import { PeerPicker } from "@/components/comps/peer-picker";
+import { ComparedStrip } from "@/components/comps/compared-strip";
 import { CompsTable, type CompsRow } from "@/components/comps/comps-table";
 import { QuartileTable, ValuationRangeCard } from "@/components/comps/valuation-summary";
 import { MultipleBarChart } from "@/components/charts/multiple-bar-chart";
 import { GrowthMarginScatter } from "@/components/charts/growth-margin-scatter";
 import { FootballFieldChart, type FootballFieldRow } from "@/components/charts/football-field-chart";
+import { MetricValue } from "@/components/company/metric-value";
 import type { DemoCompany } from "@/lib/finance/types";
 
 export function generateStaticParams() {
   return listDemoTickers().map((ticker) => ({ ticker }));
-}
-
-function allCompanies(): DemoCompany[] {
-  return listDemoTickers()
-    .map((t) => getDemoCompany(t))
-    .filter((c): c is DemoCompany => c !== null);
 }
 
 function toRow(company: DemoCompany, isSubject: boolean): CompsRow {
@@ -59,7 +55,7 @@ export default async function AnalysisPage({
     notFound();
   }
 
-  const candidates = allCompanies();
+  const candidates = listAllDemoCompanies();
   const suggested = suggestPeers(company, candidates);
   const suggestedTickers = suggested.map((p) => p.ticker);
 
@@ -170,38 +166,63 @@ export default async function AnalysisPage({
     },
   ];
 
-  const summaries = listDemoCompanySummaries();
-  const suggestedOptions = suggested.map((p) => ({ ticker: p.ticker, name: p.name, rationale: p.rationale }));
-  const otherOptions = summaries
-    .filter((s) => s.ticker !== company.profile.ticker && !suggestedTickers.includes(s.ticker))
-    .map((s) => ({ ticker: s.ticker, name: s.name }));
-
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 py-12">
-      <header className="flex flex-col gap-1">
-        <div className="flex items-baseline gap-3">
-          <h1 className="font-heading text-3xl font-semibold tracking-tight">
-            {company.profile.name}
-          </h1>
-          <span className="text-lg text-muted-foreground">{company.profile.ticker}</span>
-        </div>
-        <p className="text-sm text-muted-foreground">
-          {company.profile.exchange} · {company.profile.sector} · {company.profile.industry}
-        </p>
-        <Link
-          href={`/company/${company.profile.ticker}`}
-          className="mt-1 text-xs text-muted-foreground underline underline-offset-4"
-        >
-          View company page
-        </Link>
-      </header>
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-12">
+      <Link
+        href="/"
+        className="flex w-fit items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+      >
+        <ArrowLeft size={14} />
+        Search
+      </Link>
 
-      <PeerPicker
+      <div className="flex flex-col gap-4 rounded-xl border border-border bg-card p-5 shadow-sm ring-1 ring-foreground/[0.04] sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-center gap-4">
+          <div className="flex size-14 shrink-0 items-center justify-center rounded-lg border border-primary/30 bg-accent font-mono text-sm font-semibold text-primary">
+            {company.profile.ticker}
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <h1 className="font-heading text-2xl font-semibold tracking-tight">{company.profile.name}</h1>
+            <p className="text-sm text-muted-foreground">
+              {company.profile.ticker} · {company.profile.exchange} · {company.profile.sector} ·{" "}
+              {company.profile.industry}
+            </p>
+            <Link
+              href={`/company/${company.profile.ticker}`}
+              className="w-fit text-xs text-muted-foreground underline underline-offset-4"
+            >
+              View company page
+            </Link>
+          </div>
+        </div>
+        <div className="flex items-center gap-6">
+          <div className="flex flex-col items-start sm:items-end">
+            <span className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+              Current price
+            </span>
+            <span className="font-mono text-lg font-semibold tabular-nums">
+              ${company.market.sharePrice.toFixed(2)}
+            </span>
+          </div>
+          <div className="flex flex-col items-start sm:items-end">
+            <span className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+              Market cap
+            </span>
+            <MetricValue result={subjectMetrics.marketCap} formatType="currency" size="sm" />
+          </div>
+          <div className="flex flex-col items-start sm:items-end">
+            <span className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+              Rev growth
+            </span>
+            <MetricValue result={subjectRow.revenueGrowth} formatType="percent" size="sm" colorBySign />
+          </div>
+        </div>
+      </div>
+
+      <ComparedStrip
         subjectTicker={company.profile.ticker}
-        currentPeers={currentPeerTickers}
-        suggestedPeerTickers={suggestedTickers}
-        suggested={suggestedOptions}
-        others={otherOptions}
+        peers={peerRows.map((r) => ({ ticker: r.ticker }))}
+        editHref={`/analysis/${company.profile.ticker}/compare?peers=${currentPeerTickers.join(",")}`}
       />
 
       <section className="flex flex-col gap-3">
