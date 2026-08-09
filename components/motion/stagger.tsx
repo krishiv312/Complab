@@ -13,6 +13,16 @@ export const staggerItem: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } },
 };
 
+/** A single staggered-entrance item - for use as a child of StaggerList from a
+ * Server Component, which can't import `motion` directly itself. */
+export function StaggerItem({ children, className }: { children: React.ReactNode; className?: string }) {
+  return (
+    <motion.div variants={staggerItem} className={className}>
+      {children}
+    </motion.div>
+  );
+}
+
 /** Convenience wrapper for the common case: a div-based list with staggered children. */
 export function StaggerList({
   children,

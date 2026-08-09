@@ -4,8 +4,8 @@ import { getDemoCompany, listDemoTickers } from "@/lib/data/demo";
 import { computeCompanyMetrics, directResult } from "@/lib/finance/compute";
 import { MetricCard } from "@/components/company/metric-card";
 import { buttonVariants } from "@/components/ui/button";
-import { formatCurrency, formatMultiple, formatPercent } from "@/lib/format";
 import { cn } from "@/lib/utils";
+import { StaggerList, StaggerItem } from "@/components/motion/stagger";
 
 export function generateStaticParams() {
   return listDemoTickers().map((ticker) => ({ ticker }));
@@ -49,88 +49,106 @@ export default async function CompanyPage({
         <h2 className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
           Financial summary — {periodLabel}
         </h2>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <MetricCard
-            label="Revenue"
-            result={directResult(current.incomeStatement.revenue)}
-            format={formatCurrency}
-            period={periodLabel}
-            currency={current.period.currency}
-            source={current.source}
-          />
-          <MetricCard
-            label="EBITDA"
-            result={metrics.ebitda}
-            format={formatCurrency}
-            period={periodLabel}
-            currency={current.period.currency}
-            source={current.source}
-          />
-          <MetricCard
-            label="Net income"
-            result={directResult(current.incomeStatement.netIncome)}
-            format={formatCurrency}
-            period={periodLabel}
-            currency={current.period.currency}
-            source={current.source}
-          />
-          <MetricCard
-            label="Net margin"
-            result={metrics.margins.netMargin}
-            format={formatPercent}
-            period={periodLabel}
-            currency={current.period.currency}
-            source={current.source}
-          />
-        </div>
+        <StaggerList className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <StaggerItem>
+            <MetricCard
+              label="Revenue"
+              result={directResult(current.incomeStatement.revenue)}
+              formatType="currency"
+              period={periodLabel}
+              currency={current.period.currency}
+              source={current.source}
+            />
+          </StaggerItem>
+          <StaggerItem>
+            <MetricCard
+              label="EBITDA"
+              result={metrics.ebitda}
+              formatType="currency"
+              period={periodLabel}
+              currency={current.period.currency}
+              source={current.source}
+            />
+          </StaggerItem>
+          <StaggerItem>
+            <MetricCard
+              label="Net income"
+              result={directResult(current.incomeStatement.netIncome)}
+              formatType="currency"
+              period={periodLabel}
+              currency={current.period.currency}
+              source={current.source}
+            />
+          </StaggerItem>
+          <StaggerItem>
+            <MetricCard
+              label="Net margin"
+              result={metrics.margins.netMargin}
+              formatType="percent"
+              period={periodLabel}
+              currency={current.period.currency}
+              source={current.source}
+            />
+          </StaggerItem>
+        </StaggerList>
       </section>
 
       <section className="flex flex-col gap-3">
         <h2 className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
           Valuation — as of {company.market.priceAsOf}
         </h2>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <MetricCard
-            label="Market cap"
-            result={metrics.marketCap}
-            format={formatCurrency}
-            period={company.market.priceAsOf}
-            currency={company.market.priceCurrency}
-            source={company.market.priceSource}
-          />
-          <MetricCard
-            label="Enterprise value"
-            result={metrics.enterpriseValue}
-            format={formatCurrency}
-            period={periodLabel}
-            currency={current.period.currency}
-            source={current.source}
-          />
-          <MetricCard
-            label="EV / Revenue"
-            result={metrics.evRevenue}
-            format={formatMultiple}
-            period={periodLabel}
-            currency={current.period.currency}
-            source={current.source}
-          />
-          <MetricCard
-            label="EV / EBITDA"
-            result={metrics.evEbitda}
-            format={formatMultiple}
-            period={periodLabel}
-            currency={current.period.currency}
-            source={current.source}
-          />
-          <MetricCard
-            label="P / E"
-            result={metrics.pe}
-            format={formatMultiple}
-            period={company.market.priceAsOf}
-            currency={company.market.priceCurrency}
-            source={company.market.priceSource}
-          />
-        </div>
+        <StaggerList className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <StaggerItem>
+            <MetricCard
+              label="Market cap"
+              result={metrics.marketCap}
+              formatType="currency"
+              period={company.market.priceAsOf}
+              currency={company.market.priceCurrency}
+              source={company.market.priceSource}
+            />
+          </StaggerItem>
+          <StaggerItem>
+            <MetricCard
+              label="Enterprise value"
+              result={metrics.enterpriseValue}
+              formatType="currency"
+              period={periodLabel}
+              currency={current.period.currency}
+              source={current.source}
+            />
+          </StaggerItem>
+          <StaggerItem>
+            <MetricCard
+              label="EV / Revenue"
+              result={metrics.evRevenue}
+              formatType="multiple"
+              period={periodLabel}
+              currency={current.period.currency}
+              source={current.source}
+            />
+          </StaggerItem>
+          <StaggerItem>
+            <MetricCard
+              label="EV / EBITDA"
+              result={metrics.evEbitda}
+              formatType="multiple"
+              period={periodLabel}
+              currency={current.period.currency}
+              source={current.source}
+            />
+          </StaggerItem>
+          <StaggerItem>
+            <MetricCard
+              label="P / E"
+              result={metrics.pe}
+              formatType="multiple"
+              period={company.market.priceAsOf}
+              currency={company.market.priceCurrency}
+              source={company.market.priceSource}
+            />
+          </StaggerItem>
+        </StaggerList>
       </section>
 
       <section className="flex flex-col gap-3 border-t border-border pt-8">

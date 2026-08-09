@@ -1,5 +1,5 @@
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { MetricValue } from "./metric-value";
+import { MetricValue, type MetricFormatType } from "./metric-value";
 import type { MetricResult, SourceRef } from "@/lib/finance/types";
 
 const SOURCE_LABELS: Record<SourceRef["kind"], string> = {
@@ -12,14 +12,14 @@ const SOURCE_LABELS: Record<SourceRef["kind"], string> = {
 export function MetricCard({
   label,
   result,
-  format,
+  formatType,
   period,
   currency,
   source,
 }: {
   label: string;
   result: MetricResult;
-  format: (value: number) => string;
+  formatType: MetricFormatType;
   period: string;
   currency: string;
   source: SourceRef;
@@ -30,7 +30,7 @@ export function MetricCard({
         <CardTitle className="text-sm font-normal text-muted-foreground">{label}</CardTitle>
       </CardHeader>
       <CardContent>
-        <MetricValue result={result} format={format} />
+        <MetricValue result={result} formatType={formatType} />
       </CardContent>
       <CardFooter className="flex flex-col items-start gap-0.5 text-xs text-muted-foreground">
         <span>
