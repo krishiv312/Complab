@@ -64,6 +64,9 @@ export default function RootLayout({
             <Link href="/methodology" className="underline underline-offset-4 hover:text-foreground">
               Methodology
             </Link>
+            <Link href="/about" className="underline underline-offset-4 hover:text-foreground">
+              About
+            </Link>
             <Link href="/privacy" className="underline underline-offset-4 hover:text-foreground">
               Privacy
             </Link>
