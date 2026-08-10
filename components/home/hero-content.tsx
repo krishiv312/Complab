@@ -7,7 +7,16 @@ import type { DemoCompanySummary } from "@/lib/data/demo";
 import { SearchBox } from "@/components/search/search-box";
 import { staggerContainer, staggerItem } from "@/components/motion/stagger";
 
+// One flagship ticker per industry the dataset covers (footwear & apparel,
+// semiconductors, enterprise software, food & beverage) - a representative
+// sample rather than an arbitrary slice. Everything else is a search away.
+const QUICK_ACCESS_TICKERS = ["NKE", "NVDA", "CRM", "KO"];
+
 export function HeroContent({ companies }: { companies: DemoCompanySummary[] }) {
+  const quickAccess = QUICK_ACCESS_TICKERS.map((ticker) =>
+    companies.find((c) => c.ticker === ticker)
+  ).filter((c): c is DemoCompanySummary => c !== undefined);
+
   return (
     <motion.div
       initial="hidden"
@@ -53,8 +62,8 @@ export function HeroContent({ companies }: { companies: DemoCompanySummary[] }) 
         >
           Or jump straight to
         </motion.span>
-        <div className="flex flex-wrap items-center justify-center gap-2 text-sm">
-          {companies.map((c) => (
+        <div className="flex flex-wrap items-center justify-center gap-3 text-sm">
+          {quickAccess.map((c) => (
             <motion.div key={c.ticker} variants={staggerItem}>
               <Link
                 href={`/company/${c.ticker}`}

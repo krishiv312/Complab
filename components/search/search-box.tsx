@@ -43,7 +43,7 @@ export function SearchBox({ companies }: { companies: DemoCompanySummary[] }) {
   }
 
   return (
-    <div className="relative w-full max-w-md">
+    <div className="relative w-full">
       <Search
         size={16}
         className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-muted-foreground"
