@@ -2,6 +2,7 @@
 
 import { useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import { ArrowRight, Search } from "lucide-react";
 import type { DemoCompanySummary } from "@/lib/data/demo";
 
@@ -67,16 +68,19 @@ export function SearchBox({ companies }: { companies: DemoCompanySummary[] }) {
         aria-expanded={isOpen && matches.length > 0}
         aria-controls="search-results"
       />
-      <button
+      <motion.button
         type="button"
         aria-label="Go to search result"
         disabled={matches.length === 0}
         onMouseDown={(e) => e.preventDefault()}
         onClick={() => matches.length > 0 && goTo(matches[highlighted].ticker)}
-        className="absolute top-1/2 right-2 flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-40"
+        whileHover={matches.length > 0 ? { scale: 1.08 } : undefined}
+        whileTap={matches.length > 0 ? { scale: 0.92 } : undefined}
+        transition={{ type: "spring", stiffness: 420, damping: 22 }}
+        className="absolute top-1/2 right-2 flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm shadow-primary/25 transition-colors hover:bg-primary/90 disabled:opacity-40"
       >
         <ArrowRight size={16} />
-      </button>
+      </motion.button>
       {isOpen && query.trim() !== "" && (
         <ul id="search-results" role="listbox" className="absolute z-10 mt-1 w-full overflow-hidden rounded-lg border border-border bg-popover shadow-md">
           {matches.length === 0 ? (

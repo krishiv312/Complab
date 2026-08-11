@@ -8,9 +8,11 @@ import { MetricValue } from "@/components/company/metric-value";
 import type { MetricResult } from "@/lib/finance/types";
 
 const revealUp = {
-  hidden: { opacity: 0, y: 18 },
-  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 24, scale: 0.97 },
+  visible: { opacity: 1, y: 0, scale: 1 },
 };
+
+const springReveal = { type: "spring" as const, stiffness: 260, damping: 24 };
 
 export function ReportHero({
   ticker,
@@ -33,15 +35,25 @@ export function ReportHero({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  const glowScale = useTransform(scrollYProgress, [0, 1], [1, 1.3]);
 
   return (
     <motion.div
       ref={ref}
-      style={{ y, opacity }}
+      style={{ y, scale, opacity }}
       className="relative flex flex-col items-center gap-8 py-14 text-center sm:py-20"
     >
+      <motion.div
+        aria-hidden
+        style={{ scale: glowScale }}
+        className="pointer-events-none absolute top-1/2 left-1/2 -z-10 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,var(--primary)_0%,transparent_70%)] opacity-[0.08]"
+        animate={{ opacity: [0.06, 0.11, 0.06] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      />
+
       <motion.div
         initial="hidden"
         animate="visible"
@@ -50,22 +62,22 @@ export function ReportHero({
       >
         <motion.span
           variants={revealUp}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          transition={springReveal}
           className="rounded-full border border-primary/30 bg-accent px-3 py-1 font-mono text-xs font-semibold text-primary"
         >
           {ticker} · {exchange}
         </motion.span>
         <motion.h1
           variants={revealUp}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          transition={springReveal}
           className="font-heading text-4xl font-bold tracking-tight text-balance sm:text-5xl"
         >
           {name}
         </motion.h1>
-        <motion.p variants={revealUp} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} className="text-sm text-muted-foreground">
+        <motion.p variants={revealUp} transition={springReveal} className="text-sm text-muted-foreground">
           {sector} · {industry}
         </motion.p>
-        <motion.div variants={revealUp} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
+        <motion.div variants={revealUp} transition={springReveal}>
           <Link
             href={`/company/${ticker}`}
             className="text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground"
@@ -76,9 +88,9 @@ export function ReportHero({
       </motion.div>
 
       <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        initial={{ opacity: 0, y: 24, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ ...springReveal, delay: 0.32 }}
         className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4"
       >
         <div className="flex flex-col items-center gap-0.5">

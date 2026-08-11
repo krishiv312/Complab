@@ -26,15 +26,21 @@ export function HeroContent({ companies }: { companies: DemoCompanySummary[] }) 
     >
       <motion.div variants={staggerItem} className="flex flex-col items-center gap-3">
         <div className="flex flex-col items-center gap-2">
-          <Image
-            src="/logo-icon.png"
-            alt=""
-            width={422}
-            height={214}
-            priority
-            unoptimized
-            className="h-14 w-auto"
-          />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.6, rotate: -8 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ type: "spring", stiffness: 220, damping: 16, delay: 0.05 }}
+          >
+            <Image
+              src="/logo-icon.png"
+              alt=""
+              width={422}
+              height={214}
+              priority
+              unoptimized
+              className="h-14 w-auto"
+            />
+          </motion.div>
           <span className="font-heading text-2xl font-semibold tracking-tight whitespace-nowrap sm:text-4xl">
             Company Labs
           </span>
@@ -64,10 +70,16 @@ export function HeroContent({ companies }: { companies: DemoCompanySummary[] }) 
         </motion.span>
         <div className="flex flex-wrap items-center justify-center gap-3 text-sm">
           {quickAccess.map((c) => (
-            <motion.div key={c.ticker} variants={staggerItem}>
+            <motion.div
+              key={c.ticker}
+              variants={staggerItem}
+              whileHover={{ scale: 1.08, y: -2 }}
+              whileTap={{ scale: 0.94 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
+            >
               <Link
                 href={`/company/${c.ticker}`}
-                className="rounded-full border border-border px-3 py-1 font-mono transition-colors hover:border-primary/30 hover:bg-accent hover:text-accent-foreground"
+                className="block rounded-full border border-border px-3 py-1 font-mono transition-colors hover:border-primary/30 hover:bg-accent hover:text-accent-foreground hover:shadow-md"
               >
                 {c.ticker}
               </Link>

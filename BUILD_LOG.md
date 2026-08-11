@@ -1,5 +1,89 @@
 # BUILD_LOG.md
 
+## Entry 7 — Stronger motion pass + click-anywhere chart expand
+
+**Scope covered:** Two explicit requests: make the whole product feel more
+"premium"/animated (layout changes allowed if needed), and fix chart
+expansion so clicking anywhere on a chart card opens the zoom dialog,
+not just the small corner button. Interaction/visual only - no
+calculation logic touched, layout ended up not needing to change.
+
+### What I built
+
+- **`SpotlightCard`** (`components/motion/spotlight-card.tsx`) - a reusable
+  card wrapper with a cursor-tracked radial glow (`useMotionValue` +
+  `useSpring` + `useMotionTemplate`, position updates spring-smoothed
+  rather than snapping to the raw mouse position) and a spring lift on
+  hover. Applied to `MiniMetricCard`, `QuartileTable`, `ValuationRangeCard`,
+  and the analysis page's "Comparable companies" card - the four card
+  types a user's cursor actually spends time over.
+- **`ChartCard` click-anywhere-to-expand**: previously only the small
+  corner `Expand` icon opened the zoom dialog. Rebuilt the trigger so the
+  *entire card* is the `Dialog.Trigger`, using Base UI's `render` prop to
+  swap the default `<button>` for a `motion.div` (`nativeButton={false}`,
+  which makes Base UI's `useButton` add the `role="button"`/keyboard
+  handling a real button would have given for free). Verified the prop-
+  merge order in Base UI's own `useRenderElement`/`mergeProps` source
+  before trusting it, since this is the first `render`-prop usage in the
+  codebase - confirmed my card's own `children` survive the merge (the
+  trigger's generated props are merged first, the render element's own
+  props second, and `children` is only present on the trigger side, so
+  it isn't overwritten). Applies automatically to all three chart types
+  (`MultipleBarChart`, `GrowthMarginScatter`, `FootballFieldChart`) since
+  they all already route through the shared `ChartCard`. The expand icon
+  stays as a passive hover-revealed affordance, not a separate click
+  target.
+- **Homepage**: background blobs now drift slowly (`AmbientBlobs`,
+  extracted to a small client component so `app/page.tsx` can stay a
+  server component); the logo pops in with a spring on load; ticker chips
+  and the search submit button get a spring hover/tap.
+- **Analysis page**: `NarrativeSection`'s scroll-driven reveal got more
+  stages - the eyebrow badge now pops in with a scale spring before the
+  heading, the heading/description/content reveal in sequence rather than
+  together, and the content block now blur-in + scale-in in addition to
+  the existing rise/fade. `ReportHero` gained a slow-pulsing ambient glow
+  behind the content and switched its entrance transitions from fixed-
+  duration eases to springs.
+- **Global**: `buttonVariants`' base class gained a hover lift and a
+  firmer tap-scale, which applies everywhere it's used (it's a `cva`
+  class string applied directly to `<Link>`/`<a>`/`<button>` throughout
+  the app, not a wrapped component) - one change, uplift everywhere.
+  Comps table rows get a smooth hover tint via `motion`'s `backgroundColor`
+  animation, conditioned so the subject row's distinct highlight isn't
+  clobbered on hover.
+
+### What I verified before trusting it
+
+- The Base UI `render`-prop trigger pattern was new to this codebase, so
+  before shipping it I read `useRenderElement.js`/`mergeProps.js` in
+  `node_modules/@base-ui/react` directly to confirm the children-merge
+  order, then verified live in a real browser (not just typecheck) that
+  clicking the chart *body* - not the icon - opens the dialog, on both
+  desktop click and mobile tap, in light and dark.
+- `SpotlightCard`'s glow overlay originally used both a Tailwind
+  `opacity-0 group-hover:opacity-100` class *and* an inline
+  `style={{ opacity: 0.07 }}` on the same element - caught before commit
+  that inline `style` always wins over classes regardless of specificity,
+  which would have made the glow permanently visible instead of
+  hover-gated. Fixed by folding the low intensity into the hover-state
+  Tailwind class (`group-hover:opacity-[0.08]`) instead of a separate
+  inline value.
+
+### What I learned
+
+- When adopting a headless-UI library's advanced prop pattern for the
+  first time (Base UI's `render` prop, here), reading the library's own
+  merge-order source before use was worth it - the alternative was
+  shipping something that looked right in one manual check and silently
+  dropping the card's content the first time prop-merge order didn't
+  match my assumption.
+- "Make it feel more premium" is more legible as a set of small, repeated
+  interaction primitives (one spotlight-card component, one button-hover
+  rule) applied consistently across existing surfaces than as one big
+  visual set piece - it also kept this change from touching the layout at
+  all, which the user had explicitly said was on the table but turned out
+  not to be necessary.
+
 ## Entry 6 — Scrollytelling analysis workspace + follow-up fixes
 
 **Scope covered:** Two small homepage tweaks, a real interaction bug in the

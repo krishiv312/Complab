@@ -174,7 +174,8 @@ export function CompsTable({ rows }: { rows: CompsRow[] }) {
                 key={row.id}
                 layout
                 variants={staggerItem}
-                transition={{ layout: { type: "spring", stiffness: 350, damping: 32 } }}
+                whileHover={{ backgroundColor: row.original.isSubject ? "var(--accent)" : "var(--muted)" }}
+                transition={{ layout: { type: "spring", stiffness: 350, damping: 32 }, backgroundColor: { duration: 0.15 } }}
                 className={`border-b border-border last:border-0 ${
                   row.original.isSubject ? "bg-accent/40" : ""
                 }`}

@@ -6,6 +6,7 @@ import type { MetricResult } from "@/lib/finance/types";
 import { formatMultiple, formatPerShare } from "@/lib/format";
 import { staggerContainer, staggerItem } from "@/components/motion/stagger";
 import { CountUp } from "@/components/motion/count-up";
+import { SpotlightCard } from "@/components/motion/spotlight-card";
 
 export interface MultipleQuartiles {
   label: string;
@@ -20,7 +21,7 @@ export function QuartileTable({ rows }: { rows: MultipleQuartiles[] }) {
   }
 
   return (
-    <div className="flex flex-col gap-3 rounded-xl border border-border bg-card p-4 shadow-sm ring-1 ring-foreground/[0.04]">
+    <SpotlightCard className="flex flex-col gap-3 p-4">
       <div className="flex flex-col gap-0.5">
         <h3 className="font-heading text-sm font-semibold">Quartile statistics</h3>
         <p className="text-xs text-muted-foreground">Peer group distribution, subject vs. peers</p>
@@ -57,7 +58,7 @@ export function QuartileTable({ rows }: { rows: MultipleQuartiles[] }) {
         </motion.tbody>
       </table>
       </div>
-    </div>
+    </SpotlightCard>
   );
 }
 
@@ -105,7 +106,7 @@ export function ValuationRangeCard({
   const toPct = (v: number) => ((v - domainMin) / span) * 100;
 
   return (
-    <div className="flex flex-col gap-4 rounded-xl border border-border bg-card p-4 shadow-sm ring-1 ring-foreground/[0.04]">
+    <SpotlightCard className="flex flex-col gap-4 p-4">
       <div className="flex items-start justify-between gap-3">
         <div className="flex flex-col gap-0.5">
           <h3 className="font-heading text-sm font-semibold">Implied valuation range</h3>
@@ -197,6 +198,6 @@ export function ValuationRangeCard({
         Implied equity value = (peer multiple × subject EBITDA) − subject net debt, ÷ shares
         outstanding.
       </p>
-    </div>
+    </SpotlightCard>
   );
 }

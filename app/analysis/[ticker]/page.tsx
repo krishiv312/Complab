@@ -16,6 +16,7 @@ import { FootballFieldChart, type FootballFieldRow } from "@/components/charts/f
 import { ScrollProgress } from "@/components/motion/scroll-progress";
 import { ReportHero } from "@/components/analysis/report-hero";
 import { NarrativeSection } from "@/components/analysis/narrative-section";
+import { SpotlightCard } from "@/components/motion/spotlight-card";
 import type { DemoCompany } from "@/lib/finance/types";
 
 export function generateStaticParams() {
@@ -208,7 +209,7 @@ export default async function AnalysisPage({
               editHref={`/analysis/${company.profile.ticker}/compare?peers=${currentPeerTickers.join(",")}`}
             />
 
-            <div className="flex flex-col gap-3 rounded-xl border border-border bg-card p-4 shadow-sm ring-1 ring-foreground/[0.04]">
+            <SpotlightCard className="flex flex-col gap-3 p-4">
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <h3 className="font-heading text-sm font-semibold">Comparable companies</h3>
@@ -225,7 +226,7 @@ export default async function AnalysisPage({
                 </a>
               </div>
               <CompsTable rows={rows} />
-            </div>
+            </SpotlightCard>
           </div>
         </NarrativeSection>
 
