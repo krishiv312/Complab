@@ -66,7 +66,7 @@ export default async function CompanyPage({
             </span>
           </div>
           <Link
-            href={`/analysis/${company.profile.ticker}`}
+            href={`/analysis/${company.profile.ticker}/compare`}
             className={cn(buttonVariants({ variant: "default" }), "h-9 gap-1.5 px-4")}
           >
             <ArrowLeftRight size={14} />

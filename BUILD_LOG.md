@@ -1,6 +1,68 @@
 # BUILD_LOG.md
 
-## Entry 5 — Fidelity pass against the real base44 screenshots
+## Entry 6 — Scrollytelling analysis workspace + follow-up fixes
+
+**Scope covered:** Two small homepage tweaks, a real interaction bug in the
+peer-selection flow, a copy rename, and a full restructure of the analysis
+page into a "scrollytelling" report - narrative sections with a giant
+parallax index numeral, scroll-triggered reveals, and a top scroll-progress
+bar - driven by five new reference screenshots. Same display/interaction-
+only scope as Entries 4-5; no calculation logic touched.
+
+### What I built
+
+- **Homepage hero lockup** - the icon now sits above the "Company Labs"
+  wordmark (was side-by-side), which reads as a proper logo lockup instead
+  of an off-balance icon+text row.
+- **Fixed a real interaction bug**: the company page's "Compare" button
+  linked straight to `/analysis/[ticker]`, which silently defaults to
+  `suggestPeers()`'s suggestion list when no `?peers=` is in the URL - so
+  clicking Compare dropped the user into a comparison they never chose.
+  Pointed it at the existing `/analysis/[ticker]/compare` picker instead,
+  so selection now always happens before the workspace renders. The picker
+  itself already had select-then-"Choose" - it just wasn't in the path.
+- **"Comps table" → "Comparable companies"** with a count badge, matching
+  the reference screenshots' fuller label.
+- **New scrollytelling layer for the analysis page**, three new components:
+  `ScrollProgress` (fixed gradient bar, width bound to page scroll via
+  `useScroll`/`useSpring`), `ReportHero` (replaces the old compact header
+  card - staggered text reveal, a scroll-linked parallax fade as the user
+  scrolls past, a bouncing "scroll to explore" hint), and `NarrativeSection`
+  (reusable: eyebrow badge, heading, description, a giant low-opacity index
+  numeral drifting at a slower parallax speed, content fading/rising in via
+  `useScroll` + `useTransform` on scroll progress through the section).
+  `app/analysis/[ticker]/page.tsx` now composes five `NarrativeSection`s -
+  comparable set, valuation multiples, growth vs. profitability, quartile
+  distribution, football field - around the *exact same* `CompsTable`,
+  `MultipleBarChart`, `GrowthMarginScatter`, `QuartileTable`,
+  `ValuationRangeCard`, and `FootballFieldChart` components from Entry 5,
+  unmodified. The doc brief for this was explicit that it should be a
+  presentational wrapper, not a rebuild, and the existing chart/table
+  components already matched the reference screenshots' content areas.
+- Header subtitle for the analysis route changed from "Valuation workspace"
+  to "Valuation report" to match the new report framing (compare/company
+  routes keep their existing subtitles).
+
+### What I verified before assuming there was a bug
+
+- Checked whether the font really wasn't Montserrat anywhere (`layout.tsx`
+  already wires `Montserrat` to both `--font-sans` and `--font-heading`,
+  and a repo-wide grep found no competing `font-family`/`next/font` import)
+  - it already was, everywhere. The actual risk was new large heading
+    elements accidentally falling back to a default instead of inheriting
+    it, so `NarrativeSection`/`ReportHero` headings explicitly use
+    `font-heading` rather than relying on inheritance alone.
+
+### What I learned
+
+- "It looks out of place" bug reports are worth translating into the most
+  literal, smallest-blast-radius fix rather than guessing at a bigger
+  redesign - the logo complaint was a one-line flex-direction change, not a
+  new lockup component.
+- A UI bug that only manifests as "the wrong thing happens by default" (the
+  Compare-button skip) is easy to miss in isolated component testing,
+  because the picker component itself was already correct - the bug was
+  entirely in which route a button pointed at.
 
 **Scope covered:** Entry 4's redesign was built from one reference
 screenshot plus a text "Master Prompt" - every gap beyond that one screen

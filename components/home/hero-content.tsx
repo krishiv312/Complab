@@ -25,7 +25,7 @@ export function HeroContent({ companies }: { companies: DemoCompanySummary[] }) 
       className="flex w-full max-w-2xl flex-1 flex-col items-center justify-center gap-8 text-center"
     >
       <motion.div variants={staggerItem} className="flex flex-col items-center gap-3">
-        <div className="flex items-center gap-3">
+        <div className="flex flex-col items-center gap-2">
           <Image
             src="/logo-icon.png"
             alt=""
@@ -33,7 +33,7 @@ export function HeroContent({ companies }: { companies: DemoCompanySummary[] }) 
             height={214}
             priority
             unoptimized
-            className="h-12 w-auto"
+            className="h-14 w-auto"
           />
           <span className="font-heading text-2xl font-semibold tracking-tight whitespace-nowrap sm:text-4xl">
             Company Labs

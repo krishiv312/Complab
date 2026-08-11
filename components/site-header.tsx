@@ -20,7 +20,7 @@ const NAV_LINKS = [
 const SUBTITLES: { match: (path: string) => boolean; label: string }[] = [
   { match: (p) => p.startsWith("/company/"), label: "Company detail" },
   { match: (p) => /^\/analysis\/[^/]+\/compare/.test(p), label: "Build a comparison" },
-  { match: (p) => p.startsWith("/analysis/"), label: "Valuation workspace" },
+  { match: (p) => p.startsWith("/analysis/"), label: "Valuation report" },
 ];
 const DEFAULT_SUBTITLE = "Valuation workspace";
 

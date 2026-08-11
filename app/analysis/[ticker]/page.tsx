@@ -13,7 +13,9 @@ import { QuartileTable, ValuationRangeCard } from "@/components/comps/valuation-
 import { MultipleBarChart } from "@/components/charts/multiple-bar-chart";
 import { GrowthMarginScatter } from "@/components/charts/growth-margin-scatter";
 import { FootballFieldChart, type FootballFieldRow } from "@/components/charts/football-field-chart";
-import { MetricValue } from "@/components/company/metric-value";
+import { ScrollProgress } from "@/components/motion/scroll-progress";
+import { ReportHero } from "@/components/analysis/report-hero";
+import { NarrativeSection } from "@/components/analysis/narrative-section";
 import type { DemoCompany } from "@/lib/finance/types";
 
 export function generateStaticParams() {
@@ -166,8 +168,13 @@ export default async function AnalysisPage({
     },
   ];
 
+  const peerCount = peerRows.length;
+  const peerCountLabel = `${peerCount} peer${peerCount === 1 ? "" : "s"}`;
+
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-12">
+    <div className="mx-auto flex w-full max-w-6xl flex-col px-6 py-8">
+      <ScrollProgress />
+
       <Link
         href="/"
         className="flex w-fit items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -176,102 +183,109 @@ export default async function AnalysisPage({
         Search
       </Link>
 
-      <div className="flex flex-col gap-4 rounded-xl border border-border bg-card p-5 shadow-sm ring-1 ring-foreground/[0.04] sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-4">
-          <div className="flex size-14 shrink-0 items-center justify-center rounded-lg border border-primary/30 bg-accent font-mono text-sm font-semibold text-primary">
-            {company.profile.ticker}
+      <ReportHero
+        ticker={company.profile.ticker}
+        name={company.profile.name}
+        exchange={company.profile.exchange}
+        sector={company.profile.sector}
+        industry={company.profile.industry}
+        price={company.market.sharePrice}
+        marketCap={subjectMetrics.marketCap}
+        revenueGrowth={subjectRow.revenueGrowth}
+      />
+
+      <div className="flex flex-col gap-16 border-t border-border pt-4">
+        <NarrativeSection
+          index="01"
+          eyebrow="The comparable set"
+          title="Benchmarked against its true peers"
+          description={`We measure ${company.profile.name} against ${peerCountLabel} across ${company.profile.industry}. Every figure below is computed from the latest filed financials — no estimates, no analyst adjustments.`}
+        >
+          <div className="flex flex-col gap-4">
+            <ComparedStrip
+              subjectTicker={company.profile.ticker}
+              peers={peerRows.map((r) => ({ ticker: r.ticker }))}
+              editHref={`/analysis/${company.profile.ticker}/compare?peers=${currentPeerTickers.join(",")}`}
+            />
+
+            <div className="flex flex-col gap-3 rounded-xl border border-border bg-card p-4 shadow-sm ring-1 ring-foreground/[0.04]">
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <h3 className="font-heading text-sm font-semibold">Comparable companies</h3>
+                  <span className="rounded-full bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
+                    {rows.length}
+                  </span>
+                </div>
+                <a
+                  href={`/api/analysis/${company.profile.ticker}/csv?peers=${currentPeerTickers.join(",")}`}
+                  download
+                  className="text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground"
+                >
+                  Download CSV
+                </a>
+              </div>
+              <CompsTable rows={rows} />
+            </div>
           </div>
-          <div className="flex flex-col gap-0.5">
-            <h1 className="font-heading text-2xl font-semibold tracking-tight">{company.profile.name}</h1>
-            <p className="text-sm text-muted-foreground">
-              {company.profile.ticker} · {company.profile.exchange} · {company.profile.sector} ·{" "}
-              {company.profile.industry}
-            </p>
-            <Link
-              href={`/company/${company.profile.ticker}`}
-              className="w-fit text-xs text-muted-foreground underline underline-offset-4"
-            >
-              View company page
-            </Link>
+        </NarrativeSection>
+
+        <NarrativeSection
+          index="02"
+          eyebrow="Valuation multiples"
+          title="How the market prices each name"
+          description="Two lenses on enterprise value: EV/EBITDA strips out capital structure and taxes; EV/Revenue ignores profitability entirely. The subject is highlighted throughout."
+        >
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <MultipleBarChart rows={rows} metricKey="evEbitda" label="EV/EBITDA" />
+            <MultipleBarChart rows={rows} metricKey="evRevenue" label="EV/Revenue" />
           </div>
-        </div>
-        <div className="flex items-center gap-6">
-          <div className="flex flex-col items-start sm:items-end">
-            <span className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
-              Current price
-            </span>
-            <span className="font-mono text-lg font-semibold tabular-nums">
-              ${company.market.sharePrice.toFixed(2)}
-            </span>
+        </NarrativeSection>
+
+        <NarrativeSection
+          index="03"
+          eyebrow="Growth vs profitability"
+          title="Faster growth, richer multiple?"
+          description="Faster growth should earn a richer multiple — but only when it converts to margin. Here, revenue growth (YoY) meets EBITDA margin for every name in the set."
+        >
+          <GrowthMarginScatter rows={rows} />
+        </NarrativeSection>
+
+        <NarrativeSection
+          index="04"
+          eyebrow="Where peers sit"
+          title="The distribution, in quartiles"
+          description={`Splitting the peer set into quartiles frames the distribution. ${company.profile.ticker}'s own multiples sit beside the range so you can see cheap, in-line, or rich at a glance.`}
+        >
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <QuartileTable
+              rows={[
+                { label: "EV / Revenue", stats: peerQuartiles.evRevenue, subjectValue: subjectRow.evRevenue },
+                { label: "EV / EBITDA", stats: peerQuartiles.evEbitda, subjectValue: subjectRow.evEbitda },
+                { label: "EV / EBIT", stats: peerQuartiles.evEbit, subjectValue: subjectRow.evEbit },
+                { label: "P / E", stats: peerQuartiles.pe, subjectValue: subjectRow.pe },
+                { label: "P / B", stats: peerQuartiles.pb, subjectValue: subjectRow.pb },
+              ]}
+            />
+            <ValuationRangeCard
+              q1Price={q1Valuation.impliedSharePrice}
+              medianPrice={medianValuation.impliedSharePrice}
+              q3Price={q3Valuation.impliedSharePrice}
+              currentPrice={company.market.sharePrice}
+            />
           </div>
-          <div className="flex flex-col items-start sm:items-end">
-            <span className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
-              Market cap
-            </span>
-            <MetricValue result={subjectMetrics.marketCap} formatType="currency" size="sm" />
-          </div>
-          <div className="flex flex-col items-start sm:items-end">
-            <span className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
-              Rev growth
-            </span>
-            <MetricValue result={subjectRow.revenueGrowth} formatType="percent" size="sm" colorBySign />
-          </div>
-        </div>
+        </NarrativeSection>
+
+        <NarrativeSection
+          index="05"
+          eyebrow="The verdict"
+          title="What the field says about today's price"
+          description={`Each method's peer quartiles imply a share-price range for ${company.profile.ticker}. The football field plots Q1–Q3 against today's market price — the median tick marks the peer-implied fair value.`}
+        >
+          <FootballFieldChart rows={footballFieldRows} currentPrice={company.market.sharePrice} />
+        </NarrativeSection>
       </div>
 
-      <ComparedStrip
-        subjectTicker={company.profile.ticker}
-        peers={peerRows.map((r) => ({ ticker: r.ticker }))}
-        editHref={`/analysis/${company.profile.ticker}/compare?peers=${currentPeerTickers.join(",")}`}
-      />
-
-      <section className="flex flex-col gap-3">
-        <h2 className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
-          Comps table
-        </h2>
-        <CompsTable rows={rows} />
-        <a
-          href={`/api/analysis/${company.profile.ticker}/csv?peers=${currentPeerTickers.join(",")}`}
-          download
-          className="w-fit text-xs text-muted-foreground underline underline-offset-4"
-        >
-          Download comps table (.csv)
-        </a>
-      </section>
-
-      <section className="flex flex-col gap-3">
-        <h2 className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
-          Charts
-        </h2>
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-          <MultipleBarChart rows={rows} metricKey="evEbitda" label="EV/EBITDA" />
-          <MultipleBarChart rows={rows} metricKey="evRevenue" label="EV/Revenue" />
-          <div className="lg:col-span-2">
-            <GrowthMarginScatter rows={rows} />
-          </div>
-        </div>
-      </section>
-
-      <QuartileTable
-        rows={[
-          { label: "EV / Revenue", stats: peerQuartiles.evRevenue, subjectValue: subjectRow.evRevenue },
-          { label: "EV / EBITDA", stats: peerQuartiles.evEbitda, subjectValue: subjectRow.evEbitda },
-          { label: "EV / EBIT", stats: peerQuartiles.evEbit, subjectValue: subjectRow.evEbit },
-          { label: "P / E", stats: peerQuartiles.pe, subjectValue: subjectRow.pe },
-          { label: "P / B", stats: peerQuartiles.pb, subjectValue: subjectRow.pb },
-        ]}
-      />
-
-      <ValuationRangeCard
-        q1Price={q1Valuation.impliedSharePrice}
-        medianPrice={medianValuation.impliedSharePrice}
-        q3Price={q3Valuation.impliedSharePrice}
-        currentPrice={company.market.sharePrice}
-      />
-
-      <FootballFieldChart rows={footballFieldRows} currentPrice={company.market.sharePrice} />
-
-      <p className="text-xs text-muted-foreground">
+      <p className="border-t border-border pt-6 text-xs text-muted-foreground">
         The peer group above is encoded in the URL — copy the link to share or reload this exact
         comparison. No account needed.
       </p>
